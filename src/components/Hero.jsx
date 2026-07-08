@@ -21,7 +21,7 @@ export default function Hero() {
           <p className="reveal reveal-in mb-6 text-[13px] font-medium uppercase tracking-[0.2em] text-ink/50">
             {hero.tag}
           </p>
-          <h1 className="text-balance text-[clamp(2.75rem,7vw,6rem)] font-semibold leading-[0.98] tracking-tightest text-ink">
+          <h1 className="text-balance text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1] tracking-tightest text-ink">
             {hero.headline}
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-[clamp(1.05rem,1.4vw,1.3rem)] leading-relaxed text-ink/70">
