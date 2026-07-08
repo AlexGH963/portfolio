@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexandros Hashemakis — Product Design Leader (Preview)</title>
+<style>html,body{margin:0;padding:0;background:#fafafa}</style>
+</head>
+<body>
+<style>
+  /* ============================================================
+     Alexandros Hashemakis — portfolio preview (faithful static
+     mirror of the React build). SF Pro renders natively on macOS.
+     ============================================================ */
+  :root {
+    --accent: #1f52e0;
+    --ink: #0a0a0a;
+    --paper: #fafafa;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --container: 1200px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+
+  .site {
+    font-family: var(--font);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+  }
+  .site * { margin: 0; }
+  .site ::selection { background: var(--accent); color: #fff; }
+  .site a { color: inherit; text-decoration: none; }
+  .site :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .container { max-width: var(--container); margin: 0 auto; width: 100%; }
+
+  .section {
+    padding: clamp(5.5rem, 12vw, 10rem) 1.5rem;
+  }
+  @media (min-width: 640px) { .section { padding-left: 2rem; padding-right: 2rem; } }
+  .section--dark { background: var(--ink); color: var(--paper); }
+
+  /* ---- Typography ---- */
+  .eyebrow {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(10,10,10,0.5);
+  }
+  .section--dark .eyebrow { color: rgba(250,250,250,0.4); }
+  .h-section {
+    font-size: clamp(2.25rem, 5vw, 4.5rem); font-weight: 600;
+    line-height: 1.02; letter-spacing: -0.045em; text-wrap: balance; max-width: 22ch;
+  }
+  .lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.6;
+    color: rgba(10,10,10,0.6); max-width: 42rem;
+  }
+  .section--dark .lead { color: rgba(250,250,250,0.6); }
+
+  /* ---- Header ---- */
+  .header {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+  }
+  .header.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .header__inner {
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: rgba(250,250,250,0.8);
+    -webkit-backdrop-filter: saturate(1.5) blur(20px);
+    backdrop-filter: saturate(1.5) blur(20px);
+  }
+  .header__bar {
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem; max-width: var(--container); margin: 0 auto;
+  }
+  @media (min-width: 640px) { .header__bar { padding: 0 2rem; } }
+  .wordmark { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .wordmark:hover { opacity: 0.6; }
+  .nav { display: none; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) { .nav { display: flex; } }
+  .nav a { font-size: 14px; font-weight: 500; color: rgba(10,10,10,0.7); transition: color .2s; }
+  .nav a:hover { color: var(--ink); }
+  .header__right { display: flex; align-items: center; gap: 1.5rem; }
+  .menu-btn { display: inline-flex; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--ink); }
+  @media (min-width: 900px) { .menu-btn { display: none; } }
+  .mobile-nav { display: none; border-top: 1px solid rgba(0,0,0,0.06); background: rgba(250,250,250,0.97); padding: 0.5rem 1.5rem 1.5rem; }
+  .mobile-nav.is-open { display: block; }
+  .mobile-nav a { display: block; padding: 12px 0; font-size: 17px; font-weight: 500; color: rgba(10,10,10,0.8); }
+
+  /* ---- Buttons ---- */
+  .btn {
+    display: inline-flex; align-items: center; border: 0; border-radius: 999px;
+    font-size: 15px; font-weight: 500; padding: 0 1.75rem; height: 48px;
+    transition: transform .3s var(--ease), border-color .3s var(--ease); cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  /* Scoped with `.site a` to win over the global anchor color:inherit rule. */
+  .btn--solid { background: var(--ink); }
+  .site a.btn--solid, .site button.btn--solid { color: var(--paper); }
+  .site a.btn--ghost { color: rgba(10,10,10,0.7); }
+  .site a.btn--ghost:hover { color: var(--ink); }
+  .btn--outline { border: 1px solid rgba(0,0,0,0.15); }
+  .site a.btn--outline { color: var(--ink); }
+  .btn--outline:hover { border-color: rgba(0,0,0,0.3); }
+
+  /* ---- Hero ---- */
+  .hero {
+    min-height: 100svh; display: flex; align-items: center;
+    padding: 8rem 1.5rem 5rem; position: relative;
+  }
+  @media (min-width: 640px) { .hero { padding-left: 2rem; padding-right: 2rem; } }
+  .hero__grid {
+    display: grid; gap: 3rem; align-items: center; width: 100%;
+    max-width: var(--container); margin: 0 auto;
+  }
+  @media (min-width: 1000px) { .hero__grid { grid-template-columns: 7fr 5fr; gap: 4rem; } }
+  .hero h1 {
+    font-size: clamp(2.75rem, 7vw, 6rem); font-weight: 600; line-height: 0.98;
+    letter-spacing: -0.045em; text-wrap: balance;
+  }
+  .hero__sub {
+    margin-top: 2rem; max-width: 40rem; font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    line-height: 1.6; color: rgba(10,10,10,0.7); text-wrap: pretty;
+  }
+  .hero__cta { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  .hero__scroll {
+    position: absolute; inset: auto 0 2rem 0; text-align: center;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(10,10,10,0.3);
+  }
+
+  /* ---- Portrait ---- */
+  .portrait {
+    position: relative; overflow: hidden; border-radius: 1rem; max-width: 360px;
+    margin-left: auto; box-shadow: 0 30px 80px -30px rgba(0,0,0,0.35);
+  }
+  .portrait--about { max-width: 360px; margin: 0; box-shadow: 0 40px 100px -40px rgba(0,0,0,0.6); }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter .7s var(--ease); }
+  .portrait:hover img { filter: grayscale(0); }
+  .portrait__ph {
+    aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center;
+    background: #171717;
+  }
+  .portrait__ph span { font-size: 3.75rem; font-weight: 600; letter-spacing: -0.045em; color: var(--paper); }
+  .portrait__ring { position: absolute; inset: 0; border-radius: 1rem; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); pointer-events: none; }
+
+  /* ---- Proof strip ---- */
+  .proof { background: var(--paper); color: var(--ink); padding: clamp(2rem, 4vw, 2.5rem) 0; overflow: hidden; }
+  .proof__grid { max-width: var(--container); margin: 0 auto; display: grid; gap: 3rem 2rem; padding: 0 1.5rem; }
+  @media (min-width: 640px) { .proof__grid { padding: 0 2rem; } }
+  @media (min-width: 640px) { .proof__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .proof__grid { grid-template-columns: repeat(4, 1fr); } }
+  .proof__item { border-top: 1px solid rgba(250,250,250,0.15); padding-top: 1.5rem; }
+  .proof__stat {
+    font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600; line-height: 1;
+    letter-spacing: -0.045em; font-variant-numeric: tabular-nums;
+  }
+  .proof__label { margin-top: 1rem; font-size: 15px; line-height: 1.6; color: rgba(250,250,250,0.6); }
+
+  /* ---- What I do ---- */
+  .themes { display: flex; flex-direction: column; gap: clamp(5rem, 8vw, 7rem); }
+  .theme { display: grid; gap: 1.5rem; }
+  @media (min-width: 1000px) { .theme { grid-template-columns: 1fr 7fr 4fr; gap: 4rem; } }
+  .theme__num { font-size: 15px; font-weight: 500; color: rgba(10,10,10,0.3); font-variant-numeric: tabular-nums; }
+  .theme__title { font-size: clamp(1.9rem, 4vw, 3.25rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.045em; text-wrap: balance; }
+  .theme__body { font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.6; color: rgba(10,10,10,0.65); }
+
+  /* ---- Leadership capabilities ---- */
+  .caps { margin-top: 5rem; display: grid; gap: 3.5rem 3rem; }
+  @media (min-width: 640px) { .caps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .caps { grid-template-columns: repeat(3, 1fr); } }
+  .cap { }
+  .cap h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
+  .cap p { margin-top: 0.75rem; font-size: 15.5px; line-height: 1.6; color: rgba(250,250,250,0.55); }
+
+  /* ---- Portfolio ---- */
+  .products { margin-top: clamp(4rem, 8vw, 6rem); display: flex; flex-direction: column; gap: clamp(4rem, 8vw, 6rem); }
+  .product { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 2.5rem; display: grid; gap: 2rem; }
+  @media (min-width: 1000px) { .product { grid-template-columns: 5fr 7fr; gap: 4rem; } }
+  .product__name { font-size: clamp(1.8rem, 3vw, 2.75rem); font-weight: 600; letter-spacing: -0.045em; background: linear-gradient(90deg, #3a3a3a 0%, #5c5c5c 42%, #838383 74%, #ababab 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .product__scope { margin-top: 1rem; max-width: 28rem; font-size: 16px; line-height: 1.6; color: rgba(10,10,10,0.6); }
+  .product__head { display: flex; align-items: center; gap: 1rem; }
+  .product__icon { width: 56px; height: 56px; flex: none; }
+  @media (min-width: 640px) { .product__icon { width: 64px; height: 64px; } }
+  .inits { list-style: none; padding: 0; }
+  .init { padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 0.25rem; }
+  .init:last-child { border-bottom: none; }
+  .inits__label { list-style: none; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(10,10,10,0.4); padding-bottom: 1.25rem; }
+  @media (min-width: 640px) { .init { flex-direction: row; gap: 1.5rem; } }
+  .init h4 { flex: none; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; }
+  @media (min-width: 640px) { .init h4 { width: 14rem; } }
+  .init p { font-size: 15.5px; line-height: 1.6; color: rgba(10,10,10,0.6); }
+
+  /* ---- Making design AI-native (signature dark section) ---- */
+  .ai { background: var(--ink); color: var(--paper); padding: clamp(4.5rem, 9vw, 7rem) 1.5rem; }
+  @media (min-width: 640px) { .ai { padding-left: 2rem; padding-right: 2rem; } }
+  .ai__eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,250,250,0.4); }
+  .ai__headline { margin-top: 1.5rem; max-width: 20ch; font-size: clamp(2.75rem, 8vw, 5.5rem); font-weight: 600; line-height: 1.0; letter-spacing: -0.045em; text-wrap: balance; }
+  .ai__sub { margin-top: 1.5rem; max-width: 46rem; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.6; color: rgba(250,250,250,0.6); }
+  .ai__cols { margin-top: clamp(3rem, 6vw, 4rem); display: grid; gap: 2.5rem; }
+  @media (min-width: 640px) { .ai__cols { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .ai__col { border-top: 1px solid rgba(250,250,250,0.15); padding-top: 2rem; }
+  .ai__label { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,250,250,0.4); }
+  .ai__line { margin-top: 1rem; font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+  .ai__focal { margin-top: clamp(3.5rem, 7vw, 5rem); text-align: center; }
+  .focal__line { display: inline-flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); font-size: clamp(2.75rem, 9vw, 6rem); font-weight: 600; line-height: 1; letter-spacing: -0.045em; }
+  .focal__from { color: rgba(250,250,250,0.3); }
+  .focal__arrow { color: var(--paper); opacity: 0; transform: translateX(-1rem); transition: opacity .7s var(--ease) .3s, transform .7s var(--ease) .3s; }
+  .focal__to { color: var(--paper); opacity: 0.4; transition: opacity .7s var(--ease) .45s; }
+  .ai__focal.in .focal__arrow { opacity: 1; transform: translateX(0); }
+  .ai__focal.in .focal__to { opacity: 1; }
+  .ai__closing { margin: clamp(3rem, 6vw, 4rem) auto 0; max-width: 40rem; text-align: center; text-wrap: balance; font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.6; color: rgba(250,250,250,0.5); }
+
+  /* ---- Case study cards ---- */
+  .cards { margin-top: 5rem; display: grid; gap: 2rem; }
+  @media (min-width: 1000px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    display: flex; flex-direction: column; height: 100%; border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.4); padding: 0.75rem;
+    cursor: pointer; text-align: left;
+    transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(0,0,0,0.2); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.28); }
+  .ph {
+    display: flex; align-items: center; justify-content: center; position: relative;
+    background: #f1f1f1; border-radius: 0.75rem; overflow: hidden;
+  }
+  .ph span { font-size: 12px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(10,10,10,0.3); }
+  .ph--card { aspect-ratio: 4 / 3; }
+  .card__body { display: flex; flex-direction: column; flex: 1; padding: 1.5rem 0.75rem 0.75rem; }
+  .card__body h3 { font-size: 1.4rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
+  .card__body p { margin-top: 0.75rem; flex: 1; font-size: 15.5px; line-height: 1.6; color: rgba(10,10,10,0.6); }
+  .card__link { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.25rem; font-size: 15px; font-weight: 500; color: var(--accent); }
+  .card:hover .card__link .arrow { transform: translateX(4px); }
+  .arrow { transition: transform .3s var(--ease); display: inline-block; }
+
+  /* ---- Timeline ---- */
+  .timeline { margin-top: 5rem; }
+  .job { border-top: 1px solid rgba(0,0,0,0.1); padding: 2.5rem 0; display: grid; gap: 1rem; }
+  @media (min-width: 1000px) { .job { grid-template-columns: 3fr 9fr; gap: 4rem; } }
+  .job__period { font-size: 15px; font-weight: 500; color: rgba(10,10,10,0.45); font-variant-numeric: tabular-nums; }
+  .job h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -0.01em; }
+  .job h3 .parent { font-weight: 400; color: rgba(10,10,10,0.4); }
+  .job__role { margin-top: 0.5rem; font-size: 17px; font-weight: 500; color: rgba(10,10,10,0.7); }
+  .job__detail { margin-top: 0.75rem; max-width: 40rem; font-size: 15.5px; line-height: 1.6; color: rgba(10,10,10,0.55); }
+  .roles { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.625rem; }
+  .role { display: flex; flex-direction: column; gap: 0.125rem; }
+  @media (min-width: 640px) { .role { flex-direction: row; align-items: baseline; gap: 1.25rem; } }
+  .role__period { flex: none; font-size: 13.5px; font-weight: 500; color: rgba(10,10,10,0.35); font-variant-numeric: tabular-nums; }
+  @media (min-width: 640px) { .role__period { width: 7rem; } }
+  .role__title { font-size: 16px; color: rgba(10,10,10,0.8); }
+  .role__title strong { font-weight: 600; color: var(--ink); }
+  .role__scope { color: rgba(10,10,10,0.5); }
+  .certs { margin-top: 5rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 2.5rem; }
+  .certs__grid { margin-top: 1.5rem; display: grid; gap: 1.5rem 4rem; }
+  @media (min-width: 640px) { .certs__grid { grid-template-columns: repeat(2, 1fr); } }
+  .cert__title { font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; }
+  .cert__issuer { margin-top: 0.25rem; font-size: 15px; color: rgba(10,10,10,0.5); }
+
+  /* ---- About ---- */
+  .about__grid { display: grid; gap: 3rem; }
+  @media (min-width: 1000px) {
+    .about__grid { grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; }
+  }
+  .about__copy { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about__copy p { text-wrap: pretty; line-height: 1.6; }
+  .about__lede { font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -0.01em; color: var(--paper); }
+  .about__copy p:not(.about__lede) { font-size: clamp(1.05rem, 1.3vw, 1.2rem); color: rgba(250,250,250,0.6); }
+
+  /* ---- Contact ---- */
+  .contact { background: var(--paper); padding: clamp(8rem, 20vw, 12rem) 1.5rem clamp(3.5rem, 7vw, 4.5rem); text-align: center; }
+  .contact h2 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 600; line-height: 0.95; letter-spacing: -0.045em; text-wrap: balance; }
+  .contact__sub { margin: 2rem auto 0; max-width: 34rem; font-size: clamp(1.1rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgba(10,10,10,0.6); }
+  .contact__cta { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .contact .btn { height: 54px; padding: 0 2rem; font-size: 16px; transition: opacity .2s var(--ease); }
+  .contact .btn:hover { transform: none; opacity: 0.85; }
+
+  /* ---- Footer ---- */
+  .footer { border-top: 1px solid rgba(0,0,0,0.1); background: var(--paper); padding: 3rem 1.5rem; }
+  @media (min-width: 640px) { .footer { padding-left: 2rem; padding-right: 2rem; } }
+  .footer__row { max-width: var(--container); margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: space-between; }
+  @media (min-width: 640px) { .footer__row { flex-direction: row; } }
+  .footer__links { display: flex; gap: 1.5rem; }
+  .footer__links a { font-size: 14px; font-weight: 500; color: rgba(10,10,10,0.55); }
+  .footer__links a:hover { color: var(--ink); }
+  .footer__note { max-width: var(--container); margin: 2rem auto 0; font-size: 13px; color: rgba(10,10,10,0.4); }
+
+  /* ---- Case study page ---- */
+  .cs { padding-top: 9rem; }
+  .cs__head { padding: 0 1.5rem; }
+  @media (min-width: 640px) { .cs__head { padding: 0 2rem; } }
+  .cs__head-inner { max-width: 48rem; margin: 0 auto; }
+  .cs__back { font-size: 14px; font-weight: 500; color: rgba(10,10,10,0.5); }
+  .cs__back:hover { color: var(--ink); }
+  .cs h1 { margin-top: 2rem; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.045em; text-wrap: balance; }
+  .cs__hook { margin-top: 1.5rem; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgba(10,10,10,0.6); }
+  .cs__cover { padding: 2.5rem 1.5rem 0; }
+  @media (min-width: 640px) { .cs__cover { padding-left: 2rem; padding-right: 2rem; } }
+  .cs__cover .ph { aspect-ratio: 16 / 9; max-width: 64rem; margin: 0 auto; border-radius: 1rem; }
+  .cs__article { max-width: 48rem; margin: 0 auto; padding: clamp(5rem, 10vw, 8rem) 1.5rem; display: flex; flex-direction: column; gap: 5rem; }
+  .cs__section h2 { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  .cs__section p { margin-top: 1.25rem; font-size: clamp(1.15rem, 1.6vw, 1.45rem); line-height: 1.6; color: rgba(10,10,10,0.45); }
+  .cs__section .ph { margin-top: 2rem; aspect-ratio: 16 / 10; border: 1px dashed rgba(0,0,0,0.15); background: #fafafa; border-radius: 0.75rem; }
+  .cs__next { border-top: 1px solid rgba(0,0,0,0.1); padding: 5rem 1.5rem; }
+  .cs__next-inner { max-width: 48rem; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer; }
+  .cs__next .eyebrow { color: rgba(10,10,10,0.4); }
+  .cs__next-title { display: inline-flex; align-items: center; gap: 0.5rem; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: -0.045em; }
+  .cs__next-title .arrow { color: var(--accent); }
+  .cs__next-inner:hover .arrow { transform: translateX(4px); }
+
+  /* ---- Scroll reveal ---- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ---- Black-cards auto-scrolling ribbon ---- */
+  .panel { position: relative; width: 480px; height: 520px; border-radius: 30px; overflow: hidden; flex: none; filter: invert(1); }
+  .p-dark { background: #141414; color: #fff; }
+  .kick { font: 600 11px/1 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  .cards-marquee { position: relative; overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .cards-track { display: flex; width: max-content; animation: card-scroll 80s linear infinite; }
+  .cards-group { display: flex; gap: 22px; margin-right: 22px; }
+  .card-slot { position: relative; width: 298px; height: 323px; flex: none; border-radius: 20px; box-shadow: 0 24px 55px -32px rgba(17,17,26,0.16); }
+  .card-slot .panel { position: absolute; top: 0; left: 0; transform: scale(0.62); transform-origin: top left; }
+  @keyframes card-scroll { to { transform: translateX(-50%); } }
+
+  /* Siri / Apple-Intelligence gradient for the "AI" token. */
+  .ai-grad { font-weight: 700; background: linear-gradient(100deg, #1e9bff, #4f8bff, #6d5cff, #9a5cff, #b15cff, #e05cc8, #ff5c9e, #ff7d6e, #ff9a3d, #1e9bff); background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: ai-shimmer 8s linear infinite; }
+  @keyframes ai-shimmer { to { background-position: 260% 0; } }
+  /* ---- Hero design showcase (auto-scrolling app screens) ---- */
+  .screens { display: flex; align-items: flex-start; gap: 12px; height: clamp(440px, 74vh, 660px); max-width: 480px; margin: 0 auto; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent); }
+  .screens__col { flex: 1; display: flex; flex-direction: column; will-change: transform; }
+  .screens__col--a { animation: screens-scroll 17s linear infinite; }
+  .screens__col--b { animation: screens-scroll 17s linear infinite reverse; animation-delay: -6s; }
+  .screens__col--c { animation: screens-scroll 17s linear infinite; animation-delay: -11s; }
+  .screens__group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+  .screen { position: relative; aspect-ratio: 9 / 19; border-radius: 20px; overflow: hidden; background: #fdfdfe; box-shadow: 0 30px 60px -34px rgba(17,17,26,0.12), 0 8px 22px -14px rgba(17,17,26,0.05); }
+  .screen img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+  .screen__ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(150deg, #ffffff 0%, #f2f3f6 100%); }
+  .screen__ph span { font-size: 13px; font-weight: 500; color: rgba(10,10,10,0.28); }
+  @keyframes screens-scroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  /* ---- Ask-AI toggle ---- */
+  .ai-toggle { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0; background: none; border: 0; cursor: pointer; color: var(--ink); }
+  .ai-toggle__label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+  .ai-toggle__track { position: relative; width: 42px; height: 24px; border-radius: 999px; background: rgba(10,10,10,0.18); transition: background 0.35s var(--ease); }
+  .ai-toggle__track.is-on { background: linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e); }
+  .ai-toggle__knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.35); transition: transform 0.35s var(--ease); }
+  .ai-toggle__track.is-on .ai-toggle__knob { transform: translateX(18px); }
+  .hero__ask { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 20; }
+  @media (min-width: 640px) { .hero__ask { right: 2rem; } }
+  /* ---- Ask-AI page ---- */
+  .ask { position: relative; display: flex; flex-direction: column; min-height: 100svh; background: #0a0a0a; color: var(--paper); overflow: hidden; }
+  .ask .ai-toggle { color: var(--paper); }
+  .ask .ai-toggle__track { background: rgba(255,255,255,0.16); }
+  .ask__aura { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .ask__aura::before, .ask__aura::after { content: ''; position: absolute; width: 62vw; height: 62vw; border-radius: 50%; filter: blur(90px); opacity: 0.22; }
+  .ask__aura::before { top: -16%; left: -12%; background: radial-gradient(circle, #6d5cff, transparent 65%); animation: aura-a 18s ease-in-out infinite; }
+  .ask__aura::after { right: -14%; bottom: -20%; background: radial-gradient(circle, #1e9bff, transparent 65%); animation: aura-b 22s ease-in-out infinite; }
+  @keyframes aura-a { 0%,100% { transform: translate(0,0); } 50% { transform: translate(10%,8%); } }
+  @keyframes aura-b { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-8%,-10%); } }
+  .ask__flash { position: fixed; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(circle at 68% 32%, rgba(109,92,255,0.5), rgba(30,155,255,0.22) 32%, transparent 62%); animation: ask-flash 1s ease-out both; }
+  @keyframes ask-flash { 0% { opacity: 0; transform: scale(0.6); } 25% { opacity: 0.9; } 100% { opacity: 0; transform: scale(1.5); } }
+  .ask__bar { position: relative; z-index: 10; display: flex; align-items: center; justify-content: flex-end; padding: 1.5rem; }
+  @media (min-width: 640px) { .ask__bar { padding: 1.5rem 2rem; } }
+  .ask__main { position: relative; z-index: 10; flex: 1; display: flex; align-items: center; justify-content: center; padding: 1.5rem 1.5rem 3rem; }
+  .ask__inner { width: 100%; max-width: 720px; animation: ask-in 0.85s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes ask-in { from { opacity: 0; transform: translateY(26px); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  .ask__intro { text-align: center; transition: opacity 0.4s ease, max-height 0.5s ease; overflow: hidden; }
+  .ask__intro.is-hidden { opacity: 0; max-height: 0; margin: 0; pointer-events: none; }
+  .ask__eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,250,250,0.5); }
+  .ask__headline { margin-top: 1rem; font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance; }
+  .ask__sub { margin: 1rem auto 0; max-width: 34rem; font-size: 1.05rem; line-height: 1.6; color: rgba(250,250,250,0.55); }
+  .ask__thread { display: flex; flex-direction: column; gap: 0.85rem; max-height: 44vh; overflow-y: auto; padding: 0.5rem 0.25rem 1.25rem; margin-bottom: 0.5rem; }
+  .bubble { max-width: 88%; padding: 0.85rem 1.1rem; border-radius: 18px; line-height: 1.55; font-size: 1rem; animation: bubble-in 0.4s var(--ease) both; }
+  @keyframes bubble-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .bubble--user { align-self: flex-end; background: rgba(255,255,255,0.1); color: var(--paper); border-bottom-right-radius: 6px; }
+  .bubble--ai { align-self: flex-start; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.08); color: rgba(250,250,250,0.9); border-bottom-left-radius: 6px; }
+  .bubble p { margin: 0; white-space: pre-line; }
+  .bubble__badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; margin-bottom: 0.35rem; }
+  .dots { display: inline-flex; gap: 5px; padding: 0.15rem 0; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(250,250,250,0.6); animation: dot 1.2s ease-in-out infinite; }
+  .dots i:nth-child(2) { animation-delay: 0.15s; }
+  .dots i:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes dot { 0%,60%,100% { opacity: 0.25; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+  .ask__form { margin-top: 0.5rem; }
+  .ask__field { display: flex; align-items: center; gap: 0.5rem; padding: 6px 6px 6px 22px; border-radius: 999px; border: 1.5px solid transparent; background-image: linear-gradient(#0f0f0f, #0f0f0f), linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e); background-origin: border-box; background-clip: padding-box, border-box; transition: box-shadow 0.35s var(--ease); }
+  .ask__field:focus-within { box-shadow: 0 0 0 4px rgba(109,92,255,0.16), 0 16px 50px -16px rgba(109,92,255,0.4); }
+  .ask__field input { flex: 1; min-width: 0; height: 44px; border: 0; background: transparent; color: var(--paper); font-size: 1.05rem; font-family: inherit; outline: none; }
+  .ask__field input::placeholder { color: rgba(250,250,250,0.4); }
+  .ask__field button { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 50%; color: #fff; background: linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e); cursor: pointer; transition: transform 0.25s var(--ease), opacity 0.25s; }
+  .ask__field button:hover:not(:disabled) { transform: translateX(2px); }
+  .ask__field button:disabled { opacity: 0.4; cursor: default; }
+  .ask__chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1.4rem; }
+  .chip { padding: 0.6rem 1.1rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.03); color: rgba(250,250,250,0.8); font-size: 0.9rem; font-family: inherit; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease); }
+  .chip:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.07); transform: translateY(-1px); }
+  .ask__disclaimer { margin-top: 1.6rem; text-align: center; font-size: 12.5px; line-height: 1.5; color: rgba(250,250,250,0.35); }
+  /* ---- AI-native bento grid ---- */
+  .bento { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .bento-card { position: relative; overflow: hidden; border-radius: 26px; padding: 1.75rem; background: linear-gradient(158deg, #17171b 0%, #0e0e11 100%); border: 1px solid rgba(255,255,255,0.07); }
+  .bento__kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,250,250,0.4); }
+  .bento__head { display: flex; flex-direction: column; justify-content: center; min-height: 240px; padding: 2.25rem; }
+  .bento__head::after { content: ''; position: absolute; top: -20%; right: -10%; width: 55%; height: 85%; background: radial-gradient(circle, rgba(109,92,255,0.28), transparent 68%); filter: blur(46px); pointer-events: none; }
+  .bento__headline { position: relative; font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 600; line-height: 1.04; letter-spacing: -0.03em; text-wrap: balance; }
+  .bento__sub { position: relative; margin-top: 1.25rem; max-width: 42rem; font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.6; color: rgba(250,250,250,0.6); }
+  .bento__wd { display: flex; flex-direction: column; }
+  .wd { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; text-align: center; padding: 1.25rem 0; }
+  .wd__from { font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1; color: rgba(250,250,250,0.32); }
+  .wd__arrow { font-size: 1.6rem; color: rgba(250,250,250,0.8); line-height: 1; }
+  .wd__to { font-size: clamp(2.6rem, 4.4vw, 3.8rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+  .bento__pillar { display: flex; flex-direction: column; gap: 1rem; min-height: 190px; }
+  .pillar__icon { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 13px; background: rgba(255,255,255,0.06); color: #c7b8ff; }
+  .pillar__line { margin-top: auto; font-size: clamp(1.2rem, 1.7vw, 1.55rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; text-wrap: balance; }
+  .bento__close { display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+  .bento__close p { max-width: 48rem; font-size: clamp(1.05rem, 1.5vw, 1.35rem); line-height: 1.5; color: rgba(250,250,250,0.72); text-wrap: balance; }
+  @media (min-width: 1000px) {
+    .bento { grid-template-columns: repeat(6, 1fr); grid-template-areas: "head head head head wd wd" "res res idea idea val val" "close close close close close close"; }
+    .bento__head { grid-area: head; } .bento__wd { grid-area: wd; } .bento__res { grid-area: res; } .bento__idea { grid-area: idea; } .bento__val { grid-area: val; } .bento__close { grid-area: close; }
+  }
+  #case-studies { display: none; }
+  /* ---- What-I-do white cards on the leadership dark section ---- */
+  .wcards { margin-top: clamp(3.5rem, 7vw, 4rem); display: grid; gap: 1.5rem; }
+  @media (min-width: 900px) { .wcards { grid-template-columns: repeat(3, 1fr); } }
+  .wcard { background: var(--paper); color: var(--ink); border-radius: 28px; padding: 2rem 1.75rem; display: flex; flex-direction: column; }
+  .wcard__num { font-size: 13px; font-weight: 500; color: rgba(10,10,10,0.3); font-variant-numeric: tabular-nums; }
+  .wcard__title { margin-top: 1.25rem; font-size: clamp(1.35rem, 2vw, 1.7rem); font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+  .wcard__body { margin-top: 1rem; font-size: 15.5px; line-height: 1.6; color: rgba(10,10,10,0.6); }
+  #leadership .caps { margin-top: clamp(4rem, 8vw, 6rem); }
+  /* ---- Project card stack (portfolio) ---- */
+  .portfolio-head { display: grid; gap: 1.5rem; align-items: center; }
+  @media (min-width: 1000px) { .portfolio-head { grid-template-columns: 1fr 1fr; gap: 1rem; } }
+  .portfolio-head__stack { min-width: 0; }
+  .pk-panel { position: relative; width: 480px; height: 560px; border-radius: 30px; overflow: hidden; background: #141414; color: #fff; padding: 34px 32px; display: flex; flex-direction: column; }
+  .pk-kick { font: 600 11px/1 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8a8a8a; }
+  .pk-wire { flex: 1; position: relative; margin: 22px 0 20px; border-radius: 18px; background: #1a1a1a; border: 1.5px solid #2c2c2c; padding: 18px; display: flex; flex-direction: column; overflow: hidden; }
+  .pk-ptitle { font: 700 24px/1.15 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif; color: #fff; letter-spacing: -.01em; margin: 0; }
+  .pk-pdesc { font: 500 14px/1.45 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif; color: #9a9a9a; margin: 9px 0 0; }
+  .pk-bar { height: 7px; border-radius: 4px; background: #333; }
+  .pk-row { border: 1.5px solid #333; border-radius: 12px; padding: 12px 13px; display: flex; align-items: center; gap: 11px; }
+  .pk-row-sel { border: 1.5px solid #fff; background: #fff; color: #141414; }
+  .pstack { position: relative; width: 100vw; overflow: hidden; padding: 16px 0; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.5) 0, #000 48px, #000 100%); mask-image: linear-gradient(90deg, rgba(0,0,0,0.5) 0, #000 48px, #000 100%); }
+  .ptrack { display: flex; width: max-content; animation: pmarquee 40s linear infinite; will-change: transform; }
+  .pcard { position: relative; flex: 0 0 auto; width: 236px; height: 276px; margin-right: 20px; }
+  .pcard .pk-panel { position: absolute; top: 0; left: 0; transform: scale(0.49); transform-origin: top left; box-shadow: 0 24px 50px -26px rgba(0,0,0,0.55); }
+  @keyframes pmarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ptrack { animation: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .site * { transition-duration: 0.001ms !important; }
+    .cards-track { animation: none; transform: none; }
+    .cards-marquee { overflow-x: auto; }
+    .screens__col { animation: none; transform: none; }
+    .ask__aura::before, .ask__aura::after, .ask__inner, .bubble, .dots i { animation: none; }
+    .ask__flash { display: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+
+<div class="site">
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <div class="header__bar">
+        <a href="#top" class="wordmark" data-home>Alexandros Hashemakis</a>
+        <div class="header__right">
+        <nav class="nav" aria-label="Primary">
+          <a href="#leadership" data-nav>Leadership</a>
+          <a href="#portfolio" data-nav>Portfolio</a>
+            <a href="#experience" data-nav>Experience</a>
+          <a href="#about" data-nav>About</a>
+          <a href="#contact" data-nav>Contact</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+        <a href="#leadership" data-nav>Leadership</a>
+        <a href="#portfolio" data-nav>Portfolio</a>
+        <a href="#ai-native" data-nav>AI-native</a>
+        <a href="#experience" data-nav>Experience</a>
+        <a href="#about" data-nav>About</a>
+        <a href="#contact" data-nav>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HOME VIEW ================= -->
+  <div class="view active" id="view-home">
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <button class="ai-toggle hero__ask" data-open-ask aria-label="Open Ask AI">
+          <span class="ai-toggle__label">Ask <span class="ai-grad">AI</span></span>
+          <span class="ai-toggle__track"><span class="ai-toggle__knob"></span></span>
+        </button>
+        <div class="hero__grid">
+          <div>
+            <p class="eyebrow reveal in" style="margin-bottom:1.5rem;">Alexandros Hashemakis</p>
+            <h1>Product design leader who turns design into measurable growth.</h1>
+            <p class="hero__sub">15 years designing digital products — the last decade leading design across Saudi Arabia's leading travel platform. I build the teams, experimentation cultures, and AI-native ways of working that make good design compound into real business results.</p>
+            <div class="hero__cta">
+              <a href="#contact" class="btn btn--solid" data-nav>Get in touch</a>
+              <a href="#portfolio" class="btn btn--ghost" data-nav>See the work →</a>
+            </div>
+          </div>
+          <div>
+            <div class="screens" aria-hidden="true" role="presentation">
+              <div class="screens__col screens__col--a"><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Car transfers</span></div><img src="/public/screens/transfers.png" alt="Car transfers" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · Rooms</span></div><img src="/public/screens/stays-rooms.png" alt="Stays · Rooms" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Flights · Fare families</span></div><img src="/public/screens/flights-fare.png" alt="Flights · Fare families" onerror="this.style.display='none'"></div></div><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Car transfers</span></div><img src="/public/screens/transfers.png" alt="Car transfers" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · Rooms</span></div><img src="/public/screens/stays-rooms.png" alt="Stays · Rooms" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Flights · Fare families</span></div><img src="/public/screens/flights-fare.png" alt="Flights · Fare families" onerror="this.style.display='none'"></div></div></div>
+              <div class="screens__col screens__col--b"><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Flights · Add-ons</span></div><img src="/public/screens/flights-addons.png" alt="Flights · Add-ons" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · The Lana</span></div><img src="/public/screens/stays-property.png" alt="Stays · The Lana" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Flights · Baggage</span></div><img src="/public/screens/flights-baggage.png" alt="Flights · Baggage" onerror="this.style.display='none'"></div></div><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Flights · Add-ons</span></div><img src="/public/screens/flights-addons.png" alt="Flights · Add-ons" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · The Lana</span></div><img src="/public/screens/stays-property.png" alt="Stays · The Lana" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Flights · Baggage</span></div><img src="/public/screens/flights-baggage.png" alt="Flights · Baggage" onerror="this.style.display='none'"></div></div></div>
+              <div class="screens__col screens__col--c"><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Stays · Location</span></div><img src="/public/screens/stays-location.png" alt="Stays · Location" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · Room select</span></div><img src="/public/screens/stays-room-select.png" alt="Stays · Room select" onerror="this.style.display='none'"></div></div><div class="screens__group"><div class="screen"><div class="screen__ph"><span>Stays · Location</span></div><img src="/public/screens/stays-location.png" alt="Stays · Location" onerror="this.style.display='none'"></div><div class="screen"><div class="screen__ph"><span>Stays · Room select</span></div><img src="/public/screens/stays-room-select.png" alt="Stays · Room select" onerror="this.style.display='none'"></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__scroll">Scroll</div>
+      </section>
+
+
+
+      <!-- Leadership -->
+      <section class="section section--dark" id="leadership">
+        <div class="container">
+          <div class="reveal">
+            <h2 class="h-section">Turning design into measurable growth.</h2>
+          </div>
+          <div class="wcards">
+            <div class="reveal wcard">
+              <span class="wcard__num">01</span>
+              <h3 class="wcard__title">I lead design as a growth function.</h3>
+              <p class="wcard__body">Conversion, average order value, and new revenue are design outcomes, not afterthoughts. I've owned CRO across multi-product funnels and built monetization from the ground up — including a net-new revenue stream that became the most profitable in the business.</p>
+            </div>
+            <div class="reveal wcard" style="transition-delay:90ms;">
+              <span class="wcard__num">02</span>
+              <h3 class="wcard__title">I build experimentation cultures, not just experiments.</h3>
+              <p class="wcard__body">I made A/B testing and continuous discovery the default way teams move from idea to decision — framing the right problems, validating before build, and turning testing into steady, compounding gains.</p>
+            </div>
+            <div class="reveal wcard" style="transition-delay:180ms;">
+              <span class="wcard__num">03</span>
+              <h3 class="wcard__title">I make design teams AI-native.</h3>
+              <p class="wcard__body">I've cut idea-to-tested-prototype from weeks to days by embedding AI across research, ideation, and prototyping — leading adoption by example and turning it into a team-wide capability.</p>
+            </div>
+          </div>
+          <div class="caps">
+            <div class="cap reveal"><h3>Strategic Design Leadership</h3><p>Worked as a peer to Product, Engineering, and senior leadership, turning business goals into design strategy and roadmap, and partnering directly with C-level to make design a driver of company direction.</p></div>
+            
+            
+            <div class="cap reveal"><h3>Generative &amp; Evaluative Discovery</h3><p>Led generative research to uncover real user needs aligned with business goals, and directed evaluative research to validate solutions and reduce risk before development.</p></div>
+            
+            <div class="cap reveal"><h3>Team Leadership &amp; Operating Model</h3><p>Built, scaled, and mentored 15+ designers across four concurrent product lines, setting the craft bar and installing a data-driven way of working that made quality and speed repeatable.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio -->
+      <section class="section" id="portfolio">
+        <div class="container">
+          <div class="portfolio-head">
+            <div class="reveal">
+              <h2 class="h-section">Shaping travel experiences in the GCC.</h2>
+              <p class="lead" style="margin-top:1.5rem;">Product Design Impact (Seera Group)</p>
+            </div>
+            <div class="portfolio-head__stack">
+              <div class="pstack" id="pstack" aria-hidden="true" role="presentation"><div class="ptrack"><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Flights · Market-first</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">1 ITINERARY</span></div><div class="pk-wire" style="justify-content:center;gap:12px"><div class="pk-row"><div style="width:30px;height:30px;border-radius:8px;background:#fff;flex:none"></div><div style="flex:1"><div class="pk-bar" style="width:52%;background:#4a4a4a"></div><div class="pk-bar" style="width:80%;margin-top:7px"></div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div style="display:flex;align-items:center;gap:8px;padding-left:15px"><span style="width:2px;height:16px;background:#333;display:block"></span><span style="font:500 10px inherit;color:#6a6a6a">combine airlines</span></div><div class="pk-row"><div style="width:30px;height:30px;border-radius:8px;background:#6a6a6a;flex:none"></div><div style="flex:1"><div class="pk-bar" style="width:46%;background:#4a4a4a"></div><div class="pk-bar" style="width:72%;margin-top:7px"></div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></div></div><h3 class="pk-ptitle">Multi-airline roundtrip</h3><p class="pk-pdesc">A market-first selection experience combining different airlines in one itinerary — lifting roundtrip bookings and flexibility.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Flights</span><div class="pk-wire"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><span class="pk-bar" style="width:80px;background:#4a4a4a"></span><span class="pk-bar" style="width:40px"></span></div><div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:9px"><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #fff;background:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span style="width:22px;height:5px;border-radius:3px;background:#c9c9c9"></span><span style="width:30px;height:7px;border-radius:4px;background:#141414"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div></div></div><h3 class="pk-ptitle">Fare calendar</h3><p class="pk-pdesc">A flexible calendar for comparing prices across dates — clearer decisions and a measurable conversion uplift.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Flights · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">NEW REVENUE</span></div><div class="pk-wire" style="justify-content:center;gap:11px"><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;background:#141414"></div><span style="width:90px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:34px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:100px"></span></div><span class="pk-bar" style="width:34px;background:#4a4a4a"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:76px"></span></div><span class="pk-bar" style="width:34px;background:#4a4a4a"></span></div></div><h3 class="pk-ptitle">Travel add-ons</h3><p class="pk-pdesc">A 0→1 ancillary-revenue platform — a high-performing stream built entirely outside core flight bookings.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays</span><div class="pk-wire" style="padding:0"><div style="height:120px;background:#242424;position:relative;flex:none"><span style="position:absolute;top:12px;left:12px;background:#fff;color:#141414;border-radius:20px;padding:4px 10px;font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif">4.7 ★</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.6" style="position:absolute;bottom:12px;right:12px"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div><div style="padding:16px 16px;display:flex;flex-direction:column;gap:10px;flex:1"><div class="pk-bar" style="width:60%;height:9px;background:#4a4a4a"></div><div class="pk-bar" style="width:40%"></div><div style="flex:1"></div><div class="pk-row" style="padding:10px 12px;justify-content:space-between"><span class="pk-bar" style="width:80px"></span><span style="width:60px;height:22px;border-radius:7px;background:#fff;display:block"></span></div></div></div><h3 class="pk-ptitle">Property &amp; room selection</h3><p class="pk-pdesc">Reworked the funnel's biggest drop-off — location clarity, review usability, rooms — for repeated conversion gains.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays · AOV</span><div class="pk-wire" style="justify-content:center;gap:11px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="pk-bar" style="width:110px;background:#4a4a4a"></span></div><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;background:#141414;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><span style="width:88px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:30px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:100px"></span></div><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:72px"></span></div><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div></div><h3 class="pk-ptitle">Dynamic upsell</h3><p class="pk-pdesc">Room upgrades, meals and views surfaced in context — lifting AOV and GBV, with upsell rate a core business metric.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays</span><div class="pk-wire" style="justify-content:center;gap:13px"><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #4a4a4a;display:block"></span><span class="pk-bar" style="width:70px"></span></div><span class="pk-bar" style="width:44px;background:#4a4a4a"></span></div><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #141414;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#141414"></span></span><span style="width:110px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:44px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div style="display:flex;align-items:center;gap:8px;padding:2px 4px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="1.8"><path d="M20 6 9 17l-5-5"></path></svg><span style="font:500 11px inherit;color:#8a8a8a">no charge until you arrive</span></div></div><h3 class="pk-ptitle">Pay-at-property</h3><p class="pk-pdesc">A flexible payment option that raised booking confidence and closed a key competitive gap in the market.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Activities · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">NEW LINE</span></div><div class="pk-wire" style="padding:0"><div style="height:110px;background:#242424;flex:none"></div><div style="padding:16px;display:flex;flex-direction:column;gap:11px;flex:1"><div class="pk-bar" style="width:64%;height:9px;background:#4a4a4a"></div><div style="display:flex;gap:8px"><span style="border:1.5px solid #333;border-radius:16px;padding:5px 12px;font:0/0 a;width:56px;height:24px"></span><span style="border:1.5px solid #fff;border-radius:16px;padding:5px 12px;width:56px;height:24px;background:#fff"></span><span style="border:1.5px solid #333;border-radius:16px;padding:5px 12px;width:56px;height:24px"></span></div><div style="flex:1"></div><div style="height:26px;border-radius:9px;background:#fff"></div></div></div><h3 class="pk-ptitle">Activities product</h3><p class="pk-pdesc">A 0→1 product line — core booking experience and funnel that grew Almosafer into a holistic travel provider.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Transfers · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">FULL JOURNEY</span></div><div class="pk-wire" style="justify-content:center;gap:0"><div style="display:flex;gap:14px;align-items:flex-start"><div style="display:flex;flex-direction:column;align-items:center;padding-top:5px"><span style="width:11px;height:11px;border-radius:50%;border:2px solid #fff;display:block"></span><span style="width:2px;height:56px;background:repeating-linear-gradient(#4a4a4a 0 4px,transparent 4px 9px)"></span><span style="width:11px;height:11px;border-radius:50%;background:#fff;display:block"></span></div><div style="flex:1;display:flex;flex-direction:column;gap:40px"><div><div class="pk-bar" style="width:60%;background:#4a4a4a"></div><div class="pk-bar" style="width:38%;margin-top:7px"></div></div><div><div class="pk-bar" style="width:52%;background:#4a4a4a"></div><div class="pk-bar" style="width:44%;margin-top:7px"></div></div></div></div><div style="display:flex;gap:9px;margin-top:20px"><span style="flex:1;border:1.5px solid #fff;border-radius:11px;height:40px;background:#fff"></span><span style="flex:1;border:1.5px solid #333;border-radius:11px;height:40px"></span><span style="flex:1;border:1.5px solid #333;border-radius:11px;height:40px"></span></div></div><h3 class="pk-ptitle">Car transfers</h3><p class="pk-pdesc">The complete airport-transfer flow, discovery to confirmation — completing the full-journey travel offering.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Stays · AI</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">AI SEARCH</span></div><div class="pk-wire" style="justify-content:center;align-items:center;padding:26px"><div style="width:100%;display:flex;align-items:center;gap:12px;background:#111;border:1.5px solid #3a3a3a;border-radius:16px;padding:16px 16px;box-shadow:0 18px 40px -24px rgba(0,0,0,.8)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="flex:none"><path d="M12 2l1.7 6.6L20 10.3l-6.3 1.7L12 18.6l-1.7-6.6L4 10.3l6.3-1.7z"></path><path d="M18.5 3.5l.6 2.2 2.2.6-2.2.6-.6 2.2-.6-2.2-2.2-.6 2.2-.6z" opacity=".7"></path></svg><span style="flex:1;font:500 15px inherit;color:#6a6a6a">4-star hotel near the beach…</span><span style="flex:none;font:600 9px inherit;letter-spacing:.06em;color:#9a9a9a;border:1px solid #3a3a3a;border-radius:20px;padding:5px 10px;white-space:nowrap">POWERED BY AI</span></div></div><h3 class="pk-ptitle">AI hotel search</h3><p class="pk-pdesc">Natural-language search that turns intent into the right stays — describe the trip, skip the filters.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Flights · AOV</span><div class="pk-wire" style="justify-content:center;gap:12px"><!-- selected fare: Fly --><div style="border:2px solid #fff;background:#fff;color:#141414;border-radius:15px;padding:15px 16px;display:flex;flex-direction:column;gap:13px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><span style="width:16px;height:16px;border-radius:50%;border:5px solid #141414;display:block"></span><span style="font:700 15px inherit;color:#141414">ALM Fly</span></div><span style="font:700 18px inherit;color:#141414">$0</span></div><div style="display:flex;flex-direction:column;gap:9px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="width:96px;height:7px;border-radius:4px;background:#141414;display:block"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="display:flex;justify-content:space-between;align-items:center"><span style="width:72px;height:7px;border-radius:4px;background:#c4c4c4;display:block"></span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></div></div></div><!-- upgrade fare: Flex --><div style="border:1.5px solid #333;border-radius:15px;padding:15px 16px;display:flex;flex-direction:column;gap:13px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><span style="width:16px;height:16px;border-radius:50%;border:1.5px solid #5a5a5a;display:block"></span><span style="font:700 15px inherit;color:#e5e5e5">ALM Flex</span></div><span style="font:700 18px inherit;color:#fff">+$120</span></div><div style="display:flex;flex-direction:column;gap:9px"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-bar" style="width:96px;background:#4a4a4a"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-bar" style="width:72px;background:#4a4a4a"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div></div></div></div><h3 class="pk-ptitle">Fare families &amp; upgrades</h3><p class="pk-pdesc">A clearer fare-comparison experience — better upgrade visibility, higher AOV, and improved booking conversion.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Flights · Market-first</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">1 ITINERARY</span></div><div class="pk-wire" style="justify-content:center;gap:12px"><div class="pk-row"><div style="width:30px;height:30px;border-radius:8px;background:#fff;flex:none"></div><div style="flex:1"><div class="pk-bar" style="width:52%;background:#4a4a4a"></div><div class="pk-bar" style="width:80%;margin-top:7px"></div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div style="display:flex;align-items:center;gap:8px;padding-left:15px"><span style="width:2px;height:16px;background:#333;display:block"></span><span style="font:500 10px inherit;color:#6a6a6a">combine airlines</span></div><div class="pk-row"><div style="width:30px;height:30px;border-radius:8px;background:#6a6a6a;flex:none"></div><div style="flex:1"><div class="pk-bar" style="width:46%;background:#4a4a4a"></div><div class="pk-bar" style="width:72%;margin-top:7px"></div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></div></div><h3 class="pk-ptitle">Multi-airline roundtrip</h3><p class="pk-pdesc">A market-first selection experience combining different airlines in one itinerary — lifting roundtrip bookings and flexibility.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Flights</span><div class="pk-wire"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><span class="pk-bar" style="width:80px;background:#4a4a4a"></span><span class="pk-bar" style="width:40px"></span></div><div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:9px"><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #fff;background:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span style="width:22px;height:5px;border-radius:3px;background:#c9c9c9"></span><span style="width:30px;height:7px;border-radius:4px;background:#141414"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div style="border:1.5px solid #333;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span class="pk-bar" style="width:22px;height:5px"></span><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div></div></div><h3 class="pk-ptitle">Fare calendar</h3><p class="pk-pdesc">A flexible calendar for comparing prices across dates — clearer decisions and a measurable conversion uplift.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Flights · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">NEW REVENUE</span></div><div class="pk-wire" style="justify-content:center;gap:11px"><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;background:#141414"></div><span style="width:90px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:34px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:100px"></span></div><span class="pk-bar" style="width:34px;background:#4a4a4a"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:22px;height:22px;border-radius:7px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:76px"></span></div><span class="pk-bar" style="width:34px;background:#4a4a4a"></span></div></div><h3 class="pk-ptitle">Travel add-ons</h3><p class="pk-pdesc">A 0→1 ancillary-revenue platform — a high-performing stream built entirely outside core flight bookings.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays</span><div class="pk-wire" style="padding:0"><div style="height:120px;background:#242424;position:relative;flex:none"><span style="position:absolute;top:12px;left:12px;background:#fff;color:#141414;border-radius:20px;padding:4px 10px;font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif">4.7 ★</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.6" style="position:absolute;bottom:12px;right:12px"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div><div style="padding:16px 16px;display:flex;flex-direction:column;gap:10px;flex:1"><div class="pk-bar" style="width:60%;height:9px;background:#4a4a4a"></div><div class="pk-bar" style="width:40%"></div><div style="flex:1"></div><div class="pk-row" style="padding:10px 12px;justify-content:space-between"><span class="pk-bar" style="width:80px"></span><span style="width:60px;height:22px;border-radius:7px;background:#fff;display:block"></span></div></div></div><h3 class="pk-ptitle">Property &amp; room selection</h3><p class="pk-pdesc">Reworked the funnel's biggest drop-off — location clarity, review usability, rooms — for repeated conversion gains.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays · AOV</span><div class="pk-wire" style="justify-content:center;gap:11px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="pk-bar" style="width:110px;background:#4a4a4a"></span></div><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;background:#141414;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><span style="width:88px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:30px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:100px"></span></div><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><div style="width:20px;height:20px;border-radius:6px;border:1.5px solid #4a4a4a"></div><span class="pk-bar" style="width:72px"></span></div><span class="pk-bar" style="width:30px;background:#4a4a4a"></span></div></div><h3 class="pk-ptitle">Dynamic upsell</h3><p class="pk-pdesc">Room upgrades, meals and views surfaced in context — lifting AOV and GBV, with upsell rate a core business metric.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Stays</span><div class="pk-wire" style="justify-content:center;gap:13px"><div class="pk-row" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #4a4a4a;display:block"></span><span class="pk-bar" style="width:70px"></span></div><span class="pk-bar" style="width:44px;background:#4a4a4a"></span></div><div class="pk-row pk-row-sel" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:11px"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #141414;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#141414"></span></span><span style="width:110px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><span style="width:44px;height:7px;border-radius:4px;background:#141414;display:block"></span></div><div style="display:flex;align-items:center;gap:8px;padding:2px 4px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="1.8"><path d="M20 6 9 17l-5-5"></path></svg><span style="font:500 11px inherit;color:#8a8a8a">no charge until you arrive</span></div></div><h3 class="pk-ptitle">Pay-at-property</h3><p class="pk-pdesc">A flexible payment option that raised booking confidence and closed a key competitive gap in the market.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Activities · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">NEW LINE</span></div><div class="pk-wire" style="padding:0"><div style="height:110px;background:#242424;flex:none"></div><div style="padding:16px;display:flex;flex-direction:column;gap:11px;flex:1"><div class="pk-bar" style="width:64%;height:9px;background:#4a4a4a"></div><div style="display:flex;gap:8px"><span style="border:1.5px solid #333;border-radius:16px;padding:5px 12px;font:0/0 a;width:56px;height:24px"></span><span style="border:1.5px solid #fff;border-radius:16px;padding:5px 12px;width:56px;height:24px;background:#fff"></span><span style="border:1.5px solid #333;border-radius:16px;padding:5px 12px;width:56px;height:24px"></span></div><div style="flex:1"></div><div style="height:26px;border-radius:9px;background:#fff"></div></div></div><h3 class="pk-ptitle">Activities product</h3><p class="pk-pdesc">A 0→1 product line — core booking experience and funnel that grew Almosafer into a holistic travel provider.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Transfers · 0→1</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">FULL JOURNEY</span></div><div class="pk-wire" style="justify-content:center;gap:0"><div style="display:flex;gap:14px;align-items:flex-start"><div style="display:flex;flex-direction:column;align-items:center;padding-top:5px"><span style="width:11px;height:11px;border-radius:50%;border:2px solid #fff;display:block"></span><span style="width:2px;height:56px;background:repeating-linear-gradient(#4a4a4a 0 4px,transparent 4px 9px)"></span><span style="width:11px;height:11px;border-radius:50%;background:#fff;display:block"></span></div><div style="flex:1;display:flex;flex-direction:column;gap:40px"><div><div class="pk-bar" style="width:60%;background:#4a4a4a"></div><div class="pk-bar" style="width:38%;margin-top:7px"></div></div><div><div class="pk-bar" style="width:52%;background:#4a4a4a"></div><div class="pk-bar" style="width:44%;margin-top:7px"></div></div></div></div><div style="display:flex;gap:9px;margin-top:20px"><span style="flex:1;border:1.5px solid #fff;border-radius:11px;height:40px;background:#fff"></span><span style="flex:1;border:1.5px solid #333;border-radius:11px;height:40px"></span><span style="flex:1;border:1.5px solid #333;border-radius:11px;height:40px"></span></div></div><h3 class="pk-ptitle">Car transfers</h3><p class="pk-pdesc">The complete airport-transfer flow, discovery to confirmation — completing the full-journey travel offering.</p></div></div><div class="pcard"><div class="pk-panel"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-kick">Stays · AI</span><span style="font:600 10px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414;background:#fff;border-radius:20px;padding:4px 10px">AI SEARCH</span></div><div class="pk-wire" style="justify-content:center;align-items:center;padding:26px"><div style="width:100%;display:flex;align-items:center;gap:12px;background:#111;border:1.5px solid #3a3a3a;border-radius:16px;padding:16px 16px;box-shadow:0 18px 40px -24px rgba(0,0,0,.8)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="flex:none"><path d="M12 2l1.7 6.6L20 10.3l-6.3 1.7L12 18.6l-1.7-6.6L4 10.3l6.3-1.7z"></path><path d="M18.5 3.5l.6 2.2 2.2.6-2.2.6-.6 2.2-.6-2.2-2.2-.6 2.2-.6z" opacity=".7"></path></svg><span style="flex:1;font:500 15px inherit;color:#6a6a6a">4-star hotel near the beach…</span><span style="flex:none;font:600 9px inherit;letter-spacing:.06em;color:#9a9a9a;border:1px solid #3a3a3a;border-radius:20px;padding:5px 10px;white-space:nowrap">POWERED BY AI</span></div></div><h3 class="pk-ptitle">AI hotel search</h3><p class="pk-pdesc">Natural-language search that turns intent into the right stays — describe the trip, skip the filters.</p></div></div><div class="pcard"><div class="pk-panel"><span class="pk-kick">Flights · AOV</span><div class="pk-wire" style="justify-content:center;gap:12px"><!-- selected fare: Fly --><div style="border:2px solid #fff;background:#fff;color:#141414;border-radius:15px;padding:15px 16px;display:flex;flex-direction:column;gap:13px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><span style="width:16px;height:16px;border-radius:50%;border:5px solid #141414;display:block"></span><span style="font:700 15px inherit;color:#141414">ALM Fly</span></div><span style="font:700 18px inherit;color:#141414">$0</span></div><div style="display:flex;flex-direction:column;gap:9px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="width:96px;height:7px;border-radius:4px;background:#141414;display:block"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="display:flex;justify-content:space-between;align-items:center"><span style="width:72px;height:7px;border-radius:4px;background:#c4c4c4;display:block"></span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></div></div></div><!-- upgrade fare: Flex --><div style="border:1.5px solid #333;border-radius:15px;padding:15px 16px;display:flex;flex-direction:column;gap:13px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><span style="width:16px;height:16px;border-radius:50%;border:1.5px solid #5a5a5a;display:block"></span><span style="font:700 15px inherit;color:#e5e5e5">ALM Flex</span></div><span style="font:700 18px inherit;color:#fff">+$120</span></div><div style="display:flex;flex-direction:column;gap:9px"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-bar" style="width:96px;background:#4a4a4a"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="display:flex;justify-content:space-between;align-items:center"><span class="pk-bar" style="width:72px;background:#4a4a4a"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div></div></div></div><h3 class="pk-ptitle">Fare families &amp; upgrades</h3><p class="pk-pdesc">A clearer fare-comparison experience — better upgrade visibility, higher AOV, and improved booking conversion.</p></div></div></div></div>
+            </div>
+          </div>
+          <div class="products">
+            <div class="product reveal">
+              <div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/flights.svg" alt="" aria-hidden="true"><h3 class="product__name">Flights</h3></div>
+                <p class="product__scope">Scaled Flights into Saudi Arabia's leading flight platform through discovery-led strategy, experimentation, and conversion optimization. Directed a 100+ experiment roadmap driving ongoing gains in conversion and revenue, contributing to thousands of daily bookings.</p>
+              </div>
+              <ul class="inits">
+                <li class="inits__label">Selected initiatives</li>
+                <li class="init"><h4>Multi-airline roundtrip booking</h4><p>Led design and research for a new selection experience letting customers combine airlines in one itinerary, lifting roundtrip bookings and flexibility.</p></li>
+                <li class="init"><h4>Fare calendar</h4><p>Led design and research for a flexible fare calendar enabling price comparison across dates, driving conversion uplift.</p></li>
+                <li class="init"><h4>Travel add-ons (0→1)</h4><p>Led strategy and design of a new ancillary revenue platform that became a high-performing stream outside core bookings.</p></li>
+                <li class="init"><h4>Fare families &amp; upgrades</h4><p>Led design and research for clearer fare comparison, lifting upgrade visibility, AOV, and conversion.</p></li>
+              </ul>
+            </div>
+            <div class="product reveal">
+              <div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/hotels.svg" alt="" aria-hidden="true"><h3 class="product__name">Stays</h3></div>
+                <p class="product__scope">Led product strategy and research across Stays, embedding a CRO-driven experimentation culture that turned it into a continuous optimization engine and repositioned it from a high-friction flow into a competitive hotel-booking experience.</p>
+              </div>
+              <ul class="inits">
+                <li class="inits__label">Selected initiatives</li>
+                <li class="init"><h4>Property &amp; room-selection funnel</h4><p>Led discovery and problem framing at the funnel's most critical drop-off stage: location clarity (maps, landmarks), review usability (summarized and re-ranked), amenities, and room selection; delivered repeated conversion gains.</p></li>
+                <li class="init"><h4>Dynamic property ranking</h4><p>Led design and research to surface the most relevant properties per query, lifting high-intent visibility and conversion.</p></li>
+                <li class="init"><h4>Date &amp; price flexibility</h4><p>Led design and research for flexible-date price visibility in hotel search, driving a significant conversion uplift.</p></li>
+                <li class="init"><h4>Stays upsell</h4><p>Led strategy and design of a dynamic upsell system (room upgrades, meals, views), lifting AOV and GBV and making upsell rate a core business metric.</p></li>
+                <li class="init"><h4>Pay-at-property</h4><p>Led design and research for a flexible payment option that raised booking confidence and closed a key competitive gap.</p></li>
+                <li class="init"><h4><span class="ai-grad">AI</span>-powered search</h4><p>Led design and research to enable natural-language, AI-powered search in Stays — letting customers describe exactly what they want and surfacing the right property faster. Lifted overall conversion, while query analysis deepened our understanding of what travelers look for by destination and group size.</p></li>
+              </ul>
+            </div>
+            <div class="product reveal">
+              <div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/activities.svg" alt="" aria-hidden="true"><h3 class="product__name">Travel activities</h3></div>
+                <p class="product__scope">Led design and research for Travel activities as a 0→1 product line, expanding Almosafer from a booking platform into a holistic travel-experience provider.</p>
+              </div>
+              <ul class="inits">
+                <li class="inits__label">Selected initiatives</li>
+                <li class="init"><h4>Product foundation (0→1)</h4><p>Led the design of the core booking experience, interaction patterns, and funnel as it scaled into a strategic business line.</p></li>
+                <li class="init"><h4>Cross-product upsell</h4><p>Integrated contextual activity recommendations into Flights and Stays journeys, lifting ancillary revenue and engagement.</p></li>
+              </ul>
+            </div>
+            <div class="product reveal">
+              <div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/car.svg" alt="" aria-hidden="true"><h3 class="product__name">Car transfers</h3></div>
+                <p class="product__scope">Defined and led design and research for Almosafer's new car-transfers product, completing the company's full-journey travel offering.</p>
+              </div>
+              <ul class="inits">
+                <li class="inits__label">Selected initiatives</li>
+                <li class="init"><h4>End-to-end experience (0→1)</h4><p>Led research and design of the complete transfer booking flow, translating customer needs into a clear, efficient journey.</p></li>
+                <li class="init"><h4>Foundation &amp; roadmap</h4><p>Defined the initial experience and phased roadmap to scale the product beyond launch.</p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Making design AI-native -->
+      <section class="ai" id="ai-native">
+        <div class="container">
+          <div class="bento">
+            <div class="reveal bento-card bento__head">
+              <h2 class="bento__headline">Making design teams <span class="ai-grad">AI</span>-native.</h2>
+              <p class="bento__sub">I didn't just adopt AI — I rebuilt how my team works around it. I designed a repeatable, AI-driven workflow, proved it by leading on real projects, and embedded it across the team — turning AI from a personal advantage into an organizational capability.</p>
+            </div>
+            <div class="reveal bento-card bento__wd" style="transition-delay:80ms;">
+              <span class="bento__kicker">Idea → tested</span>
+              <div class="wd">
+                <span class="wd__from">Weeks</span>
+                <span class="wd__arrow" aria-hidden="true">↓</span>
+                <span class="wd__to ai-grad">Days</span>
+              </div>
+            </div>
+            <div class="reveal bento-card bento__pillar bento__res" style="transition-delay:140ms;">
+              <span class="pillar__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></span>
+              <span class="bento__kicker">Research</span>
+              <p class="pillar__line">Synthesis in hours, not days.</p>
+            </div>
+            <div class="reveal bento-card bento__pillar bento__idea" style="transition-delay:220ms;">
+              <span class="pillar__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9L12 3z"/></svg></span>
+              <span class="bento__kicker">Ideation</span>
+              <p class="pillar__line">More directions explored, faster.</p>
+            </div>
+            <div class="reveal bento-card bento__pillar bento__val" style="transition-delay:300ms;">
+              <span class="pillar__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
+              <span class="bento__kicker">Validation</span>
+              <p class="pillar__line">Ideas tested in days, not weeks.</p>
+            </div>
+            <div class="reveal bento-card bento__close" style="transition-delay:380ms;">
+              <p>A design org that moves faster, validates earlier, and makes better-informed decisions — before a line of code is written.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case studies -->
+      <section class="section" id="case-studies">
+        <div class="container">
+          <div class="reveal">
+            <h2 class="h-section">Selected case studies.</h2>
+            <p class="lead" style="margin-top:1.5rem;">A closer look at three pieces of work — the problem, the approach, and the outcome.</p>
+          </div>
+          <div class="cards">
+            <button class="card reveal" data-case="stays">
+              <div class="ph ph--card"><span>Image placeholder</span></div>
+              <div class="card__body">
+                <h3>Turning Stays around</h3>
+                <p>Took a high-friction hotel funnel to a competitive booking experience through discovery-led CRO.</p>
+                <span class="card__link">Read the case study <span class="arrow">→</span></span>
+              </div>
+            </button>
+            <button class="card reveal" data-case="flights">
+              <div class="ph ph--card"><span>Image placeholder</span></div>
+              <div class="card__body">
+                <h3>A market-first for Flights</h3>
+                <p>Led multi-airline roundtrip selection — a complex redesign that gave customers new flexibility and lifted bookings.</p>
+                <span class="card__link">Read the case study <span class="arrow">→</span></span>
+              </div>
+            </button>
+            <button class="card reveal" data-case="revenue">
+              <div class="ph ph--card"><span>Image placeholder</span></div>
+              <div class="card__body">
+                <h3>Building a new revenue stream (0-to-1)</h3>
+                <p>Designed the add-ons platform that became the most profitable stream in the business.</p>
+                <span class="card__link">Read the case study <span class="arrow">→</span></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="section" id="experience">
+        <div class="container">
+          <div class="reveal"><h2 class="h-section">Experience.</h2></div>
+          <div class="timeline">
+            <div class="job reveal">
+              <div class="job__period">2020 — 2026</div>
+              <div>
+                <h3>Almosafer <span class="parent">(part of Seera Group)</span> <span class="parent">· Dubai</span></h3>
+                <p class="job__detail">Led product design across Almosafer's full travel portfolio, expanding ownership from Flights into Stays, Travel activities, and Car transfers as the brand became Seera Group's flagship KSA travel platform.</p>
+                <div class="roles">
+                  <div class="role"><span class="role__period">2025 — 2026</span><p class="role__title"><strong>Senior Manager of Product Design</strong><span class="role__scope"> — Flights, Stays, Travel activities &amp; Car transfers</span></p></div>
+                  <div class="role"><span class="role__period">2024 — 2025</span><p class="role__title"><strong>Senior Manager of Product Design</strong><span class="role__scope"> — Flights, Stays &amp; Travel activities</span></p></div>
+                  <div class="role"><span class="role__period">2020 — 2024</span><p class="role__title"><strong>Senior Manager of Product Design</strong><span class="role__scope"> — Flights</span></p></div>
+                </div>
+              </div>
+            </div>
+            <div class="job reveal">
+              <div class="job__period">2016 — 2020</div>
+              <div>
+                <h3>Tajawal <span class="parent">(part of Seera Group)</span> <span class="parent">· Dubai</span></h3>
+                <p class="job__detail">Led Flights design and built deep domain expertise through the brand's transformation from a UAE-focused platform into Almosafer.</p>
+                <div class="roles">
+                  <div class="role"><span class="role__period">2018 — 2020</span><p class="role__title"><strong>Manager of Product Design</strong><span class="role__scope"> — Flights</span></p></div>
+                  <div class="role"><span class="role__period">2016 — 2018</span><p class="role__title"><strong>Senior Product Designer</strong><span class="role__scope"> — Flights</span></p></div>
+                </div>
+              </div>
+            </div>
+            <div class="job reveal">
+              <div class="job__period">2013 — 2016</div>
+              <div>
+                <h3>MoveSouq &amp; CarSwitch <span class="parent">(part of Glowfish Capital)</span> <span class="parent">· Dubai</span></h3>
+                <p class="job__detail">Designed and delivered end-to-end user experiences for the MoveSouq and CarSwitch mobile applications.</p>
+                <div class="roles">
+                  <div class="role"><p class="role__title"><strong>User Experience Designer</strong></p></div>
+                </div>
+              </div>
+            </div>
+            <div class="job reveal">
+              <div class="job__period">2011 — 2013</div>
+              <div>
+                <h3>TenFour Agency &amp; To.Ad Design Studio <span class="parent">· Athens</span></h3>
+                <p class="job__detail">Designed and delivered end-to-end websites and digital experiences for clients across a range of industries.</p>
+                <div class="roles">
+                  <div class="role"><p class="role__title"><strong>User Experience Designer</strong></p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal certs">
+            <p class="eyebrow">Certifications</p>
+            <div class="certs__grid">
+              <div class="cert"><p class="cert__title">Continuous Discovery Habits</p><p class="cert__issuer">Teresa Torres · Product Talk</p></div>
+              <div class="cert"><p class="cert__title">Mini MBA — Strategic Management &amp; Leadership</p><p class="cert__issuer">Mustashar MBA</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section section--dark" id="about">
+        <div class="container">
+          <div class="about__grid">
+            <div class="reveal">
+              <div class="portrait portrait--about"><div class="portrait__ph"><span>AH</span></div><img src="/public/portrait.jpg" alt="Portrait of Alexandros Hashemakis" onerror="this.style.display='none'"><div class="portrait__ring"></div></div>
+            </div>
+            <div class="reveal about__copy">
+              <p class="eyebrow" style="margin-bottom:0.5rem;">About</p>
+              <p class="about__lede">I'm a Product Design Leader based in Dubai, originally from Greece, with 15 years designing digital products. For the past decade I led design at Almosafer — Saudi Arabia's leading travel platform — growing from the founding designer for Flights to leading design across its core portfolio.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="reveal">
+            <h2>Let's talk.</h2>
+            <div class="contact__cta">
+              <button type="button" id="emailBtn" class="btn btn--solid">Email</button>
+              <a href="https://www.linkedin.com/in/alexandros-g-hashemakis-54a14599/" target="_blank" rel="noopener" class="btn btn--solid">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Proof strip -->
+      <section class="proof">
+        <div class="cards-marquee" aria-hidden="true" role="presentation">
+          <div class="cards-track">
+            <div class="cards-group"><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Weeks → days</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Design teams, made <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">AI-native</span>.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">AI embedded across research, ideation, and prototyping — from personal habit to team-wide capability.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Conversion</span><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><defs><linearGradient id="ag6a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs><line x1="0" y1="80" x2="400" y2="80" stroke="#2c2c2c" stroke-width="1"></line><line x1="0" y1="160" x2="400" y2="160" stroke="#2c2c2c" stroke-width="1"></line><path d="M0 200 L70 184 L140 190 L210 150 L280 118 L340 82 L372 48 L372 240 L0 240 Z" fill="url(#ag6a)" stroke="none"></path><path d="M0 200 L70 184 L140 190 L210 150 L280 118 L340 82 L372 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="position:absolute;left:93%;top:20%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">CRO owned across the funnel — steady, compounding gains.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Design × business</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Design, led as a <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">growth</span> engine.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Conversion, AOV, and new revenue — owned as design outcomes, not afterthoughts.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><div style="display:flex;justify-content:space-between;align-items:center"><span class="kick" style="color:#8a8a8a">A/B test</span><div style="display:flex;gap:14px"><span style="display:flex;align-items:center;gap:6px;font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff"><span style="width:9px;height:9px;border-radius:50%;background:#fff"></span>B</span><span style="display:flex;align-items:center;gap:6px;font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a"><span style="width:9px;height:9px;border-radius:50%;background:#6a6a6a"></span>A</span></div></div><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><line x1="0" y1="80" x2="400" y2="80" stroke="#2c2c2c" stroke-width="1"></line><line x1="0" y1="160" x2="400" y2="160" stroke="#2c2c2c" stroke-width="1"></line><path d="M0 180 L90 170 L190 158 L290 150 L372 140" fill="none" stroke="#6a6a6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"></path><path d="M0 182 L90 160 L190 128 L290 86 L372 52" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="position:absolute;left:93%;top:21.7%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">Ship the winner, not the loudest voice in the room.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Decide with data</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Opinions lose to <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">A/B testing</span>.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Testing as the default path from idea to decision — steady, compounding gains.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">New revenue</span><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><path d="M0 214 C 120 210, 210 200, 280 150 C 330 114, 356 78, 372 40" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path></svg><span style="position:absolute;left:93%;top:16.7%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">A net-new revenue stream, built 0-to-1.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Player-coach</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em"><span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">Scaling teams</span> that keep winning.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Built and mentored 15+ designers across four concurrent product lines — quality made repeatable.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Team capability</span><div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;margin-top:8px"><div style="display:flex;gap:14px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;font:600 13px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif">A</span><span style="font:500 13px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">leads by example →</span></div><div style="display:flex;flex-wrap:wrap;gap:10px"><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#d0d0d0"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#8a8a8a"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#d0d0d0"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span></div></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf">A personal advantage, turned into team-wide capability.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Right thing, first</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em"><span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">Discovery</span> before delivery.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Generative research to find the real problem; evaluative research to de-risk before build.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Idea → tested</span><div style="flex:1;position:relative;margin-top:20px"><div style="position:absolute;top:36px;left:34px;width:210px;height:150px;border:1.5px solid #3a3a3a;border-radius:16px;background:#1c1c1c;transform:rotate(-7deg)"></div><div style="position:absolute;top:20px;left:20px;width:210px;height:150px;border:1.5px solid #4a4a4a;border-radius:16px;background:#222;transform:rotate(-2deg)"></div><div style="position:absolute;top:6px;left:6px;width:214px;height:154px;border:1.5px solid #fff;border-radius:16px;background:#161616;padding:16px;display:flex;flex-direction:column;gap:9px;animation:floaty 5s ease-in-out infinite"><span style="font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:.1em">PROTOTYPE</span><div style="height:7px;border-radius:4px;background:#3a3a3a;width:80%"></div><div style="height:7px;border-radius:4px;background:#3a3a3a;width:100%"></div><div style="height:7px;border-radius:4px;background:#3a3a3a;width:60%"></div><div style="flex:1"></div><div style="display:flex;gap:8px"><div style="height:22px;width:60px;border-radius:6px;background:#fff"></div><div style="height:22px;width:40px;border-radius:6px;background:#3a3a3a"></div></div></div></div><div style="display:flex;align-items:center;gap:14px;margin-top:14px"><span style="font:600 26px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#666">Weeks</span><span style="font:400 22px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#666">→</span><span style="font:600 26px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff">Days</span></div><div style="margin-top:12px;font:500 14px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;max-width:300px">A way of working rebuilt around AI — research, ideation, prototyping.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:34px 30px;display:flex;flex-direction:column"><div style="display:flex;justify-content:space-between;align-items:center"><span class="kick" style="color:#8a8a8a">A/B Test</span><span style="font:500 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">live · 14 days</span></div><div style="flex:1;display:flex;gap:16px;margin-top:24px"><div style="flex:1;border:1.5px solid #3a3a3a;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;opacity:.6"><span style="font:600 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">Variant A</span><div style="height:8px;border-radius:4px;background:#4a4a4a;width:70%"></div><div style="height:8px;border-radius:4px;background:#333;width:100%"></div><div style="height:8px;border-radius:4px;background:#333;width:85%"></div><div style="flex:1"></div><div style="height:26px;border-radius:8px;background:#3a3a3a"></div></div><div style="flex:1;border:2px solid #141414;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;background:#fff;box-shadow:0 12px 28px -18px rgba(20,20,20,.5)"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414">Variant B</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="height:8px;border-radius:4px;background:#141414;width:70%"></div><div style="height:8px;border-radius:4px;background:rgba(20,20,20,.35);width:100%"></div><div style="height:8px;border-radius:4px;background:rgba(20,20,20,.35);width:85%"></div><div style="flex:1"></div><div style="height:26px;border-radius:8px;background:#141414"></div></div></div><div style="margin-top:22px;display:flex;align-items:baseline;gap:10px"><span style="font:600 34px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff">Experimentation cultures, not just experiments.</span></div></div></div></div>
+            <div class="cards-group"><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Weeks → days</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Design teams, made <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">AI-native</span>.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">AI embedded across research, ideation, and prototyping — from personal habit to team-wide capability.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Conversion</span><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><defs><linearGradient id="ag6a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs><line x1="0" y1="80" x2="400" y2="80" stroke="#2c2c2c" stroke-width="1"></line><line x1="0" y1="160" x2="400" y2="160" stroke="#2c2c2c" stroke-width="1"></line><path d="M0 200 L70 184 L140 190 L210 150 L280 118 L340 82 L372 48 L372 240 L0 240 Z" fill="url(#ag6a)" stroke="none"></path><path d="M0 200 L70 184 L140 190 L210 150 L280 118 L340 82 L372 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="position:absolute;left:93%;top:20%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">CRO owned across the funnel — steady, compounding gains.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Design × business</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Design, led as a <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">growth</span> engine.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Conversion, AOV, and new revenue — owned as design outcomes, not afterthoughts.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><div style="display:flex;justify-content:space-between;align-items:center"><span class="kick" style="color:#8a8a8a">A/B test</span><div style="display:flex;gap:14px"><span style="display:flex;align-items:center;gap:6px;font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff"><span style="width:9px;height:9px;border-radius:50%;background:#fff"></span>B</span><span style="display:flex;align-items:center;gap:6px;font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a"><span style="width:9px;height:9px;border-radius:50%;background:#6a6a6a"></span>A</span></div></div><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><line x1="0" y1="80" x2="400" y2="80" stroke="#2c2c2c" stroke-width="1"></line><line x1="0" y1="160" x2="400" y2="160" stroke="#2c2c2c" stroke-width="1"></line><path d="M0 180 L90 170 L190 158 L290 150 L372 140" fill="none" stroke="#6a6a6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"></path><path d="M0 182 L90 160 L190 128 L290 86 L372 52" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="position:absolute;left:93%;top:21.7%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">Ship the winner, not the loudest voice in the room.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Decide with data</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Opinions lose to <span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">A/B testing</span>.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Testing as the default path from idea to decision — steady, compounding gains.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">New revenue</span><div style="flex:1;position:relative;margin-top:26px"><svg viewBox="0 0 400 240" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;overflow:visible"><path d="M0 214 C 120 210, 210 200, 280 150 C 330 114, 356 78, 372 40" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path></svg><span style="position:absolute;left:93%;top:16.7%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.12)"></span></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;margin-top:22px;max-width:340px">A net-new revenue stream, built 0-to-1.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Player-coach</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em"><span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">Scaling teams</span> that keep winning.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Built and mentored 15+ designers across four concurrent product lines — quality made repeatable.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Team capability</span><div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;margin-top:8px"><div style="display:flex;gap:14px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;font:600 13px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif">A</span><span style="font:500 13px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">leads by example →</span></div><div style="display:flex;flex-wrap:wrap;gap:10px"><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#d0d0d0"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#8a8a8a"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#d0d0d0"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span><span style="width:34px;height:34px;border-radius:50%;background:#fff"></span></div></div><div style="font:500 15px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf">A personal advantage, turned into team-wide capability.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:42px 38px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Right thing, first</span><div style="flex:1"></div><h3 style="margin:0;font:700 38px/1.12 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:-.01em"><span style="background:#fff;color:#141414;padding:1px 9px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">Discovery</span> before delivery.</h3><p style="margin:18px 0 0;font:500 15px/1.5 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#b5b5b5;max-width:380px">Generative research to find the real problem; evaluative research to de-risk before build.</p></div></div><div class="card-slot"><div class="panel p-dark" style="padding:36px 34px;display:flex;flex-direction:column"><span class="kick" style="color:#8a8a8a">Idea → tested</span><div style="flex:1;position:relative;margin-top:20px"><div style="position:absolute;top:36px;left:34px;width:210px;height:150px;border:1.5px solid #3a3a3a;border-radius:16px;background:#1c1c1c;transform:rotate(-7deg)"></div><div style="position:absolute;top:20px;left:20px;width:210px;height:150px;border:1.5px solid #4a4a4a;border-radius:16px;background:#222;transform:rotate(-2deg)"></div><div style="position:absolute;top:6px;left:6px;width:214px;height:154px;border:1.5px solid #fff;border-radius:16px;background:#161616;padding:16px;display:flex;flex-direction:column;gap:9px;animation:floaty 5s ease-in-out infinite"><span style="font:600 11px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff;letter-spacing:.1em">PROTOTYPE</span><div style="height:7px;border-radius:4px;background:#3a3a3a;width:80%"></div><div style="height:7px;border-radius:4px;background:#3a3a3a;width:100%"></div><div style="height:7px;border-radius:4px;background:#3a3a3a;width:60%"></div><div style="flex:1"></div><div style="display:flex;gap:8px"><div style="height:22px;width:60px;border-radius:6px;background:#fff"></div><div style="height:22px;width:40px;border-radius:6px;background:#3a3a3a"></div></div></div></div><div style="display:flex;align-items:center;gap:14px;margin-top:14px"><span style="font:600 26px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#666">Weeks</span><span style="font:400 22px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#666">→</span><span style="font:600 26px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff">Days</span></div><div style="margin-top:12px;font:500 14px/1.4 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#cfcfcf;max-width:300px">A way of working rebuilt around AI — research, ideation, prototyping.</div></div></div><div class="card-slot"><div class="panel p-dark" style="padding:34px 30px;display:flex;flex-direction:column"><div style="display:flex;justify-content:space-between;align-items:center"><span class="kick" style="color:#8a8a8a">A/B Test</span><span style="font:500 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">live · 14 days</span></div><div style="flex:1;display:flex;gap:16px;margin-top:24px"><div style="flex:1;border:1.5px solid #3a3a3a;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;opacity:.6"><span style="font:600 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#8a8a8a">Variant A</span><div style="height:8px;border-radius:4px;background:#4a4a4a;width:70%"></div><div style="height:8px;border-radius:4px;background:#333;width:100%"></div><div style="height:8px;border-radius:4px;background:#333;width:85%"></div><div style="flex:1"></div><div style="height:26px;border-radius:8px;background:#3a3a3a"></div></div><div style="flex:1;border:2px solid #141414;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;background:#fff;box-shadow:0 12px 28px -18px rgba(20,20,20,.5)"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 12px -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#141414">Variant B</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><div style="height:8px;border-radius:4px;background:#141414;width:70%"></div><div style="height:8px;border-radius:4px;background:rgba(20,20,20,.35);width:100%"></div><div style="height:8px;border-radius:4px;background:rgba(20,20,20,.35);width:85%"></div><div style="flex:1"></div><div style="height:26px;border-radius:8px;background:#141414"></div></div></div><div style="margin-top:22px;display:flex;align-items:baseline;gap:10px"><span style="font:600 34px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,sans-serif;color:#fff">Experimentation cultures, not just experiments.</span></div></div></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- ================= CASE STUDY VIEW ================= -->
+  <div class="view" id="view-case">
+    <main class="cs">
+      <div class="cs__head">
+        <div class="cs__head-inner">
+          <a class="cs__back" data-back>← Case studies</a>
+          <h1 id="csTitle"></h1>
+          <p class="cs__hook" id="csHook"></p>
+        </div>
+      </div>
+      <div class="cs__cover"><div class="ph"><span>Cover image placeholder</span></div></div>
+      <article class="cs__article">
+        <div class="cs__section"><h2>Problem</h2><p>Describe the user and business problem. What was broken, and what was at stake?</p><div class="ph"><span>Image / diagram placeholder</span></div></div>
+        <div class="cs__section"><h2>Approach</h2><p>How did you frame the problem, what discovery and experiments did you run, and what did the process look like?</p><div class="ph"><span>Image / diagram placeholder</span></div></div>
+        <div class="cs__section"><h2>My role</h2><p>What did you personally lead vs. orchestrate across the team? Who did you partner with?</p><div class="ph"><span>Image / diagram placeholder</span></div></div>
+        <div class="cs__section"><h2>Outcome</h2><p>What changed — for the customer and for the business? Add the numbers that matter.</p><div class="ph"><span>Image / diagram placeholder</span></div></div>
+      </article>
+      <div class="cs__next">
+        <div class="cs__next-inner" id="csNext">
+          <span class="eyebrow">Next case study</span>
+          <span class="cs__next-title"><span id="csNextTitle"></span> <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__row">
+        <span class="wordmark">Alexandros Hashemakis</span>
+        <div class="footer__links"><a href="mailto:alexhashemakis@gmail.com">Email</a><a href="https://www.linkedin.com/in/alexandros-g-hashemakis-54a14599/" target="_blank" rel="noopener">LinkedIn</a><a href="/Alexandros-Hashemakis-CV.pdf">Download CV</a></div>
+      </div>
+      <p class="footer__note">© 2026 Alexandros Hashemakis. Designed and built with care.</p>
+    </footer>
+  </div>
+  <div class="view" id="view-ask">
+    <div class="ask">
+      <div class="ask__aura"></div>
+      <div class="ask__flash"></div>
+      <header class="ask__bar">
+        <button class="ai-toggle" data-ask-toggle aria-label="Close Ask AI">
+          <span class="ai-toggle__label">Ask <span class="ai-grad">AI</span></span>
+          <span class="ai-toggle__track is-on"><span class="ai-toggle__knob"></span></span>
+        </button>
+      </header>
+      <main class="ask__main">
+        <div class="ask__inner">
+          <div class="ask__intro" id="askIntro">
+            <h1 class="ask__headline">Ask anything about Alex</h1>
+            <p class="ask__sub">His experience, how he leads design, his work across Almosafer, or how he makes teams AI-native.</p>
+          </div>
+          <div class="ask__thread" id="askThread" style="display:none"></div>
+          <form class="ask__form" id="askForm">
+            <div class="ask__field">
+              <input id="askInput" placeholder="Ask about Alex&#39;s experience, leadership, AI work…" autocomplete="off" aria-label="Ask a question about Alex">
+              <button type="submit" id="askSubmit" aria-label="Ask" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </form>
+          <div class="ask__chips" id="askChips"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- Scroll reveal ----
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    function observeReveals() {
+      document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+        if (reduce) { el.classList.add('in'); } else { io.observe(el); }
+      });
+    }
+    observeReveals();
+
+    // ---- Header appears on scroll ----
+    var header = document.getElementById('header');
+    function onScroll() {
+      if (window.scrollY > 120) header.classList.add('is-visible');
+      else header.classList.remove('is-visible');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---- Hero parallax ----
+    var hp = document.getElementById('heroPortrait');
+    if (hp && !reduce) {
+      var raf = 0;
+      window.addEventListener('scroll', function () {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          var o = Math.min(window.scrollY, 600) * 0.06;
+          hp.style.transform = 'translate3d(0,' + o + 'px,0)';
+        });
+      }, { passive: true });
+    }
+
+    // ---- Mobile menu ----
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', function () {
+      var open = mobileNav.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileNav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { mobileNav.classList.remove('is-open'); });
+    });
+
+    // ---- Views (home <-> case study) ----
+    var viewHome = document.getElementById('view-home');
+    var viewCase = document.getElementById('view-case');
+    var behavior = reduce ? 'auto' : 'smooth';
+
+    var CASES = {
+      stays:   { title: 'Turning Stays around', hook: 'Took a high-friction hotel funnel to a competitive booking experience through discovery-led CRO.', next: 'flights' },
+      flights: { title: 'A market-first for Flights', hook: 'Led multi-airline roundtrip selection — a complex redesign that gave customers new flexibility and lifted bookings.', next: 'revenue' },
+      revenue: { title: 'Building a new revenue stream (0-to-1)', hook: 'Designed the add-ons platform that became the most profitable stream in the business.', next: 'stays' }
+    };
+
+    function openCase(slug) {
+      var c = CASES[slug]; if (!c) return;
+      document.getElementById('csTitle').textContent = c.title;
+      document.getElementById('csHook').textContent = c.hook;
+      document.getElementById('csNextTitle').textContent = CASES[c.next].title;
+      document.getElementById('csNext').onclick = function () { openCase(c.next); };
+      viewHome.classList.remove('active');
+      viewCase.classList.add('active');
+      window.scrollTo(0, 0);
+      observeReveals();
+    }
+    function goHome(anchor) {
+      viewCase.classList.remove('active');
+      viewHome.classList.add('active');
+      if (anchor) {
+        var el = document.querySelector(anchor);
+        if (el) el.scrollIntoView({ behavior: behavior, block: 'start' });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
+
+    document.querySelectorAll('[data-case]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openCase(btn.getAttribute('data-case')); });
+    });
+    document.querySelectorAll('[data-back]').forEach(function (b) {
+      b.addEventListener('click', function () { goHome('#case-studies'); });
+    });
+
+    // In-page anchor nav — smooth scroll, and route home first if on a case study.
+    document.querySelectorAll('[data-nav], [data-home]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#') return;
+        e.preventDefault();
+        if (!viewHome.classList.contains('active')) { goHome(href); return; }
+        if (href === '#top') { window.scrollTo({ top: 0, behavior: behavior }); return; }
+        var el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: behavior, block: 'start' });
+      });
+    });
+  })();
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var suggestions = ["What does Alex do?", "How does he use AI in design?", "How does he lead design teams?", "How does he drive growth and conversion?", "What's his biggest impact?", "Tell me about his experience", "What did he build across the portfolio?", "Why should I hire Alex?"];
+  var POSITIVE = "Yes — genuinely. Alex is a proven product design leader who turns design into measurable growth:\n\n• Built a net-new revenue stream from 0→1 that became one of the most profitable in the business.\n• Scaled Flights into Saudi Arabia's leading flight platform through a 100+ experiment roadmap and thousands of daily bookings.\n• Grew and mentored a 15+ person design team into a data-driven, AI-native way of working.\n\nHe pairs sharp craft with real business fluency — partnering with C-level, product, and engineering, and deciding on evidence, not opinion. So yes: he's very good, and the results back it up.";
+  var KB = [
+    {k:["who is", "about alex", "tell me about", "summary", "introduce", "background", "yourself", "bio"],a:"Alexandros Hashemakis is a product design leader based in Dubai, originally from Greece — 15 years in digital product design, 9+ leading teams.\n\nFor the past decade he led design at Almosafer, Saudi Arabia's leading travel platform, growing from the founding designer on Flights to leading design across the full portfolio: Flights, Stays, Travel activities, and Car transfers."},
+    {k:["what does", "what do you do", "what he do", "role", "title", "position", "current", "job", "responsib"],a:"He's a product design leader — Senior Manager of Product Design at Almosafer (part of Seera Group), Saudi Arabia's leading travel platform — leading design across four concurrent product lines: Flights, Stays, Travel activities, and Car transfers.\n\nDay to day, that means:\n• Owning design strategy and roadmap as a peer to Product and Engineering, and a partner to C-level.\n• Running design as a growth function — conversion, AOV, and new revenue are outcomes he owns, validated through continuous experimentation.\n• Building and mentoring the team (15+ designers), setting the craft bar, and installing a data-driven, AI-native way of working.\n\nHe's a player-coach: hands-on in the craft while making design a driver of the business, not a support function."},
+    {k:["experience", "career", "history", "companies", "worked", "work history", "tajawal", "past", "journey", "cv", "resume"],a:"15 years in product design, 9+ leading teams:\n\n• Almosafer (2020–2026) — Senior Manager, Product Design. Scaled from Flights to the full portfolio.\n• Tajawal (2016–2020) — led Flights design through its transformation into Almosafer.\n• MoveSouq & CarSwitch, Dubai (2013–2016) — UX designer.\n• Agencies in Athens (2011–2013) — UX designer."},
+    {k:["lead", "leadership", "manage", "player-coach", "player coach", "how do you lead", "leader", "style"],a:"Alex leads design as a business function — his belief is that great design isn't the goal, measurable growth is, and the team that keeps delivering it.\n\n• He works as a peer to Product, Engineering, and senior leadership, turning business goals into design strategy and roadmap.\n• Partners directly with C-level to make design a driver of company direction rather than a support service — aligning metrics, customer insight, and roadmap priorities with what the business needs to achieve.\n• As a player-coach, he stays close enough to the craft to set the bar himself while scaling a 15+ person team across four concurrent product lines."},
+    {k:["team", "mentor", "designers", "hiring", "scale", "grow", "people", "operating model", "coach", "develop"],a:"He has built, scaled, and mentored 15+ designers across four concurrent product lines.\n\nHow he does it:\n• Owns hiring quality and sets a high craft bar.\n• Installs a data-driven operating model — pairing discovery with rapid experimentation — so quality and speed become repeatable.\n• Balances a shared design resource across product lines, prioritizing against business targets."},
+    {k:["conversion", "cro", "revenue", "growth", "aov", "gbv", "monetization", "monetisation", "business impact", "money", "profit", "sales"],a:"Growth is the core of how Alex works — he treats conversion, average order value, and new revenue as design outcomes he personally owns, not afterthoughts, across multiple product funnels.\n\nConversion, at scale:\n• On Flights, he built a discovery-led practice and a continuous experimentation program across the booking funnel — directing a 100+ experiment roadmap that drove ongoing gains in conversion, booking experience, and revenue. It contributed to thousands of daily bookings and helped make Almosafer the market leader for flight bookings in Saudi Arabia.\n• On Stays, he embedded a CRO-driven experimentation culture that turned a high-friction flow into a continuous optimization engine — with repeated conversion gains from the property & room-selection funnel, dynamic property ranking, and date/price flexibility.\n\nNew revenue, from 0 to 1:\n• Designed a net-new travel add-ons platform that became one of the most profitable revenue streams in the business — outside core bookings.\n• Built a dynamic Stays upsell system (room upgrades, meals, views) that lifted AOV and GBV and made upsell rate a core business metric.\n• Fare families & upgrades that raised upgrade visibility, AOV, and conversion; cross-product activity upsell that grew ancillary revenue.\n\nThe through-line: he ties design directly to the P&L, validates every bet with experimentation, and turns wins into a repeatable engine — as a trusted partner to C-level, aligning metrics and roadmap with business objectives."},
+    {k:["experiment", "a/b", "ab test", "testing", "validation", "data-driven", "discovery culture", "hypothesis", "iterate"],a:"He builds experimentation cultures, not just experiments.\n\nAlex drove company-wide adoption of A/B testing and continuous validation — making it the default way to move from idea to decision, and making experiment results a regular input to roadmap and strategy.\n• Framed clear hypotheses, analyzed results, and turned continuous testing into steady, repeatable gains.\n• On Flights, directed a 100+ experiment roadmap across the booking funnel.\n• On Stays, built a sustained experimentation roadmap that consistently improved conversion.\n• Raised the whole team's confidence with data — so decisions are made on evidence, not opinion."},
+    {k:["ai", "artificial intelligence", "ai-native", "ai native", "prototyping", "workflow", "weeks to days", "automation", "genai", "llm", "machine learning"],a:"Plenty — Alex works on AI two ways:\n\n• Workflow: he rebuilt how his team designs around AI (research, ideation, prototyping), cutting idea-to-tested-prototype from weeks to days, and led adoption by example so it became a team-wide capability.\n• Product: he led an AI-powered natural-language search in Stays that lets customers describe exactly what they want and surfaces the right property faster — lifting conversion."},
+    {k:["research", "discovery", "generative", "evaluative", "user needs", "validate", "user research", "insights"],a:"He runs discovery before delivery:\n\n• Generative research to uncover real user needs aligned with business goals.\n• Evaluative research to validate solutions and de-risk before development — so the team builds the right thing before engineering invests."},
+    {k:["product", "products", "portfolio", "projects", "what did you build", "what have you", "built"],a:"Alex owned four product lines end-to-end at Almosafer — each with its own strategy, funnel, and experimentation roadmap:\n\n• Flights — scaled into the leading flight platform in Saudi Arabia via a 100+ experiment roadmap; thousands of daily bookings.\n• Stays — turned a high-friction hotel funnel into a competitive, continuously-optimizing booking experience.\n• Travel activities — built 0→1 into a strategic product line, expanding Almosafer beyond bookings into a holistic travel-experience provider.\n• Car transfers — defined and launched a new 0→1 product, completing the company's full-journey travel offering."},
+    {k:["flights", "flight", "multi-airline", "fare calendar", "fare families", "add-ons", "baggage", "ancillary"],a:"On Flights, Alex scaled it into Saudi Arabia's leading flight platform. Highlights:\n\n• Multi-airline roundtrip booking — a market-first.\n• Flexible fare calendar for price comparison across dates.\n• Fare families & upgrades.\n• A 0→1 travel add-ons platform that became a high-performing ancillary revenue stream."},
+    {k:["stays", "hotel", "hotels", "rooms", "property", "upsell", "pay-at-property", "lodging", "accommodation"],a:"On Stays, Alex embedded a CRO-driven experimentation culture that repositioned it from a high-friction flow into a competitive hotel-booking experience:\n\n• Property & room-selection funnel improvements.\n• Dynamic property ranking and date/price flexibility.\n• A dynamic upsell system and pay-at-property.\n• AI-powered natural-language search."},
+    {k:["activities", "experiences", "destination"],a:"Alex led Travel activities as a 0→1 product line — defining the core booking experience and funnel, and integrating contextual activity recommendations into Flights and Stays. It expanded Almosafer from a booking platform into a holistic travel-experience provider."},
+    {k:["transfers", "car transfer", "cars", "transfer"],a:"Alex defined and led design for Almosafer's new Car transfers product — a 0→1 end-to-end booking flow from discovery to confirmation, plus the phased roadmap to scale it beyond launch. It completed the company's full-journey travel offering."},
+    {k:["skills", "strengths", "good at", "expertise", "specialise", "specialize", "strong", "capabilities"],a:"Core strengths:\n\n• Strategic design leadership\n• Conversion & revenue growth (CRO, monetization)\n• Experimentation & data fluency\n• Generative & evaluative discovery\n• AI in design workflows\n• Team leadership & operating model\n\nIn short: he turns business goals into design strategy and measurable growth — and builds the team to keep delivering it."},
+    {k:["impact", "achievement", "proud", "biggest", "accomplish", "wins", "proudest"],a:"Alex's impact shows up in the P&L, not just the portfolio:\n\n• Signature win — designed a net-new travel add-ons platform from 0 to 1 that became one of the most profitable revenue streams in the business.\n• Scaled Flights into the leading flight platform in Saudi Arabia through a 100+ experiment roadmap, contributing to thousands of daily bookings.\n• Repositioned Stays from a high-friction flow into a continuous optimization engine with repeated conversion gains, and made upsell rate a core business metric.\n• Launched two product lines 0→1 (Travel activities and Car transfers), completing Almosafer's full-journey offering.\n• Grew 15+ designers into a data-driven team where experimentation is the default — so wins keep compounding long after any single project ships."},
+    {k:["product manager", "product managers", "pms", "product team", "cross-functional", "work with product", "collaborate"],a:"Alex works as a true peer to Product. He frames the right problems with PMs, aligns metrics and roadmap priorities to business goals, and uses experimentation so decisions are made on evidence, not opinion.\n\nHe's used to operating across multiple product lines at once and prioritizing a shared design resource against business targets."},
+    {k:["prioritize", "prioritise", "roadmap", "trade-off", "tradeoff", "trade off", "focus", "decide what", "backlog"],a:"Alex prioritizes against business impact. With a shared design team across four product lines, he ranks work against targets, validates the highest-leverage bets with discovery and experiments first, and is explicit about trade-offs — so effort lands on the highest-impact opportunities."},
+    {k:["metric", "metrics", "kpi", "kpis", "measure", "success", "roi", "numbers", "outcomes"],a:"He measures design by business outcomes — conversion, AOV, GBV, new revenue, upsell rate, and experiment win-rate. Alex made results a regular input to roadmap and strategy, so design is held accountable to the numbers, not just the craft."},
+    {k:["engineering", "engineers", "developers", "dev team", "handoff", "feasibility", "technical", "velocity", "shipping"],a:"Alex partners closely with engineering. He de-risks before build with evaluative research and rapid prototyping, so teams don't burn cycles on the wrong thing.\n\nHis AI-native prototyping shortens idea-to-tested-prototype to days, and clear discovery keeps handoff smooth. He treats velocity and reduced rework as design responsibilities."},
+    {k:["strategy", "vision", "direction", "company direction", "strategic", "big picture", "long term", "c-level", "c level", "executive"],a:"Alex turns business goals into design strategy and roadmap, and partners directly with C-level to make design a driver of company direction — not a support service. He aligns metrics, customer insight, and roadmap priorities with what the business needs to achieve."},
+    {id:"hire",k:["why hire", "why to hire", "why should", "shall i hire", "should i hire", "should we hire", "hire alex", "hire him", "worth hiring", "worth it", "convince", "good hire", "right hire", "reasons to hire", "sell me", "value", "bring", "what makes", "stand out", "different", "fit"],a:"Alex turns design into measurable growth. He doesn't treat design as decoration — he owns conversion, AOV, and new revenue as outcomes, and he has the record to back it:\n\n• Built a net-new revenue stream from 0 to 1 that became one of the most profitable in the business.\n• Scaled Flights into Saudi Arabia's leading flight platform via a 100+ experiment roadmap and thousands of daily bookings.\n• Grew and mentored 15+ designers into a data-driven team where experimentation — and now AI — is the default.\n\nWhat you're really hiring is a multiplier: a player-coach who partners with C-level, product, and engineering; makes calls on evidence, not opinion; and builds the team and ways of working that keep delivering long after any single project ships.\n\nIf you want design that moves the business, not just the pixels — he's the hire. Easiest next step: reach out and talk to him directly."},
+    {k:["critique", "craft", "quality", "craft bar", "review", "feedback", "design ops", "design system", "consistency"],a:"As a player-coach, Alex sets and holds a high craft bar himself. He runs a data-driven way of working — pairing discovery with rapid validation — and mentors designers to take ownership of increasingly complex, high-stakes work, so quality stays high as the team scales across product lines."},
+    {k:["process", "how do you work", "day to day", "way of working", "approach", "method", "workflow"],a:"Alex's operating model, in three moves:\n\n1. Frame the right problem — generative discovery.\n2. Validate the solution — evaluative research + A/B testing.\n3. Prototype fast with AI — idea-to-tested-prototype in days.\n\nEverything ties back to business outcomes and is made repeatable across the team."},
+    {k:["tools", "figma", "sketch", "software", "stack", "tooling"],a:"Alex is fluent across modern design and prototyping tools and has embedded AI across the workflow. For his exact current stack, ask him directly — the principle stays constant: use whatever gets to a tested prototype fastest."},
+    {k:["contact", "hire", "email", "reach", "linkedin", "get in touch", "available", "open to", "recruit", "opportunity"],a:"Yes — Alex is open to senior design leadership roles in Dubai and beyond.\n\nReach him by email (alexhashemakis@gmail.com) or LinkedIn — there's also a Download CV button on the site."},
+    {k:["looking for", "ideal role", "next role", "want", "seeking", "type of role", "interested in"],a:"Alex is looking for senior design leadership roles where design is treated as a growth function — leading a team, owning outcomes, and partnering with product, engineering, and leadership. Based in Dubai, open to Dubai and beyond."},
+    {k:["relocate", "relocation", "remote", "onsite", "hybrid", "notice", "visa", "authorization", "start date", "availability"],a:"Alex is based in Dubai and open to senior design leadership roles in Dubai and beyond. For specifics on timing, relocation, or work authorization, it's best to reach out to him directly — he'll be glad to talk."},
+    {k:["seniority", "level", "years", "how long", "principal", "director", "head of", "senior"],a:"Alex has 15 years in product design, 9+ leading teams — most recently Senior Manager of Product Design at Almosafer, leading design across four product lines and partnering with C-level. He operates at a design-leadership / head-of-design level."},
+    {k:["industry", "industries", "domain", "travel", "sector", "ecommerce", "e-commerce", "fintech"],a:"Alex's depth is in travel and e-commerce — a decade across a multi-product OTA (Flights, Stays, Activities, Transfers) in the GCC — with transferable strength in any conversion-driven, experimentation-led digital product."},
+    {k:["fail", "failure", "mistake", "lesson", "learned", "went wrong", "challenge", "difficult", "hardest"],a:"Alex's whole approach is built to de-risk failure: validate before build, test continuously, and let evidence — not opinion — drive decisions.\n\nFor a specific story of something that didn't go to plan and what he took from it, that's a great one to ask him directly."},
+    {id:"quality",k:["good", "great", "best", "talented", "talent", "skilled", "impressive", "impress", "exceptional", "reliable", "trustworthy", "competent", "capable", "legit", "expert", "standout", "special", "amazing", "awesome", "brilliant", "genius", "any good", "how good", "recommend"],a:POSITIVE},
+    {k:["where", "based", "dubai", "live", "located", "location"],a:"Alex is based in Dubai, UAE — and designs for the GCC market with the cultural fluency it demands."},
+    {k:["greece", "greek", "origin", "nationality", "from", "born"],a:"Alex is originally from Greece and is now based in Dubai. He speaks English, Arabic, and Greek."},
+    {k:["language", "languages", "speak", "arabic", "english", "multilingual"],a:"Alex speaks English, Arabic, and Greek — and designs for the GCC market with real cultural fluency."},
+    {k:["certification", "certifications", "mba", "course", "torres", "discovery habits", "education", "study", "learn", "degree"],a:"Certifications:\n\n• Continuous Discovery Habits — Teresa Torres · Product Talk\n• Mini MBA, Strategic Management & Leadership — Mustashar MBA"},
+    {k:["gcc", "saudi", "ksa", "market", "region", "middle east"],a:"Alex has spent a decade designing for the GCC — leading design at Saudi Arabia's leading travel platform, with the cultural and market fluency the region demands."}
+  ];
+  var FALLBACKS = [
+    "Happy to help you get to know Alex. Ask me about his impact on conversion and revenue, how he leads design teams, his AI-native process, or why he's a strong hire — I'll give you the specifics.",
+    "Great question. What I can tell you for sure: Alex is a product design leader who turns design into measurable growth. Ask me about his portfolio work, leadership, or results and I'll dig in.",
+    "I'd point you straight to Alex's strengths — conversion and revenue impact, leading a 15+ person team, and an AI-native way of working. What would you like to know more about?"
+  ];
+  var YESNO_STARTERS = ["is he","is alex","are you","is this","does he","does alex","do you think","can he","can alex","could he","would he","will he","has he","was he","should i","should we","shall i","would you","is he really","isn't he"];
+  var DEFLECT = ["salary", "married", "wife", "girlfriend", "age", "religion", "politic", "personal life", "kids", "children", "weakness"];
+  var STRONG = {"ai":1,"artificial intelligence":1,"ai-native":1,"ai native":1,"genai":1,"llm":1,"cro":1,"conversion":1,"revenue":1,"aov":1,"gbv":1,"a/b":1,"ab test":1,"experiment":1,"experimentation":1,"flights":1,"stays":1,"activities":1,"transfers":1,"car transfer":1,"mba":1,"torres":1,"discovery habits":1,"dubai":1,"greece":1,"greek":1,"arabic":1,"linkedin":1,"email":1,"tajawal":1,"almosafer":1,"multi-airline":1,"fare calendar":1,"add-ons":1,"baggage":1,"upsell":1,"pay-at-property":1,"monetization":1,"monetisation":1,"research":1,"discovery":1,"engineering":1,"engineers":1,"developers":1,"product manager":1,"product managers":1,"pms":1,"roadmap":1,"prioritize":1,"prioritise":1,"metric":1,"metrics":1,"kpi":1,"kpis":1,"strategy":1,"vision":1,"critique":1,"design system":1,"figma":1,"relocate":1,"relocation":1,"seniority":1,"principal":1,"director":1,"industry":1,"industries":1,"ecommerce":1,"e-commerce":1,"roi":1,"craft":1,"process":1,"why hire":1,"why to hire":1,"shall i hire":1,"should i hire":1,"should we hire":1,"hire alex":1,"hire him":1,"worth hiring":1,"convince":1,"reasons to hire":1,"sell me":1};
+  var MEDIUM = {"experience":1,"leadership":1,"team":1,"skills":1,"impact":1,"portfolio":1,"process":1,"craft":1,"product":1};
+  function pick(list, seed){ return list[Math.abs(seed) % list.length]; }
+  function alnum(ch){ return /[a-z0-9]/.test(ch); }
+  function hasWord(hay, kw){
+    var idx = hay.indexOf(kw);
+    while (idx !== -1){
+      var before = idx===0 ? " " : hay.charAt(idx-1);
+      var after = hay.charAt(idx+kw.length) || " ";
+      if (!alnum(before) && !alnum(after)) return true;
+      idx = hay.indexOf(kw, idx+1);
+    }
+    return false;
+  }
+  function answerQuestion(q){
+    var text = " " + q.toLowerCase().trim() + " "; var seed = q.length;
+    for (var d=0; d<DEFLECT.length; d++){ if (hasWord(text, DEFLECT[d])) return "That's one for Alex to answer himself — I'll keep it for when you two connect."; }
+    var best=null, bestScore=0;
+    for (var i=0;i<KB.length;i++){ var sc=0, kws=KB[i].k; for (var j=0;j<kws.length;j++){ if (hasWord(text, kws[j])) sc += STRONG[kws[j]] ? 4 : (MEDIUM[kws[j]] ? 3 : 2); } if (sc>bestScore){ bestScore=sc; best=KB[i]; } }
+    if (best && bestScore>=2){
+      if (best.id === "hire"){
+        var yesNo = ["shall i hire","should i hire","should we hire","worth hiring","worth it","is he worth","is alex worth"];
+        var isYesNo = !hasWord(text, "why") && yesNo.some(function(t){ return text.indexOf(t)!==-1; });
+        return isYesNo ? "Yes — and here's the honest case for it.\n\n" + best.a : best.a;
+      }
+      return best.a;
+    }
+    var trimmed = q.toLowerCase().trim();
+    for (var y=0;y<YESNO_STARTERS.length;y++){ if (trimmed.indexOf(YESNO_STARTERS[y])===0) return POSITIVE; }
+    return pick(FALLBACKS, seed);
+  }
+
+  // ---- View switching ----
+  var viewHome = document.getElementById('view-home');
+  var viewAsk  = document.getElementById('view-ask');
+  var viewCase = document.getElementById('view-case');
+  function openAsk(){
+    viewHome.classList.remove('active'); if(viewCase) viewCase.classList.remove('active');
+    viewAsk.classList.add('active'); window.scrollTo(0,0);
+    setTimeout(function(){ if (input) input.focus(); }, 700);
+  }
+  function closeAsk(){ viewAsk.classList.remove('active'); viewHome.classList.add('active'); window.scrollTo(0,0); }
+  document.querySelectorAll('[data-open-ask]').forEach(function(b){ b.addEventListener('click', openAsk); });
+  document.querySelectorAll('[data-ask-toggle],[data-ask-home]').forEach(function(el){ el.addEventListener('click', closeAsk); });
+
+  // ---- Ask interaction ----
+  var form   = document.getElementById('askForm');
+  var input  = document.getElementById('askInput');
+  var submit = document.getElementById('askSubmit');
+  var thread = document.getElementById('askThread');
+  var intro  = document.getElementById('askIntro');
+  var chips  = document.getElementById('askChips');
+  var busy   = false;
+
+  input.addEventListener('input', function(){ submit.disabled = !input.value.trim() || busy; });
+  function scrollThread(){ thread.scrollTop = thread.scrollHeight; }
+  function addBubble(role, text){
+    var b=document.createElement('div'); b.className='bubble bubble--'+role;
+    if (role==='ai'){ var badge=document.createElement('span'); badge.className='bubble__badge ai-grad'; badge.textContent='AI'; b.appendChild(badge); }
+    var pEl=document.createElement('p'); pEl.textContent=text; b.appendChild(pEl);
+    thread.appendChild(b); scrollThread(); return pEl;
+  }
+  function showThinking(){
+    var b=document.createElement('div'); b.className='bubble bubble--ai'; b.id='askThinking';
+    b.innerHTML='<span class="bubble__badge ai-grad">AI</span><span class="dots"><i></i><i></i><i></i></span>';
+    thread.appendChild(b); scrollThread();
+  }
+  function hideThinking(){ var t=document.getElementById('askThinking'); if(t) t.parentNode.removeChild(t); }
+  function ask(q){
+    q=(q||'').trim(); if(!q||busy) return;
+    if (intro) intro.classList.add('is-hidden');
+    thread.style.display='flex';
+    input.value=''; submit.disabled=true; busy=true;
+    addBubble('user', q); showThinking();
+    var full=answerQuestion(q);
+    setTimeout(function(){
+      hideThinking();
+      if (reduce){ addBubble('ai', full); busy=false; return; }
+      var pEl=addBubble('ai','');
+      var i=0;
+      (function step(){ i+=2; pEl.textContent=full.slice(0,i); scrollThread(); if(i<full.length){ setTimeout(step,12); } else { busy=false; } })();
+    }, 650);
+  }
+  form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); });
+  suggestions.forEach(function(sug){ var c=document.createElement('button'); c.type='button'; c.className='chip'; c.textContent=sug; c.addEventListener('click', function(){ ask(sug); }); chips.appendChild(c); });
+  var emailBtn = document.getElementById('emailBtn');
+  if (emailBtn) emailBtn.addEventListener('click', function(){
+    var done = function(){ var o = emailBtn.textContent; emailBtn.textContent = 'Copied!'; setTimeout(function(){ emailBtn.textContent = o === 'Copied!' ? 'Email' : o; }, 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText('alexhashemakis@gmail.com').then(done).catch(function(){ window.location.href = 'mailto:alexhashemakis@gmail.com'; });
+    } else { window.location.href = 'mailto:alexhashemakis@gmail.com'; }
+  });
+})();
+</script>
+<!-- project carousel: pure-CSS marquee, no JS needed -->
+
+</body>
+</html>

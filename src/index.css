@@ -1,0 +1,952 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+   Design tokens
+ * ------------------------------------------------------------------ */
+:root {
+  /* The single restrained accent. Change this one value to re-tint. */
+  --accent: #1f52e0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Fixed header offset so anchor jumps don't hide section titles. */
+  scroll-padding-top: 88px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Clip horizontal overflow so the full-bleed carousel can't scroll the page. */
+  overflow-x: clip;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+/* Consistent selection styling. */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------ *
+   Scroll reveal (fade + rise). Driven by the <Reveal> component.
+ * ------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------ *
+   Black-cards ribbon — seamless auto-scrolling showcase in the Proof
+   section. Base card classes below come from the design export; each
+   480x520 card is uniformly scaled into a smaller slot so the artwork
+   stays pixel-faithful.
+ * ------------------------------------------------------------------ */
+.panel {
+  position: relative;
+  width: 480px;
+  height: 520px;
+  border-radius: 30px;
+  overflow: hidden;
+  flex: none;
+  /* The cards are authored dark; invert flips them to a light-gray theme with
+     black text + black elements, to sit on the white page. */
+  filter: invert(1);
+}
+.p-dark {
+  background: #141414;
+  color: #fff;
+}
+.kick {
+  font: 600 11px/1 -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.cards-marquee {
+  position: relative;
+  overflow: hidden;
+  /* Soft fade at both edges so cards glide in and out. */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.cards-track {
+  display: flex;
+  width: max-content;
+  animation: card-scroll 80s linear infinite;
+}
+/* Two identical groups, each with a trailing margin equal to the inner
+   gap, so translateX(-50%) lands seamlessly on the second copy. */
+.cards-group {
+  display: flex;
+  gap: 22px;
+  margin-right: 22px;
+}
+.card-slot {
+  position: relative;
+  width: 298px;
+  height: 323px;
+  flex: none;
+  border-radius: 20px;
+  box-shadow: 0 24px 55px -32px rgba(17, 17, 26, 0.16);
+}
+.card-slot .panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.62);
+  transform-origin: top left;
+}
+@keyframes card-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Brushed-silver / chrome gradient for the product-line titles, to echo the
+   metallic icons. The dark band at 50% gives the reflective sheen. */
+.metal-text {
+  background: linear-gradient(
+    90deg,
+    #3a3a3a 0%,
+    #5c5c5c 42%,
+    #838383 74%,
+    #ababab 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Siri / Apple-Intelligence gradient for the "AI" token. A soft, many-stop
+   gradient blended inside the letters (sharp edges, no outer glow) with a
+   slow shimmer. */
+.ai-grad {
+  font-weight: 700;
+  background: linear-gradient(
+    100deg,
+    #1e9bff,
+    #4f8bff,
+    #6d5cff,
+    #9a5cff,
+    #b15cff,
+    #e05cc8,
+    #ff5c9e,
+    #ff7d6e,
+    #ff9a3d,
+    #1e9bff
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: ai-shimmer 8s linear infinite;
+}
+@keyframes ai-shimmer {
+  to {
+    background-position: 260% 0;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+   Hero design showcase — two columns of app screens drifting in opposite
+   directions, looping seamlessly, with a soft fade at top and bottom.
+ * ------------------------------------------------------------------ */
+.screens {
+  display: flex;
+  /* flex-start (not the default stretch) so each column is as tall as its
+     content — otherwise translateY(-50%) resolves to half the container
+     height and the loop jumps instead of landing on the duplicated group. */
+  align-items: flex-start;
+  gap: 12px;
+  height: clamp(440px, 74vh, 660px);
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+.screens__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+/* Three columns, alternating direction + staggered phase. */
+.screens__col--a {
+  animation: screens-scroll 17s linear infinite;
+}
+.screens__col--b {
+  animation: screens-scroll 17s linear infinite reverse;
+  animation-delay: -6s;
+}
+.screens__col--c {
+  animation: screens-scroll 17s linear infinite;
+  animation-delay: -11s;
+}
+/* Each group has a trailing gap so translateY(-50%) is seamless. */
+.screens__group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.screen {
+  position: relative;
+  aspect-ratio: 9 / 19;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fdfdfe;
+  /* Soft, low-opacity shadow so frames sit on the page rather than pop off it. */
+  box-shadow:
+    0 30px 60px -34px rgba(17, 17, 26, 0.12),
+    0 8px 22px -14px rgba(17, 17, 26, 0.05);
+}
+.screen img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Placeholder fill kept close to the page tone so empty frames blend in. */
+.screen__ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(150deg, #ffffff 0%, #f2f3f6 100%);
+}
+.screen__ph span {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(10, 10, 10, 0.28);
+}
+@keyframes screens-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+   Ask-AI toggle
+ * ------------------------------------------------------------------ */
+.ai-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink);
+}
+.ai-toggle__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.ai-toggle__track {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.18);
+  transition: background 0.35s var(--ease);
+}
+.ai-toggle__track.is-on {
+  background: linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e);
+}
+.ai-toggle__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s var(--ease);
+}
+.ai-toggle__track.is-on .ai-toggle__knob {
+  transform: translateX(18px);
+}
+.ai-toggle:hover .ai-toggle__knob {
+  transform: scale(1.06);
+}
+.ai-toggle:hover .ai-toggle__track.is-on .ai-toggle__knob {
+  transform: translateX(18px) scale(1.06);
+}
+
+/* ------------------------------------------------------------------ *
+   Ask-AI page — futuristic assistant
+ * ------------------------------------------------------------------ */
+.ask {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background: #0a0a0a;
+  color: var(--paper);
+  overflow: hidden;
+}
+.ask .ai-toggle {
+  color: var(--paper);
+}
+.ask .ai-toggle__track {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Ambient drifting aura */
+.ask__aura {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.ask__aura::before,
+.ask__aura::after {
+  content: '';
+  position: absolute;
+  width: 62vw;
+  height: 62vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+}
+.ask__aura::before {
+  top: -16%;
+  left: -12%;
+  background: radial-gradient(circle, #6d5cff, transparent 65%);
+  animation: aura-a 18s ease-in-out infinite;
+}
+.ask__aura::after {
+  right: -14%;
+  bottom: -20%;
+  background: radial-gradient(circle, #1e9bff, transparent 65%);
+  animation: aura-b 22s ease-in-out infinite;
+}
+@keyframes aura-a {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10%, 8%); }
+}
+@keyframes aura-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-8%, -10%); }
+}
+
+/* One-shot entry flash */
+.ask__flash {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 68% 32%,
+    rgba(109, 92, 255, 0.5),
+    rgba(30, 155, 255, 0.22) 32%,
+    transparent 62%
+  );
+  animation: ask-flash 1s ease-out both;
+}
+@keyframes ask-flash {
+  0% { opacity: 0; transform: scale(0.6); }
+  25% { opacity: 0.9; }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.ask__bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+@media (min-width: 640px) {
+  .ask__bar {
+    padding: 1.5rem 2rem;
+  }
+}
+.ask__main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.5rem 3rem;
+}
+.ask__inner {
+  width: 100%;
+  max-width: 720px;
+  animation: ask-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes ask-in {
+  from { opacity: 0; transform: translateY(26px); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+.ask__intro {
+  text-align: center;
+  transition: opacity 0.4s ease, max-height 0.5s ease;
+  overflow: hidden;
+}
+.ask__intro.is-hidden {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.ask__eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, 0.5);
+}
+.ask__headline {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.ask__sub {
+  margin: 1rem auto 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(250, 250, 250, 0.55);
+}
+
+/* Conversation */
+.ask__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 44vh;
+  overflow-y: auto;
+  padding: 0.5rem 0.25rem 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.bubble {
+  max-width: 88%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 18px;
+  line-height: 1.55;
+  font-size: 1rem;
+  animation: bubble-in 0.4s var(--ease) both;
+}
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.bubble--user {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--paper);
+  border-bottom-right-radius: 6px;
+}
+.bubble--ai {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(250, 250, 250, 0.9);
+  border-bottom-left-radius: 6px;
+}
+.bubble p {
+  margin: 0;
+  /* Render the "\n" line breaks + bullet structure in answers. */
+  white-space: pre-line;
+}
+.bubble__badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.35rem;
+}
+.dots {
+  display: inline-flex;
+  gap: 5px;
+  padding: 0.15rem 0;
+}
+.dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(250, 250, 250, 0.6);
+  animation: dot 1.2s ease-in-out infinite;
+}
+.dots i:nth-child(2) { animation-delay: 0.15s; }
+.dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Search field with gradient border + focus glow */
+.ask__form {
+  margin-top: 0.5rem;
+}
+.ask__field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 6px 6px 22px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(#0f0f0f, #0f0f0f),
+    linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: box-shadow 0.35s var(--ease);
+}
+.ask__field:focus-within {
+  box-shadow:
+    0 0 0 4px rgba(109, 92, 255, 0.16),
+    0 16px 50px -16px rgba(109, 92, 255, 0.4);
+}
+.ask__field input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  font-size: 1.05rem;
+  font-family: inherit;
+  outline: none;
+}
+.ask__field input::placeholder {
+  color: rgba(250, 250, 250, 0.4);
+}
+.ask__field button {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(100deg, #1e9bff, #6d5cff, #b15cff, #ff5c9e);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), opacity 0.25s;
+}
+.ask__field button:hover:not(:disabled) {
+  transform: translateX(2px);
+}
+.ask__field button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Suggested question chips */
+.ask__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+.chip {
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease);
+}
+.chip:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-1px);
+}
+.ask__disclaimer {
+  margin-top: 1.6rem;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(250, 250, 250, 0.35);
+}
+
+/* ------------------------------------------------------------------ *
+   "Making design teams AI-native" — Apple-style bento grid
+ * ------------------------------------------------------------------ */
+.bento {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+.bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  padding: 1.75rem;
+  background: linear-gradient(158deg, #17171b 0%, #0e0e11 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.bento__kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, 0.4);
+}
+
+.bento__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 240px;
+  padding: 2.25rem;
+}
+.bento__head::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 85%;
+  background: radial-gradient(circle, rgba(109, 92, 255, 0.28), transparent 68%);
+  filter: blur(46px);
+  pointer-events: none;
+}
+.bento__headline {
+  position: relative;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.bento__sub {
+  position: relative;
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(250, 250, 250, 0.6);
+}
+
+.bento__wd {
+  display: flex;
+  flex-direction: column;
+}
+.wd {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+  padding: 1.25rem 0;
+}
+.wd__from {
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: rgba(250, 250, 250, 0.32);
+}
+.wd__arrow {
+  font-size: 1.6rem;
+  color: rgba(250, 250, 250, 0.8);
+  line-height: 1;
+}
+.wd__to {
+  font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.bento__pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 190px;
+}
+.pillar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #c7b8ff;
+}
+.pillar__line {
+  margin-top: auto;
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.bento__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.bento__close p {
+  max-width: 48rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  color: rgba(250, 250, 250, 0.72);
+  text-wrap: balance;
+}
+
+@media (min-width: 1000px) {
+  .bento {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+      'head head head head wd wd'
+      'res res idea idea val val'
+      'close close close close close close';
+  }
+  .bento__head { grid-area: head; }
+  .bento__wd { grid-area: wd; }
+  .bento__res { grid-area: res; }
+  .bento__idea { grid-area: idea; }
+  .bento__val { grid-area: val; }
+  .bento__close { grid-area: close; }
+}
+
+/* ------------------------------------------------------------------ *
+   Project card stack (portfolio) — black cards that smoothly cycle.
+   Card styles are namespaced pk-* (they came from a design export).
+ * ------------------------------------------------------------------ */
+.pk-panel {
+  position: relative;
+  width: 480px;
+  height: 560px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #141414;
+  color: #fff;
+  padding: 34px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.pk-kick {
+  font: 600 11px/1 -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.pk-wire {
+  flex: 1;
+  position: relative;
+  margin: 22px 0 20px;
+  border-radius: 18px;
+  background: #1a1a1a;
+  border: 1.5px solid #2c2c2c;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pk-ptitle {
+  font: 700 24px/1.15 -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'SF Pro Text', system-ui, sans-serif;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.pk-pdesc {
+  font: 500 14px/1.45 -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'SF Pro Text', system-ui, sans-serif;
+  color: #9a9a9a;
+  margin: 9px 0 0;
+}
+.pk-bar {
+  height: 7px;
+  border-radius: 4px;
+  background: #333;
+}
+.pk-row {
+  border: 1.5px solid #333;
+  border-radius: 12px;
+  padding: 12px 13px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.pk-row-sel {
+  border: 1.5px solid #fff;
+  background: #fff;
+  color: #141414;
+}
+
+/* Horizontal carousel — cards side by side, ~2.5 visible, scrolling smoothly
+   and looping seamlessly. The track holds two copies of the deck; translating
+   it -50% lands copy #2 exactly where copy #1 began, so the loop is invisible.
+   The stack bleeds full-width to the right edge of the viewport (clipped by the
+   html overflow-x rule); only the left edge carries a soft, low-opacity fade. */
+.pstack {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  padding: 16px 0;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.5) 0,
+    #000 48px,
+    #000 100%
+  );
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0, #000 48px, #000 100%);
+}
+.ptrack {
+  display: flex;
+  width: max-content;
+  animation: pmarquee 40s linear infinite;
+  will-change: transform;
+}
+.pcard {
+  position: relative;
+  flex: 0 0 auto;
+  width: 236px;
+  height: 276px;
+  margin-right: 20px;
+}
+.pcard .pk-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.49);
+  transform-origin: top left;
+  box-shadow: 0 24px 50px -26px rgba(0, 0, 0, 0.55);
+}
+@keyframes pmarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ptrack {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+   Accessibility — honor reduced-motion for everyone, everywhere.
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  /* Freeze the ribbon and let it be scrolled manually instead. */
+  .cards-track {
+    animation: none;
+    transform: none;
+  }
+  .cards-marquee {
+    overflow-x: auto;
+  }
+  /* Freeze the hero showcase columns. */
+  .screens__col {
+    animation: none;
+    transform: none;
+  }
+  /* Calm the Ask-AI page. */
+  .ask__aura::before,
+  .ask__aura::after,
+  .ask__inner,
+  .bubble,
+  .dots i {
+    animation: none;
+  }
+  .ask__flash {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Visible focus ring for keyboard users, hidden for mouse users. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
