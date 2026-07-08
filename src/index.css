@@ -160,6 +160,12 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Product icons are gold/bronze metallic 3D renders — desaturate them to a
+   silver/chrome metallic while preserving the shading and highlights. */
+.product__icon {
+  filter: grayscale(1) brightness(1.06) contrast(1.05);
+}
+
 /* Siri / Apple-Intelligence gradient for the "AI" token. A soft, many-stop
    gradient blended inside the letters (sharp edges, no outer glow) with a
    slow shimmer. */
