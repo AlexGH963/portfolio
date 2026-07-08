@@ -8,6 +8,13 @@
 :root {
   /* The single restrained accent. Change this one value to re-tint. */
   --accent: #1f52e0;
+  /* Core palette + easing as CSS variables. These mirror the Tailwind color
+     tokens (paper/ink) so raw CSS — e.g. the Ask page — can use var(--paper).
+     Without these, var(--paper)/var(--ink) resolve to nothing and text falls
+     back to the dark body color (the Ask page title/input rendered black). */
+  --ink: #0a0a0a;
+  --paper: #fafafa;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
