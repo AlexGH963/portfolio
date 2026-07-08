@@ -15,9 +15,9 @@ export default function Hero() {
         <AiToggle />
       </div>
 
-      <div className="mx-auto grid w-full max-w-container items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="mx-auto grid w-full max-w-container items-center gap-12 lg:grid-cols-12 lg:gap-12">
         {/* Copy */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-8">
           <p className="reveal reveal-in mb-6 text-[13px] font-medium uppercase tracking-[0.2em] text-ink/50">
             {hero.tag}
           </p>
@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
 
         {/* Design showcase — auto-scrolling app screens */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <ScreenShowcase />
         </div>
       </div>
