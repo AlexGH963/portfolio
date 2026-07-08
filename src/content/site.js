@@ -11,9 +11,8 @@ export const meta = {
 
 // --- Fixed header navigation (anchors into the single-page scroll) ----------
 export const nav = [
-  { label: 'Leadership', href: '#leadership' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'AI-native', href: '#ai-native' },
+  { label: 'Product design', href: '#leadership' },
+  { label: 'Recent work', href: '#portfolio' },
   // { label: 'Case studies', href: '#case-studies' }, // hidden for now
   { label: 'Experience', href: '#experience' },
   { label: 'About', href: '#about' },

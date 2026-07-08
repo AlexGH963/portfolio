@@ -35,12 +35,6 @@ export default function Hero() {
             >
               Get in touch
             </a>
-            <a
-              href="#portfolio"
-              className="inline-flex h-12 items-center rounded-full px-4 text-[15px] font-medium text-ink/70 transition-colors hover:text-ink"
-            >
-              See the work →
-            </a>
           </div>
         </div>
 

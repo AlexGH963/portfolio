@@ -475,8 +475,8 @@
         <a href="#top" class="wordmark" data-home>Alexandros Hashemakis</a>
         <div class="header__right">
         <nav class="nav" aria-label="Primary">
-          <a href="#leadership" data-nav>Leadership</a>
-          <a href="#portfolio" data-nav>Portfolio</a>
+          <a href="#leadership" data-nav>Product design</a>
+          <a href="#portfolio" data-nav>Recent work</a>
             <a href="#experience" data-nav>Experience</a>
           <a href="#about" data-nav>About</a>
           <a href="#contact" data-nav>Contact</a>
@@ -487,9 +487,8 @@
         </div>
       </div>
       <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-        <a href="#leadership" data-nav>Leadership</a>
-        <a href="#portfolio" data-nav>Portfolio</a>
-        <a href="#ai-native" data-nav>AI-native</a>
+        <a href="#leadership" data-nav>Product design</a>
+        <a href="#portfolio" data-nav>Recent work</a>
         <a href="#experience" data-nav>Experience</a>
         <a href="#about" data-nav>About</a>
         <a href="#contact" data-nav>Contact</a>
@@ -513,7 +512,6 @@
             <p class="hero__sub">15 years designing digital products — the last decade leading design across Saudi Arabia's leading travel platform. I build the teams, experimentation cultures, and AI-native ways of working that make good design compound into real business results.</p>
             <div class="hero__cta">
               <a href="#contact" class="btn btn--solid" data-nav>Get in touch</a>
-              <a href="#portfolio" class="btn btn--ghost" data-nav>See the work →</a>
             </div>
           </div>
           <div>
@@ -1117,6 +1115,12 @@
 })();
 </script>
 <!-- project carousel: pure-CSS marquee, no JS needed -->
+<script>
+/* On a fresh load/refresh, always start at the top — don't let a lingering
+   "#section" hash (from an earlier nav click) jump the page down. */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+</script>
 
 </body>
 </html>
