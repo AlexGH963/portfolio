@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import ScrollManager from './components/ScrollManager.jsx'
 import Home from './pages/Home.jsx'
 import CaseStudy from './pages/CaseStudy.jsx'
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/case/:slug" element={<CaseStudy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* Vercel Web Analytics — privacy-friendly page-view + visitor counts. */}
+      <Analytics />
     </>
   )
 }
