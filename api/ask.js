@@ -40,7 +40,13 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents: [{ role: 'user', parts: [{ text: question }] }],
-        generationConfig: { maxOutputTokens: 600, temperature: 0.6 },
+        generationConfig: {
+          maxOutputTokens: 800,
+          temperature: 0.6,
+          // Disable Gemini 2.5 "thinking" — unneeded for Q&A, and it otherwise
+          // consumes the output budget and can truncate the answer.
+          thinkingConfig: { thinkingBudget: 0 },
+        },
       }),
     })
 
