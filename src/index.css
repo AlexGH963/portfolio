@@ -636,6 +636,29 @@ body {
   background: rgba(255, 255, 255, 0.07);
   transform: translateY(-1px);
 }
+/* Mobile: a horizontally-swipeable 2-row chip rail so the suggestions don't
+   stack down the whole screen and eat the chat space. */
+@media (max-width: 640px) {
+  .ask__chips {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-template-rows: repeat(2, auto);
+    justify-content: start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+  .ask__chips::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    white-space: nowrap;
+  }
+}
 .ask__disclaimer {
   margin-top: 1.6rem;
   text-align: center;
