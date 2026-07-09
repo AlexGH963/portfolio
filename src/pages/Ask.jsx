@@ -31,39 +31,54 @@ export default function Ask() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
   }, [messages, thinking])
 
-  const ask = (raw) => {
+  // Type an answer out character by character (or instantly if reduced-motion).
+  const revealAnswer = (full) => {
+    setThinking(false)
+    if (reduceMotion()) {
+      setMessages((m) => [...m, { role: 'ai', text: full }])
+      return
+    }
+    setMessages((m) => [...m, { role: 'ai', text: '' }])
+    let i = 0
+    const step = () => {
+      i += 2 // a couple chars per tick — fast but visibly "typing"
+      setMessages((m) => {
+        const copy = m.slice()
+        copy[copy.length - 1] = { role: 'ai', text: full.slice(0, i) }
+        return copy
+      })
+      if (i < full.length) {
+        const t = setTimeout(step, 12)
+        timers.current.push(t)
+      }
+    }
+    step()
+  }
+
+  const ask = async (raw) => {
     const q = raw.trim()
     if (!q || thinking) return
     setInput('')
     setMessages((m) => [...m, { role: 'user', text: q }])
     setThinking(true)
 
-    const full = answerQuestion(q)
+    // Try the Gemini-backed endpoint first; the network round-trip is the
+    // "thinking" beat. Fall back to the local knowledge base if it's
+    // unavailable (not configured yet, offline, or an upstream error).
+    let full = ''
+    try {
+      const res = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: q }),
+      })
+      if (res.ok) full = ((await res.json()).answer || '').trim()
+    } catch {
+      /* network error — use local fallback below */
+    }
+    if (!full) full = answerQuestion(q)
 
-    // Small "thinking" beat, then type the answer out.
-    const t1 = setTimeout(() => {
-      setThinking(false)
-      if (reduceMotion()) {
-        setMessages((m) => [...m, { role: 'ai', text: full }])
-        return
-      }
-      setMessages((m) => [...m, { role: 'ai', text: '' }])
-      let i = 0
-      const step = () => {
-        i += 2 // a couple chars per tick — fast but visibly "typing"
-        setMessages((m) => {
-          const copy = m.slice()
-          copy[copy.length - 1] = { role: 'ai', text: full.slice(0, i) }
-          return copy
-        })
-        if (i < full.length) {
-          const t = setTimeout(step, 12)
-          timers.current.push(t)
-        }
-      }
-      step()
-    }, 650)
-    timers.current.push(t1)
+    revealAnswer(full)
   }
 
   const onSubmit = (e) => {
