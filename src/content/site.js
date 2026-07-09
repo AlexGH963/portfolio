@@ -23,7 +23,7 @@ export const nav = [
 export const hero = {
   headline: 'Product design leader who turns design into measurable growth.',
   subline:
-    "15 years designing digital products. The last decade leading design across Saudi Arabia's leading travel platform. I build the teams, experimentation cultures, and AI-native ways of working that make good design compound into real business results.",
+    "15 years designing digital products, the last decade leading design across Saudi Arabia's leading travel platform. I build the teams, experimentation cultures, and AI-native ways of working that make design compound into real business results.",
   tag: 'Alexandros Hashemakis',
   portraitAlt: 'Portrait of Alexandros Hashemakis',
 }
