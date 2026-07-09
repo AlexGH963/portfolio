@@ -70,7 +70,7 @@ const KB = [
   {
     keywords: ['ai', 'artificial intelligence', 'ai-native', 'ai native', 'prototyping', 'workflow', 'weeks to days', 'automation', 'genai', 'llm', 'machine learning'],
     answer:
-      'Plenty — Alex works on AI two ways:\n\n• Workflow: he rebuilt how his team designs around AI (research, ideation, prototyping), cutting idea-to-tested-prototype from weeks to days, and led adoption by example so it became a team-wide capability.\n• Product: he led an AI-powered natural-language search in Stays that lets customers describe exactly what they want and surfaces the right property faster — lifting conversion.',
+      'Deeply — AI shapes both how his team works and the products they ship:\n\n• Way of working: he rebuilt how his team designs around AI (research, ideation, prototyping), cutting idea-to-tested-prototype from weeks to days, and led adoption by example so it became a team-wide capability.\n• Recent product: he led an AI-powered natural-language search in Stays that lets customers describe exactly what they want and surfaces the right property faster — lifting conversion.',
   },
   {
     keywords: ['research', 'discovery', 'generative', 'evaluative', 'user needs', 'validate', 'user research', 'insights'],
