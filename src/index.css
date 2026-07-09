@@ -31,6 +31,9 @@ html {
 body {
   @apply bg-paper text-ink font-sans antialiased;
   font-feature-settings: 'cv11', 'ss01';
+  /* Clip horizontal overflow on body too (not just html) so the full-bleed
+     carousel can't be scrolled sideways on mobile. */
+  overflow-x: clip;
 }
 
 /* Consistent selection styling. */
