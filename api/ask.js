@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents: [{ role: 'user', parts: [{ text: question }] }],
         generationConfig: {
-          maxOutputTokens: 800,
+          maxOutputTokens: 1024,
           temperature: 0.6,
           // Disable Gemini 2.5 "thinking" — unneeded for Q&A, and it otherwise
           // consumes the output budget and can truncate the answer.
