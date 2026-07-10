@@ -20,7 +20,6 @@ export const suggestions = [
   "What's his biggest impact?",
   'Tell me about his experience',
   'What did he build across the portfolio?',
-  'Why should I hire Alex?',
 ]
 
 // A confident, evidence-backed endorsement. Used both for evaluative questions
