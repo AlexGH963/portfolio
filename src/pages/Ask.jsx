@@ -59,6 +59,9 @@ export default function Ask() {
     const q = raw.trim()
     if (!q || thinking) return
     setInput('')
+    // Snapshot the conversation so far (before adding this question) to give
+    // the model context for follow-ups like "talk more…" or "and what about X?".
+    const history = messages.slice(-6).map((m) => ({ role: m.role, text: m.text }))
     setMessages((m) => [...m, { role: 'user', text: q }])
     setThinking(true)
 
@@ -70,7 +73,7 @@ export default function Ask() {
       const res = await fetch('/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q }),
+        body: JSON.stringify({ question: q, history }),
       })
       if (res.ok) full = ((await res.json()).answer || '').trim()
     } catch {

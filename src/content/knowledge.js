@@ -78,7 +78,7 @@ const KB = [
       'He runs discovery before delivery:\n\n• Generative research to uncover real user needs aligned with business goals.\n• Evaluative research to validate solutions and de-risk before development — so the team builds the right thing before engineering invests.',
   },
   {
-    keywords: ['product', 'products', 'portfolio', 'projects', 'what did you build', 'what have you', 'built'],
+    keywords: ['product', 'products', 'portfolio', 'projects', 'what did you build', 'what have you', 'built', 'almosafer', 'seera', 'tajawal', 'what he did', 'what did he do'],
     answer:
       "Alex owned four product lines end-to-end at Almosafer — each with its own strategy, funnel, and experimentation roadmap:\n\n• Flights — scaled into the leading flight platform in Saudi Arabia via a 100+ experiment roadmap; thousands of daily bookings.\n• Stays — turned a high-friction hotel funnel into a competitive, continuously-optimizing booking experience.\n• Travel activities — built 0→1 into a strategic product line, expanding Almosafer beyond bookings into a holistic travel-experience provider.\n• Car transfers — defined and launched a new 0→1 product, completing the company's full-journey travel offering.",
   },

@@ -25,9 +25,20 @@ export default async function handler(req, res) {
 
   // Parse + guard the question (abuse protection: cap length).
   let question = ''
+  let history = []
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {}
     question = String(body.question || '').trim().slice(0, 500)
+    // Recent chat history so follow-ups ("talk more…", "and X?") have context.
+    if (Array.isArray(body.history)) {
+      history = body.history
+        .slice(-6)
+        .filter((m) => m && m.text)
+        .map((m) => ({
+          role: m.role === 'ai' ? 'model' : 'user',
+          parts: [{ text: String(m.text).slice(0, 2000) }],
+        }))
+    }
   } catch {
     return res.status(400).json({ error: 'bad_request' })
   }
@@ -39,7 +50,7 @@ export default async function handler(req, res) {
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
       body: JSON.stringify({
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents: [{ role: 'user', parts: [{ text: question }] }],
+        contents: [...history, { role: 'user', parts: [{ text: question }] }],
         generationConfig: {
           maxOutputTokens: 1024,
           temperature: 0.6,
