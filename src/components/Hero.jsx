@@ -10,10 +10,12 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-[100svh] items-center px-6 pb-12 pt-24 sm:px-8"
     >
-      {/* Ask-AI toggle — top-right corner, matching the Ask page position */}
-      <div className="absolute right-6 top-6 z-20 sm:right-8">
+      {/* Ask-AI toggle — HIDDEN for now. To re-enable the Ask AI feature,
+          uncomment this block (the /ask route, page, and Gemini API are all
+          still wired up and ready). */}
+      {/* <div className="absolute right-6 top-6 z-20 sm:right-8">
         <AiToggle />
-      </div>
+      </div> */}
 
       <div className="mx-auto grid w-full max-w-container items-center gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Copy */}

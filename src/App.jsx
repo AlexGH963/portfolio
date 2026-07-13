@@ -14,7 +14,8 @@ export default function App() {
       <ScrollManager />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ask" element={<Ask />} />
+        {/* Ask AI hidden for now — re-enable by uncommenting:
+        <Route path="/ask" element={<Ask />} /> */}
         <Route path="/case/:slug" element={<CaseStudy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
