@@ -8,10 +8,10 @@ import AiNative from '../components/AiNative.jsx'
 import Timeline from '../components/Timeline.jsx'
 import About from '../components/About.jsx'
 import Contact from '../components/Contact.jsx'
-import ProofStrip from '../components/ProofStrip.jsx'
+// import ProofStrip from '../components/ProofStrip.jsx' // footer ribbon removed — re-enable later
 
-// The single scrolling page. The card ribbon (ProofStrip) closes the page,
-// after the "Let's talk" section.
+// The single scrolling page. The footer card ribbon (ProofStrip) was removed;
+// the "Let's talk" section now closes the page.
 export default function Home() {
   return (
     <>
@@ -25,7 +25,7 @@ export default function Home() {
         <Timeline />
         <About />
         <Contact />
-        <ProofStrip />
+        {/* <ProofStrip /> footer ribbon removed — re-enable later */}
       </main>
     </>
   )
