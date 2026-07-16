@@ -134,7 +134,7 @@ export const leadership = {
 
 // --- 5. What I led — across the portfolio -----------------------------------
 export const portfolio = {
-  headline: 'Shaping travel experiences in the GCC.',
+  headline: 'Travel super app.',
   intro: 'Product Design Impact (Seera Group)',
   products: [
     {
