@@ -141,6 +141,14 @@ body {
   transform: scale(0.62);
   transform-origin: top left;
 }
+/* App-screen frames used in the bottom ribbon (in place of the black cards). */
+.cards-group--screens {
+  align-items: center;
+}
+.cards-group--screens .screen {
+  width: 158px;
+  flex: none;
+}
 @keyframes card-scroll {
   to {
     transform: translateX(-50%);
