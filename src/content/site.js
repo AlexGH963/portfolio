@@ -51,10 +51,11 @@ export const screens = {
 }
 
 // --- 1c. Bottom-ribbon screens ----------------------------------------------
-//  The hero app screens plus three more, shuffled for the bottom marquee.
-//  New files live in /public/screens/ (flights-fare-detail, stays-reviews,
-//  stays-photos). Missing files fall back to a labelled frame.
+//  The hero app screens plus four more, shuffled for the bottom marquee.
+//  New files live in /public/screens/ (stays-ai-search, flights-fare-detail,
+//  stays-reviews, stays-photos). Missing files fall back to a labelled frame.
 export const bottomScreens = [
+  { label: 'Stays · AI search', src: '/screens/stays-ai-search.png' },
   { label: 'Flights · Fare families', src: '/screens/flights-fare.png' },
   { label: 'Stays · Reviews', src: '/screens/stays-reviews.png' },
   { label: 'Car transfers', src: '/screens/transfers.png' },
