@@ -22,7 +22,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-paper px-6 pt-32 pb-16 sm:px-8 sm:pt-48 sm:pb-20">
+    <section id="contact" className="bg-paper px-6 pt-32 pb-32 sm:px-8 sm:pt-48 sm:pb-48">
       <div className="mx-auto max-w-container text-center">
         <Reveal>
           <h2 className="text-balance text-[clamp(3rem,10vw,8rem)] font-semibold leading-[0.95] tracking-tightest text-ink">
