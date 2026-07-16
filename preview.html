@@ -447,9 +447,10 @@
   .wcard__body { margin-top: 1rem; font-size: 15.5px; line-height: 1.6; color: rgba(10,10,10,0.6); }
   #leadership .caps { margin-top: clamp(4rem, 8vw, 6rem); }
   /* ---- Project card stack (portfolio) ---- */
-  .portfolio-head { display: grid; gap: 1.5rem; align-items: center; }
-  @media (min-width: 1000px) { .portfolio-head { grid-template-columns: 1fr 1fr; gap: 1rem; } }
-  .portfolio-head__stack { min-width: 0; }
+  .portfolio-head { display: block; }
+  /* Full-bleed app-screen carousel below the titles, matching the footer ribbon. */
+  .portfolio-head__stack { min-width: 0; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 3rem; }
+  @media (min-width: 640px) { .portfolio-head__stack { margin-top: 4rem; } }
   .pk-panel { position: relative; width: 480px; height: 560px; border-radius: 30px; overflow: hidden; background: #141414; color: #fff; padding: 34px 32px; display: flex; flex-direction: column; }
   .pk-kick { font: 600 11px/1 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8a8a8a; }
   .pk-wire { flex: 1; position: relative; margin: 22px 0 20px; border-radius: 18px; background: #1a1a1a; border: 1.5px solid #2c2c2c; padding: 18px; display: flex; flex-direction: column; overflow: hidden; }

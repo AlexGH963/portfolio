@@ -9,18 +9,18 @@ import { portfolio } from '../content/site.js'
 export default function Portfolio() {
   return (
     <Section id="portfolio">
-      <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-4">
-        <Reveal>
-          <h2 className="text-balance text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[1.02] tracking-tightest text-ink">
-            {portfolio.headline}
-          </h2>
-          <p className="mt-6 max-w-xl text-[clamp(1.05rem,1.4vw,1.3rem)] leading-relaxed text-ink/60">
-            {portfolio.intro}
-          </p>
-        </Reveal>
-        <div className="w-full min-w-0">
-          <ProjectStack />
-        </div>
+      <Reveal>
+        <h2 className="text-balance text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[1.02] tracking-tightest text-ink">
+          {portfolio.headline}
+        </h2>
+        <p className="mt-6 max-w-xl text-[clamp(1.05rem,1.4vw,1.3rem)] leading-relaxed text-ink/60">
+          {portfolio.intro}
+        </p>
+      </Reveal>
+
+      {/* Full-bleed app-screen carousel, matching the footer ribbon. */}
+      <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-12 w-screen sm:mt-16">
+        <ProjectStack />
       </div>
 
       <div className="mt-16 flex flex-col gap-16 sm:mt-24 sm:gap-24">
