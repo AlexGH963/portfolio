@@ -50,6 +50,24 @@ export const screens = {
   ],
 }
 
+// --- 1c. Bottom-ribbon screens ----------------------------------------------
+//  The hero app screens plus three more, shuffled for the bottom marquee.
+//  New files live in /public/screens/ (flights-fare-detail, stays-reviews,
+//  stays-photos). Missing files fall back to a labelled frame.
+export const bottomScreens = [
+  { label: 'Flights · Fare families', src: '/screens/flights-fare.png' },
+  { label: 'Stays · Reviews', src: '/screens/stays-reviews.png' },
+  { label: 'Car transfers', src: '/screens/transfers.png' },
+  { label: 'Flights · Fare detail', src: '/screens/flights-fare-detail.png' },
+  { label: 'Stays · The Lana', src: '/screens/stays-property.png' },
+  { label: 'Stays · Location', src: '/screens/stays-location.png' },
+  { label: 'Stays · Traveller photos', src: '/screens/stays-photos.png' },
+  { label: 'Flights · Add-ons', src: '/screens/flights-addons.png' },
+  { label: 'Stays · Rooms', src: '/screens/stays-rooms.png' },
+  { label: 'Flights · Baggage', src: '/screens/flights-baggage.png' },
+  { label: 'Stays · Room select', src: '/screens/stays-room-select.png' },
+]
+
 // --- 2. Proof strip ---------------------------------------------------------
 export const proof = [
   {

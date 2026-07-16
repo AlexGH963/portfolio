@@ -1,7 +1,7 @@
-import { screens } from '../content/site.js'
+import { bottomScreens } from '../content/site.js'
 
-// All the hero app screens, flattened into one ribbon.
-const allScreens = [...screens.columnA, ...screens.columnB, ...screens.columnC]
+// The bottom ribbon's app screens (hero screens + a few more, shuffled).
+const allScreens = bottomScreens
 
 // A single phone-screen frame (same treatment as the hero showcase).
 function ScreenFrame({ item }) {
