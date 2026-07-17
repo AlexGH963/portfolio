@@ -145,7 +145,6 @@ export const staysCase = {
       {
         label: 'Hotel search',
         rows: [
-          { k: 'Volume', v: '436k' },
           { k: 'Share', v: '27.5%' },
           { k: 'Detail → Guest conversion', v: '68.8%' },
           { k: 'Overall conversion', v: '31.4%' },
@@ -154,7 +153,6 @@ export const staysCase = {
       {
         label: 'Non-hotel search',
         rows: [
-          { k: 'Volume', v: '1.15M' },
           { k: 'Share', v: '72.5%' },
           { k: 'Detail → Guest conversion', v: '53.1%' },
           { k: 'Overall conversion', v: '17.4%' },
@@ -349,7 +347,7 @@ export const staysCase = {
   // What changed — shipped work.
   shipped: {
     kicker: 'What changed',
-    title: 'The work that shipped',
+    title: 'The solutions',
     items: [
       {
         label: 'Reviews & Ratings',
