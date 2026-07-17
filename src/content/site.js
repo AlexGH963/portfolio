@@ -398,7 +398,7 @@ export const certifications = [
 export const about = {
   headline: 'About',
   paragraphs: [
-    "I'm a Product Design Leader based in Dubai, originally from Greece, with 15 years designing digital products. Over the past decade, I've led design at Almosafer, Saudi Arabia's leading travel platform and a recognised GCC travel brand, growing from founding designer for Flights to leading design across its core portfolio: Flights, Stays, Activities, and Car Transfers. I combine hands-on product design with team leadership, experimentation, and AI-native ways of working to turn design into measurable business growth.",
+    "I'm a Product Design Leader based in Dubai, originally from Greece, with 15 years designing digital products. Over the past decade, I've led design at Almosafer, the GCC's leading travel platform, from Dubai to Saudi Arabia, growing from founding designer for Flights to leading design across its core portfolio: Flights, Stays, Activities, and Car Transfers. I combine hands-on product design with team leadership, experimentation, and AI-native ways of working to turn design into measurable business growth.",
   ],
   portraitAlt: 'Portrait of Alexandros Hashemakis',
 }
