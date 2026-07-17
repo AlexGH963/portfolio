@@ -30,7 +30,7 @@ export default function About() {
                   key={i}
                   className={`text-pretty leading-relaxed ${
                     i === 0
-                      ? 'text-[clamp(1.25rem,2vw,1.7rem)] font-medium tracking-tight text-paper'
+                      ? 'text-[clamp(1.1rem,1.6vw,1.4rem)] font-medium tracking-tight text-paper'
                       : 'text-[clamp(1.05rem,1.3vw,1.2rem)] text-paper/60'
                   }`}
                 >
