@@ -486,13 +486,36 @@ export default function CaseStudyStays() {
             <span className="mt-12 block text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/35">
               {c.sizing.focusKicker}
             </span>
+            {/* The three we started with are inverted so they lead the row. */}
             <div className="mt-5 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
               {c.sizing.areas.map((a) => (
-                <Card key={a.label}>
-                  <h3 className="text-[17px] font-semibold tracking-tight text-ink">
+                <Card
+                  key={a.label}
+                  tone={a.started ? 'dark' : 'light'}
+                  glow={a.started}
+                  className="flex flex-col"
+                >
+                  <h3
+                    className={`text-[17px] font-semibold tracking-tight ${
+                      a.started ? 'text-paper' : 'text-ink'
+                    }`}
+                  >
                     {a.label}
                   </h3>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-ink/55">{a.body}</p>
+                  <p
+                    className={`mt-3 text-[14.5px] leading-relaxed ${
+                      a.started ? 'text-paper/60' : 'text-ink/55'
+                    }`}
+                  >
+                    {a.body}
+                  </p>
+                  {a.started && (
+                    <div className="mt-5 pt-1">
+                      <Tag variant="solid" tone="dark">
+                        Started here
+                      </Tag>
+                    </div>
+                  )}
                 </Card>
               ))}
             </div>

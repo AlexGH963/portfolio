@@ -7,8 +7,8 @@ export const staysCase = {
   teaser: {
     kicker: 'Recent case study',
     title: 'My approach to increase conversion',
-    hook: 'Almosafer · Stays — from business goals to user needs to real impact.',
-    tags: ['Conversion ↑', 'AOV ↑', '15+ experiments', 'SAR 1M GBV'],
+    hook: 'From business goals to user needs to real impact.',
+    tags: ['Conversion ↑', 'AOV ↑', '15+ experiments'],
     cta: 'Read the case study',
   },
 
@@ -311,14 +311,17 @@ export const staysCase = {
     areas: [
       {
         label: 'Location',
+        started: true,
         body: 'Users need clear location context and proximity to landmarks, and switch to Google Maps when detail is missing — sometimes finding better or cheaper options outside the app.',
       },
       {
         label: 'Reviews',
+        started: true,
         body: 'Users rely heavily on reviews and their source — favoring recent ones and reviewers from similar backgrounds, focusing on cleanliness, service and location.',
       },
       {
         label: 'Room options',
+        started: true,
         body: 'Users are confused by room options — especially when similar rooms with the same descriptions, sizes or photos are priced differently with no clear reason.',
       },
       {
