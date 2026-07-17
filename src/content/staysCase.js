@@ -14,9 +14,8 @@ export const staysCase = {
 
   // Title page.
   hero: {
-    kicker: 'Almosafer · Stays — Product design case study',
+    kicker: 'Stays booking experience - Product design case study.',
     title: 'From business goals to user needs to real impact',
-    byline: 'Alexandros Hashemakis · Product Design Lead',
   },
 
   // The objective.

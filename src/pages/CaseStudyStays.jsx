@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { withAiGradient } from '../components/withAiGradient.jsx'
 import { staysCase as c } from '../content/staysCase.js'
@@ -137,7 +136,6 @@ export default function CaseStudyStays() {
               <h1 className="mt-5 max-w-4xl text-balance text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tightest text-ink">
                 {c.hero.title}
               </h1>
-              <p className="mt-8 text-[15px] text-ink/50">{c.hero.byline}</p>
             </Reveal>
           </div>
         </header>
@@ -709,21 +707,20 @@ export default function CaseStudyStays() {
         <div className="bg-paper px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-container">
             <Link
-              to="/#portfolio"
+              to="/"
               className="group inline-flex items-center gap-2 text-[clamp(1.4rem,2.4vw,2rem)] font-semibold tracking-tightest text-ink"
             >
               <span
                 aria-hidden="true"
-                className="text-accent transition-transform duration-300 ease-smooth group-hover:-translate-x-1"
+                className="transition-transform duration-300 ease-smooth group-hover:-translate-x-1"
               >
                 ←
               </span>
-              Back to the portfolio
+              Back to home
             </Link>
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }
