@@ -296,6 +296,93 @@ body {
   font-weight: 500;
   color: rgba(10, 10, 10, 0.28);
 }
+/* --- Case study: bento surfaces, tags, glow ------------------------------- */
+/* Light twin of .bento-card, so the black-and-white chapters keep the same
+   card language as the AI section. */
+.bento-card--light {
+  background: linear-gradient(158deg, #ffffff 0%, #f3f3f6 100%);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+/* The AI section's radial bloom, reusable on any feature card. */
+.cs-glow::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 85%;
+  background: radial-gradient(circle, rgba(109, 92, 255, 0.28), transparent 68%);
+  filter: blur(46px);
+  pointer-events: none;
+}
+.cs-glow > * {
+  position: relative;
+}
+/* Tag pills — the "Conversion ↑" treatment, reused wherever a result,
+   count or label needs to read as metadata. */
+.cs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  border-radius: 999px;
+  padding: 0.4em 0.85em;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: rgba(10, 10, 10, 0.6);
+}
+.cs-tag--dark {
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(250, 250, 250, 0.6);
+}
+/* Result tags carry the gradient, echoing the AI section's accent. */
+.cs-tag--result {
+  border-color: transparent;
+  background: linear-gradient(100deg, #6d5cff, #b15cff, #ff5c9e);
+  color: #fff;
+}
+.cs-tag--solid {
+  border-color: transparent;
+  background: var(--ink);
+  color: var(--paper);
+}
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+/* Solution screens — deliberately large so the work reads at a glance. */
+.cs-shot {
+  position: relative;
+  aspect-ratio: 9 / 19;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fdfdfe;
+  flex: none;
+  width: 200px;
+  box-shadow: 0 50px 90px -34px rgba(0, 0, 0, 0.55);
+}
+@media (min-width: 640px) {
+  .cs-shot {
+    width: 244px;
+  }
+}
+.cs-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cs-shots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
 /* --- Case-study teaser ---------------------------------------------------- */
 /* Three phone screens fanned out, the middle one forward. The whole panel is
    one link, so the fan tilts as a group on hover. */

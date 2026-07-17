@@ -8,6 +8,7 @@ export const staysCase = {
     kicker: 'Recent case study',
     title: 'My approach to increase conversion',
     hook: 'Almosafer · Stays — from business goals to user needs to real impact.',
+    tags: ['Conversion ↑', 'AOV ↑', '15+ experiments', 'SAR 1M GBV'],
     cta: 'Read the case study',
   },
 
@@ -356,7 +357,7 @@ export const staysCase = {
           'Prioritized Saudi customer reviews to reflect culturally relevant perspectives.',
           'Increased transparency of review sources to build trust.',
         ],
-        result: 'Conversion ↑',
+        results: ['Conversion ↑'],
         screens: ['/screens/stays-reviews.png', '/screens/stays-photos.png'],
       },
       {
@@ -365,7 +366,7 @@ export const staysCase = {
           'Enhanced the property location entry point by surfacing nearby landmarks for better location context.',
           'Improved the map experience by showcasing nearby attractions, landmarks, and activities with distance information.',
         ],
-        result: 'Conversion ↑',
+        results: ['Conversion ↑'],
         screens: ['/screens/stays-location.png'],
       },
       {
@@ -375,7 +376,7 @@ export const staysCase = {
           'Categorized property images to provide better context about the property’s spaces (Property, Rooms, Pools, Wellness, etc.).',
           'Added contextual customer reviews within the gallery to build confidence in the accuracy of the images.',
         ],
-        result: 'Conversion ↑',
+        results: ['Conversion ↑'],
         screens: ['/screens/stays-property.png'],
       },
       {
@@ -384,7 +385,7 @@ export const staysCase = {
           'Reduced duplicate room listings caused by bedding variations to increase visibility of high-value room options.',
           'Simplified room selection with a two-step flow (Room → Package) to reduce cognitive load and improve clarity.',
         ],
-        result: 'Conversion ↑ AOV ↑',
+        results: ['Conversion ↑', 'AOV ↑'],
         screens: ['/screens/stays-rooms.png', '/screens/stays-room-select.png'],
       },
     ],
