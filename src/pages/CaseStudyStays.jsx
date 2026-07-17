@@ -41,11 +41,15 @@ function Head({ kicker, title, body, tone = 'light', center = false }) {
   const soft = tone === 'dark' ? 'text-paper/60' : 'text-ink/60'
   return (
     <div className={center ? 'text-center' : ''}>
-      <span className={`text-[12px] font-semibold uppercase tracking-[0.18em] ${dim}`}>
-        {kicker}
-      </span>
+      {kicker && (
+        <span className={`text-[12px] font-semibold uppercase tracking-[0.18em] ${dim}`}>
+          {kicker}
+        </span>
+      )}
       <h2
-        className={`mt-4 text-balance text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] tracking-tightest ${strong}`}
+        className={`text-balance text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] tracking-tightest ${strong} ${
+          kicker ? 'mt-4' : ''
+        }`}
       >
         {withAiGradient(title)}
       </h2>
@@ -552,7 +556,7 @@ export default function CaseStudyStays() {
         {/* ---- What changed / shipped --------------------------------- */}
         <Chapter>
           <Reveal>
-            <Head kicker={c.shipped.kicker} title={c.shipped.title} />
+            <Head title={c.shipped.title} />
           </Reveal>
           <div className="mt-12 flex flex-col gap-3.5">
             {c.shipped.items.map((it) => (

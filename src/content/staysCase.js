@@ -344,9 +344,9 @@ export const staysCase = {
     screen: '/screens/case/property-selection.jpg',
   },
 
-  // What changed — shipped work.
+  // The shipped work. No section kicker — the per-item "What changed" lists
+  // carry that label.
   shipped: {
-    kicker: 'What changed',
     title: 'The solutions',
     items: [
       {
