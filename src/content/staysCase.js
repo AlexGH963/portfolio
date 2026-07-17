@@ -341,6 +341,7 @@ export const staysCase = {
       { value: '54%', label: 'higher conversion when travelers engaged with reviews' },
       { value: '38%', label: 'higher conversion when travelers engaged with the map' },
     ],
+    screen: '/screens/case/property-selection.jpg',
   },
 
   // What changed — shipped work.
@@ -358,7 +359,7 @@ export const staysCase = {
           'Increased transparency of review sources to build trust.',
         ],
         results: ['Conversion ↑'],
-        screens: ['/screens/stays-reviews.png', '/screens/stays-photos.png'],
+        screens: ['/screens/case/reviews-address.jpg', '/screens/case/reviews-lana.jpg'],
       },
       {
         label: 'Location',
@@ -367,7 +368,11 @@ export const staysCase = {
           'Improved the map experience by showcasing nearby attractions, landmarks, and activities with distance information.',
         ],
         results: ['Conversion ↑'],
-        screens: ['/screens/stays-location.png'],
+        screens: [
+          '/screens/case/location-landmarks.jpg',
+          '/screens/case/location-around.jpg',
+          '/screens/case/location-map.jpg',
+        ],
       },
       {
         label: 'Property Gallery',
@@ -377,7 +382,11 @@ export const staysCase = {
           'Added contextual customer reviews within the gallery to build confidence in the accuracy of the images.',
         ],
         results: ['Conversion ↑'],
-        screens: ['/screens/stays-property.png'],
+        screens: [
+          '/screens/case/gallery-sofitel.jpg',
+          '/screens/case/gallery-pools.jpg',
+          '/screens/case/gallery-rooms.jpg',
+        ],
       },
       {
         label: 'Rooms & Options',
@@ -386,7 +395,11 @@ export const staysCase = {
           'Simplified room selection with a two-step flow (Room → Package) to reduce cognitive load and improve clarity.',
         ],
         results: ['Conversion ↑', 'AOV ↑'],
-        screens: ['/screens/stays-rooms.png', '/screens/stays-room-select.png'],
+        screens: [
+          '/screens/case/rooms-available.jpg',
+          '/screens/case/rooms-packages.jpg',
+          '/screens/case/rooms-bedding.jpg',
+        ],
       },
     ],
   },
@@ -454,6 +467,7 @@ export const staysCase = {
       value: 'SAR 1M',
       label: 'GBV generated within 3 months',
     },
+    screen: '/screens/case/upsell-breakfast.jpg',
     closing:
       'Upsell rate became a core business KPI and we scaled to views and bundles, with dynamic logic by destination & group size.',
   },

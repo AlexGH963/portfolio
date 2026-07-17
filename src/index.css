@@ -354,10 +354,11 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-/* Solution screens — deliberately large so the work reads at a glance. */
+/* Solution screens — the deck's own exports, deliberately large so the work
+   reads at a glance. Ratio matches the source (750×1624) so nothing crops. */
 .cs-shot {
   position: relative;
-  aspect-ratio: 9 / 19;
+  aspect-ratio: 750 / 1624;
   border-radius: 26px;
   overflow: hidden;
   background: #fdfdfe;
@@ -377,10 +378,17 @@ body {
   height: 100%;
   object-fit: cover;
 }
+/* Screens share the row: two sit large, three still fit before wrapping. */
 .cs-shots {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1rem;
+}
+.cs-shots .cs-shot {
+  flex: 1 1 170px;
+  min-width: 150px;
+  max-width: 244px;
+  width: auto;
 }
 
 /* --- Case-study teaser ---------------------------------------------------- */

@@ -510,12 +510,23 @@ export default function CaseStudyStays() {
             />
           </Reveal>
           <Reveal>
-            <div className="mt-12 grid gap-3.5 sm:grid-cols-2">
-              {c.quickWins.stats.map((s) => (
-                <Card key={s.value} tone="dark" glow className="px-8 py-10">
-                  <Stat {...s} tone="dark" />
-                </Card>
-              ))}
+            <div className="mt-12 grid items-center gap-3.5 lg:grid-cols-3">
+              <div className="grid gap-3.5 sm:grid-cols-2 lg:col-span-2">
+                {c.quickWins.stats.map((s) => (
+                  <Card key={s.value} tone="dark" glow className="px-8 py-10">
+                    <Stat {...s} tone="dark" />
+                  </Card>
+                ))}
+              </div>
+              <div className="cs-shots justify-center">
+                <div className="cs-shot">
+                  <img
+                    src={c.quickWins.screen}
+                    alt="Property selection — reviews and map surfaced on the detail page"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </Reveal>
         </Chapter>
@@ -529,9 +540,9 @@ export default function CaseStudyStays() {
             {c.shipped.items.map((it) => (
               <Reveal key={it.label}>
                 <Card className="px-7 py-9 sm:px-10 sm:py-12">
-                  <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+                  <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
                     {/* Copy */}
-                    <div className="lg:col-span-6">
+                    <div className="lg:col-span-5">
                       <h3 className="text-[clamp(1.6rem,2.6vw,2.25rem)] font-semibold tracking-tightest text-ink">
                         {it.label}
                       </h3>
@@ -556,9 +567,9 @@ export default function CaseStudyStays() {
                         ))}
                       </ul>
                     </div>
-                    {/* Solution screens — large */}
-                    <div className="lg:col-span-6">
-                      <div className="cs-shots justify-center lg:justify-end">
+                    {/* Solution screens — the deck's own exports, large */}
+                    <div className="lg:col-span-7">
+                      <div className="cs-shots justify-center">
                         {it.screens.map((src) => (
                           <div key={src} className="cs-shot">
                             <img src={src} alt={`${it.label} — Stays app screen`} loading="lazy" />
@@ -607,7 +618,7 @@ export default function CaseStudyStays() {
             <Head kicker={c.upsell.kicker} title={c.upsell.title} body={c.upsell.body} />
           </Reveal>
           <Reveal>
-            <div className="mt-12 grid items-stretch gap-3.5 lg:grid-cols-2">
+            <div className="mt-12 grid items-stretch gap-3.5 lg:grid-cols-3">
               <Card className="px-7 py-8 sm:px-9 sm:py-10">
                 <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-ink/40">
                   {c.upsell.didKicker}
@@ -622,6 +633,15 @@ export default function CaseStudyStays() {
                     </li>
                   ))}
                 </ul>
+              </Card>
+              <Card className="flex items-center justify-center px-6 py-8">
+                <div className="cs-shot">
+                  <img
+                    src={c.upsell.screen}
+                    alt="Breakfast upsell offered before checkout"
+                    loading="lazy"
+                  />
+                </div>
               </Card>
               <Card tone="dark" glow className="flex flex-col justify-center px-8 py-10 sm:px-12">
                 <Stat {...c.upsell.stat} tone="dark" />
