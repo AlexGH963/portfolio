@@ -21,7 +21,7 @@ export const nav = [
 
 // --- 1. Hero ----------------------------------------------------------------
 export const hero = {
-  headline: 'Product design leader who turns design into measurable growth.',
+  headline: 'Product designer who turns design into measurable growth.',
   subline:
     "15 years designing digital products. The last decade leading design across the GCC's leading travel platform, from Dubai to Saudi Arabia. I build high-performing teams, experimentation cultures, and AI-native ways of working that turn design into measurable business growth.",
   tag: 'Alexandros Hashemakis',
