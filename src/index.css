@@ -336,8 +336,12 @@ body {
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
+  line-height: 1.5;
   text-transform: uppercase;
-  white-space: nowrap;
+  /* Long tags (benchmark gaps, the VOC questions) wrap at spaces rather than
+     running past the card on narrow screens. */
+  max-width: 100%;
+  overflow-wrap: break-word;
   border: 1px solid rgba(0, 0, 0, 0.12);
   color: rgba(10, 10, 10, 0.6);
 }

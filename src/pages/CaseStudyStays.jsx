@@ -23,7 +23,7 @@ function Card({ tone = 'light', glow = false, className = '', children }) {
 
 // Metadata pill — results, counts, gaps, labels. Outline by default; `solid`
 // inverts against the chapter (black on light, white on dark).
-function Tag({ variant = '', tone = 'light', children }) {
+function Tag({ variant = '', tone = 'light', className = '', children }) {
   const v =
     variant === 'solid'
       ? tone === 'dark'
@@ -32,7 +32,7 @@ function Tag({ variant = '', tone = 'light', children }) {
       : tone === 'dark'
         ? 'cs-tag--dark'
         : ''
-  return <span className={`cs-tag ${v}`}>{children}</span>
+  return <span className={`cs-tag ${v} ${className}`}>{children}</span>
 }
 
 function Head({ kicker, title, body, tone = 'light', center = false }) {
@@ -355,7 +355,11 @@ export default function CaseStudyStays() {
                       }`}
                     >
                       <span>{r.name}</span>
-                      {r.duplicate && <Tag tone="dark">Duplicate</Tag>}
+                      {r.duplicate && (
+                        <Tag tone="dark" className="shrink-0">
+                          Duplicate
+                        </Tag>
+                      )}
                     </li>
                   ))}
                 </ul>
