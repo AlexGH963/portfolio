@@ -22,9 +22,17 @@ function Card({ tone = 'light', glow = false, className = '', children }) {
   )
 }
 
-// Metadata pill — results, counts, gaps, labels.
+// Metadata pill — results, counts, gaps, labels. Outline by default; `solid`
+// inverts against the chapter (black on light, white on dark).
 function Tag({ variant = '', tone = 'light', children }) {
-  const v = variant ? `cs-tag--${variant}` : tone === 'dark' ? 'cs-tag--dark' : ''
+  const v =
+    variant === 'solid'
+      ? tone === 'dark'
+        ? 'cs-tag--solid-dark'
+        : 'cs-tag--solid'
+      : tone === 'dark'
+        ? 'cs-tag--dark'
+        : ''
   return <span className={`cs-tag ${v}`}>{children}</span>
 }
 
@@ -129,13 +137,6 @@ export default function CaseStudyStays() {
               <h1 className="mt-5 max-w-4xl text-balance text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tightest text-ink">
                 {c.hero.title}
               </h1>
-              <div className="mt-8 cs-tags">
-                {c.teaser.tags.map((t) => (
-                  <Tag key={t} variant={t.includes('↑') ? 'result' : ''}>
-                    {t}
-                  </Tag>
-                ))}
-              </div>
               <p className="mt-8 text-[15px] text-ink/50">{c.hero.byline}</p>
             </Reveal>
           </div>
@@ -210,7 +211,7 @@ export default function CaseStudyStays() {
                   </p>
                   {s.weakest && (
                     <div className="mt-4">
-                      <Tag variant="result">Weakest link</Tag>
+                      <Tag variant="solid" tone="dark">Weakest link</Tag>
                     </div>
                   )}
                 </Card>
@@ -388,8 +389,8 @@ export default function CaseStudyStays() {
 
           <Reveal>
             <div className="mt-10 cs-tags">
-              <Tag variant="result">Conversion ↑</Tag>
-              <Tag variant="result">AOV ↑</Tag>
+              <Tag variant="solid" tone="dark">Conversion ↑</Tag>
+              <Tag variant="solid" tone="dark">AOV ↑</Tag>
               <Tag tone="dark">One change, two levers</Tag>
             </div>
           </Reveal>
@@ -536,7 +537,7 @@ export default function CaseStudyStays() {
                       </h3>
                       <div className="mt-5 cs-tags">
                         {it.results.map((r) => (
-                          <Tag key={r} variant="result">
+                          <Tag key={r} variant="solid">
                             {r}
                           </Tag>
                         ))}
@@ -585,7 +586,7 @@ export default function CaseStudyStays() {
                     <h3 className="text-[17px] font-semibold tracking-tight text-paper">
                       {g.label}
                     </h3>
-                    <Tag variant="result">{g.count}</Tag>
+                    <Tag variant="solid" tone="dark">{g.count}</Tag>
                   </div>
                   <ul className="mt-5 flex flex-col gap-3">
                     {g.items.map((i) => (
@@ -625,7 +626,7 @@ export default function CaseStudyStays() {
               <Card tone="dark" glow className="flex flex-col justify-center px-8 py-10 sm:px-12">
                 <Stat {...c.upsell.stat} tone="dark" />
                 <div className="mt-6 cs-tags">
-                  <Tag variant="result">New business KPI</Tag>
+                  <Tag variant="solid" tone="dark">New business KPI</Tag>
                 </div>
                 <p className="mt-6 text-[15px] leading-relaxed text-paper/55">
                   {c.upsell.closing}

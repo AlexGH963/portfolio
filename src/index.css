@@ -338,16 +338,16 @@ body {
   border-color: rgba(255, 255, 255, 0.16);
   color: rgba(250, 250, 250, 0.6);
 }
-/* Result tags carry the gradient, echoing the AI section's accent. */
-.cs-tag--result {
-  border-color: transparent;
-  background: linear-gradient(100deg, #6d5cff, #b15cff, #ff5c9e);
-  color: #fff;
-}
+/* Solid tags invert against their chapter — black on light, white on dark. */
 .cs-tag--solid {
   border-color: transparent;
   background: var(--ink);
   color: var(--paper);
+}
+.cs-tag--solid-dark {
+  border-color: transparent;
+  background: var(--paper);
+  color: var(--ink);
 }
 .cs-tags {
   display: flex;
