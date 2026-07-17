@@ -303,6 +303,11 @@ body {
   background: linear-gradient(158deg, #ffffff 0%, #f3f3f6 100%);
   border: 1px solid rgba(0, 0, 0, 0.07);
 }
+/* A dark bento card can sit inside a light chapter — default its text to paper
+   so nothing inherits ink and disappears against the card. */
+.bento-card:not(.bento-card--light) {
+  color: var(--paper);
+}
 /* The AI section's radial bloom, reusable on any feature card. */
 .cs-glow::after {
   content: '';

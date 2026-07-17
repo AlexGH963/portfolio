@@ -359,7 +359,11 @@ export const staysCase = {
           'Increased transparency of review sources to build trust.',
         ],
         results: ['Conversion ↑'],
-        screens: ['/screens/case/reviews-address.jpg', '/screens/case/reviews-lana.jpg'],
+        screens: [
+          '/screens/case/reviews-address.jpg',
+          '/screens/case/reviews-lana.jpg',
+          '/screens/case/reviews-summary.jpg',
+        ],
       },
       {
         label: 'Location',
