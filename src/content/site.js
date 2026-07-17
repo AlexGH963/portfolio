@@ -246,7 +246,7 @@ export const portfolio = {
 export const aiNative = {
   headline: 'Making design teams AI-native.',
   subline:
-    "I didn't just adopt AI — I rebuilt how my team works around it. I designed a repeatable, AI-driven workflow, proved it by leading on real projects, and embedded it across the team — turning AI from a personal advantage into an organizational capability.",
+    "I didn't just adopt AI — I rebuilt how my team works around it. I designed a repeatable, AI-driven workflow and embedded it across the team, turning AI from a personal advantage into an organizational capability.",
   pillars: [
     { label: 'Research', line: 'Synthesis in hours, not days.' },
     { label: 'Ideation', line: 'More directions explored, faster.' },
