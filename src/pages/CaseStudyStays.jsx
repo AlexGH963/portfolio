@@ -511,13 +511,6 @@ export default function CaseStudyStays() {
                   >
                     {a.body}
                   </p>
-                  {a.started && (
-                    <div className="mt-5 pt-1">
-                      <Tag variant="solid" tone="dark">
-                        Started here
-                      </Tag>
-                    </div>
-                  )}
                 </Card>
               ))}
             </div>
