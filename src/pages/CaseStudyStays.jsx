@@ -415,7 +415,7 @@ export default function CaseStudyStays() {
                     <h3 className="text-[22px] font-semibold tracking-tight text-ink">
                       {g.label}
                     </h3>
-                    <Tag>{g.question}</Tag>
+                    <Tag variant="solid">{g.question}</Tag>
                   </div>
                   <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {g.items.map((it) => (
