@@ -615,12 +615,9 @@ export default function CaseStudyStays() {
             <div className="mt-12 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
               {c.wave.groups.map((g) => (
                 <Card key={g.label} tone="dark">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-[17px] font-semibold tracking-tight text-paper">
-                      {g.label}
-                    </h3>
-                    <Tag variant="solid" tone="dark">{g.count}</Tag>
-                  </div>
+                  <h3 className="text-[17px] font-semibold tracking-tight text-paper">
+                    {g.label}
+                  </h3>
                   <ul className="mt-5 flex flex-col gap-3">
                     {g.items.map((i) => (
                       <li key={i} className="text-[14.5px] leading-relaxed text-paper/55">
