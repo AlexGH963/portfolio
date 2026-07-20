@@ -182,8 +182,8 @@ export const staysCase = {
 
   // The flagship — collapse the duplicates.
   flagship: {
-    kicker: 'The flagship',
-    title: 'Collapse the duplicates',
+    kicker: 'Room selection',
+    title: 'Duplicated rooms',
     body: 'The same room repeated under different bed types pushes travelers toward the cheapest option. Merging will reduces cognitive load, improves visibility of all available room options, and can potentially lift conversion and AOV at once.',
     before: {
       label: 'Before',
