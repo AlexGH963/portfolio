@@ -296,7 +296,7 @@ export const staysCase = {
   experimentation: {
     kicker: 'Design direction & experimentation',
     title: 'From problems to experiments',
-    body: 'With opportunities sized and prioritized, we translated each one into a testable hypothesis, creating a structured wave of experiments designed to build momentum and drive learnings, all measured against conversion impact.',
+    body: 'The next step was to size and prioritize the opportunities, then translate each into a testable hypothesis, creating a structured wave of experiments designed to build momentum, generate learnings, and measure their impact on conversion.',
   },
 
   // Sizing & prioritization.
