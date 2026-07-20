@@ -87,17 +87,17 @@ export const staysCase = {
   funnel: {
     kicker: 'Funnel analysis',
     title: 'One step was losing the most people',
-    body: 'Detail → Guest was the weakest link in the Stays funnel.',
+    body: 'Hotel details → Guest details was the weakest link in the Stays funnel.',
     steps: [
-      { value: '83%', label: 'Search → Detail' },
-      { value: '49%', label: 'Detail → Guest', weakest: true },
-      { value: '72%', label: 'Guest → Payment' },
+      { value: '83%', label: 'Hotel listing → Hotel details' },
+      { value: '49%', label: 'Hotel details → Guest details', weakest: true },
+      { value: '72%', label: 'Guest details → Payment' },
       { value: '55%', label: 'Payment → Confirmed' },
     ],
     caption: 'Step-to-step conversion across the Stays booking funnel.',
     stat: {
       value: '49%',
-      label: 'step conversion at Detail → Guest',
+      label: 'step conversion at Hotel details → Guest details',
       body: 'The lowest in the entire funnel (iOS) and the same drop showed up on every platform.',
     },
   },
