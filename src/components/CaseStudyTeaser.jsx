@@ -9,7 +9,7 @@ const { teaser } = staysCase
 // dark moments on the page read as one family.
 export default function CaseStudyTeaser() {
   return (
-    <section className="bg-paper px-6 py-16 sm:px-8 sm:py-20">
+    <section id="recent-case-study" className="bg-paper px-6 py-16 sm:px-8 sm:py-20">
       <div className="mx-auto max-w-container">
         <Reveal>
           <Link
