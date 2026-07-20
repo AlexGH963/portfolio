@@ -116,7 +116,7 @@ export const leadership = {
     "Great design isn't the goal — measurable growth is, and the team that keeps delivering it. Here's how I lead.",
   capabilities: [
     {
-      title: 'Strategic Design Leadership',
+      title: 'Strategic Design',
       body:
         'Worked as a peer to Product, Engineering, and senior leadership, turning business goals into design strategy and roadmap, and partnering directly with C-level to make design a driver of company direction.',
     },
