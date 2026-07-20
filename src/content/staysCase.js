@@ -6,7 +6,7 @@ export const staysCase = {
   // Home-page entry point.
   teaser: {
     kicker: 'Recent case study',
-    title: 'My approach to increase conversion',
+    title: 'Conversion rate optimization',
     hook: 'From business goals to user needs to real impact.',
     tags: ['Conversion ↑', 'AOV ↑', '15+ experiments'],
     cta: 'Read the case study',
