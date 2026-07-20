@@ -332,9 +332,9 @@ export const staysCase = {
     ],
   },
 
-  // Quick wins — property selection.
+  // Quick wins — the first experiments.
   quickWins: {
-    kicker: 'Property selection',
+    kicker: 'The first experiments',
     title: 'Underused content that increased conversion',
     body: 'Within a week, we launched two quick experiments to improve visibility of reviews and hotel location (map), to validate the need and reduce risk before investing in larger improvements.',
     stats: [
