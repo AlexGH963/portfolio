@@ -35,7 +35,7 @@ function Tag({ variant = '', tone = 'light', className = '', children }) {
   return <span className={`cs-tag ${v} ${className}`}>{children}</span>
 }
 
-function Head({ kicker, title, body, tone = 'light', center = false }) {
+function Head({ kicker, title, body, tone = 'light', center = false, gradientWords = [] }) {
   const dim = tone === 'dark' ? 'text-paper/40' : 'text-ink/40'
   const strong = tone === 'dark' ? 'text-paper' : 'text-ink'
   const soft = tone === 'dark' ? 'text-paper/60' : 'text-ink/60'
@@ -51,7 +51,7 @@ function Head({ kicker, title, body, tone = 'light', center = false }) {
           kicker ? 'mt-4' : ''
         }`}
       >
-        {withAiGradient(title)}
+        {withAiGradient(title, gradientWords)}
       </h2>
       {body && (
         <p
@@ -609,7 +609,13 @@ export default function CaseStudyStays() {
         {/* ---- The wave ----------------------------------------------- */}
         <Chapter tone="dark">
           <Reveal>
-            <Head kicker={c.wave.kicker} title={c.wave.title} body={c.wave.body} tone="dark" />
+            <Head
+              kicker={c.wave.kicker}
+              title={c.wave.title}
+              body={c.wave.body}
+              tone="dark"
+              gradientWords={['conversion']}
+            />
           </Reveal>
           <Reveal>
             <div className="mt-12 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
