@@ -4,7 +4,7 @@ import Hero from '../components/Hero.jsx'
 import Leadership from '../components/Leadership.jsx'
 import Portfolio from '../components/Portfolio.jsx'
 import CaseStudyTeaser from '../components/CaseStudyTeaser.jsx'
-import AiNative from '../components/AiNative.jsx'
+// import AiNative from '../components/AiNative.jsx' // hidden for now — re-enable later
 // import CaseStudies from '../components/CaseStudies.jsx' // hidden for now — re-enable later
 import Timeline from '../components/Timeline.jsx'
 import About from '../components/About.jsx'
@@ -22,7 +22,7 @@ export default function Home() {
         <Leadership />
         <Portfolio />
         <CaseStudyTeaser />
-        <AiNative />
+        {/* <AiNative /> hidden for now — re-enable later */}
         {/* <CaseStudies /> hidden for now — re-enable later */}
         <Timeline />
         <About />
