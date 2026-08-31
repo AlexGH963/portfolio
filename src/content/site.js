@@ -103,7 +103,7 @@ export const whatIDo = [
       'I made A/B testing and continuous discovery the default way teams move from idea to decision — framing the right problems, validating before build, and turning testing into steady, compounding gains.',
   },
   {
-    title: 'I make design teams AI-native.',
+    title: 'I embed AI across the design workflow.',
     body:
       "I've cut idea-to-tested-prototype from weeks to days by embedding AI across research, ideation, and prototyping — leading adoption by example and turning it into a team-wide capability.",
   },
