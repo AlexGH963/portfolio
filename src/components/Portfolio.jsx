@@ -44,7 +44,7 @@ export default function Portfolio() {
                       className="product__icon h-14 w-14 shrink-0 sm:h-16 sm:w-16"
                     />
                   )}
-                  <h3 className="metal-text text-[clamp(1.25rem,2.2vw,1.9rem)] font-semibold leading-[1.06] tracking-tightest lg:text-[clamp(1.6rem,2.6vw,2.4rem)]">
+                  <h3 className="metal-text pb-[0.2em] text-[clamp(1.25rem,2.2vw,1.9rem)] font-semibold leading-[1.06] tracking-tightest lg:text-[clamp(1.6rem,2.6vw,2.4rem)]">
                     {base}
                     {suffix && <span className="lg:block"> {suffix}</span>}
                   </h3>
