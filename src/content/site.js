@@ -139,7 +139,7 @@ export const portfolio = {
   intro: 'Travel booking app',
   products: [
     {
-      name: 'Flights',
+      name: 'Flights Booking App',
       icon: '/icons/flights.svg',
       scope:
         "Scaled Flights into Saudi Arabia's leading flight platform through discovery-led strategy, experimentation, and conversion optimization. Directed a 100+ experiment roadmap driving ongoing gains in conversion and revenue, contributing to thousands of daily bookings.",
@@ -167,7 +167,7 @@ export const portfolio = {
       ],
     },
     {
-      name: 'Stays',
+      name: 'Stays Booking App',
       icon: '/icons/hotels.svg',
       scope:
         'Led product strategy and research across Stays, embedding a CRO-driven experimentation culture that turned it into a continuous optimization engine and repositioned it from a high-friction flow into a competitive hotel-booking experience.',
@@ -205,7 +205,7 @@ export const portfolio = {
       ],
     },
     {
-      name: 'Travel activities',
+      name: 'Travel Activities Booking App',
       icon: '/icons/activities.svg',
       scope:
         'Led design and research for Travel activities as a 0→1 product line, expanding Almosafer from a booking platform into a holistic travel-experience provider.',
@@ -223,7 +223,7 @@ export const portfolio = {
       ],
     },
     {
-      name: 'Car transfers',
+      name: 'Car Transfers Booking App',
       icon: '/icons/car.svg',
       scope:
         "Defined and led design and research for Almosafer's new car-transfers product, completing the company's full-journey travel offering.",

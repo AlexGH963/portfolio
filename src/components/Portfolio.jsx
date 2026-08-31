@@ -38,7 +38,7 @@ export default function Portfolio() {
                       className="product__icon h-14 w-14 shrink-0 sm:h-16 sm:w-16"
                     />
                   )}
-                  <h3 className="metal-text text-[clamp(1.8rem,3vw,2.75rem)] font-semibold tracking-tightest">
+                  <h3 className="metal-text text-[clamp(1.25rem,2.2vw,1.9rem)] font-semibold tracking-tightest">
                     {product.name}
                   </h3>
                 </div>
