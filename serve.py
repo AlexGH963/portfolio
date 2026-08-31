@@ -4,13 +4,16 @@
 Adds no-cache headers so the browser always fetches the latest file — a plain
 reload (Cmd+R) is enough to see edits; no hard-refresh needed.
 
-Usage:  python3 serve.py [port]   (defaults to 8000, serves this folder)
+Usage:  python3 serve.py [port]   (serves this folder)
+
+Port resolution order: $PORT env var (set by the Claude Code preview when
+autoPort is on) → CLI arg → 8000.
 """
 import os
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+PORT = int(os.environ.get("PORT") or (sys.argv[1] if len(sys.argv) > 1 else 8000))
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 

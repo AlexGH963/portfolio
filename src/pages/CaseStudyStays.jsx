@@ -120,13 +120,20 @@ export default function CaseStudyStays() {
     }
   }, [])
 
+  // Every solution/idea screen, in journey order, for the hero carousel.
+  const heroScreens = [
+    c.quickWins.screen,
+    ...c.shipped.items.flatMap((it) => it.screens),
+    c.upsell.screen,
+  ].filter(Boolean)
+
   return (
     <>
       <Header />
       <main>
         {/* ---- Title -------------------------------------------------- */}
-        <header className="bg-paper px-6 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
-          <div className="mx-auto max-w-container">
+        <header className="bg-paper pb-20 pt-36 sm:pb-28 sm:pt-44">
+          <div className="mx-auto max-w-container px-6 sm:px-8">
             <Link
               to="/#portfolio"
               className="text-[14px] font-medium text-ink/50 transition-colors hover:text-ink"
@@ -141,6 +148,24 @@ export default function CaseStudyStays() {
                 {c.hero.title}
               </h1>
             </Reveal>
+          </div>
+
+          {/* Full-bleed carousel of the solution screens (same marquee as the
+              "Shaping travel experiences" section). */}
+          <div className="mt-14 sm:mt-16">
+            <div className="cards-marquee" aria-hidden="true" role="presentation">
+              <div className="cards-track">
+                {[0, 1].map((g) => (
+                  <div key={g} className="cards-group cards-group--screens">
+                    {heroScreens.map((src, i) => (
+                      <div key={i} className="screen">
+                        <img src={src} alt="" loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </header>
 
