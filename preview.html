@@ -185,8 +185,12 @@
   .products { margin-top: clamp(4rem, 8vw, 6rem); display: flex; flex-direction: column; gap: clamp(4rem, 8vw, 6rem); }
   .product { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 2.5rem; display: grid; gap: 2rem; }
   @media (min-width: 1000px) { .product { grid-template-columns: 5fr 7fr; gap: 4rem; } }
-  .product__name { font-size: clamp(1.25rem, 2.2vw, 1.9rem); font-weight: 600; letter-spacing: -0.045em; background: linear-gradient(90deg, #3a3a3a 0%, #5c5c5c 42%, #838383 74%, #ababab 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .product__name { font-size: clamp(1.25rem, 2.2vw, 1.9rem); line-height: 1.06; font-weight: 600; letter-spacing: -0.045em; background: linear-gradient(90deg, #3a3a3a 0%, #5c5c5c 42%, #838383 74%, #ababab 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
   .product__scope { margin-top: 1rem; max-width: 28rem; font-size: 16px; line-height: 1.6; color: rgba(10,10,10,0.6); }
+  @media (min-width: 1000px) {
+    .product__name { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
+    .product__suffix { display: block; }
+  }
   .product__head { display: flex; align-items: center; gap: 1rem; }
   .product__icon { width: 56px; height: 56px; flex: none; filter: grayscale(1) brightness(1.06) contrast(1.05); }
   @media (min-width: 640px) { .product__icon { width: 64px; height: 64px; } }
@@ -717,7 +721,7 @@
           <div class="products">
             <div class="product reveal">
               <div>
-                <div class="product__head"><img class="product__icon" src="/public/icons/flights.svg" alt="" aria-hidden="true"><h3 class="product__name">Flights Booking App</h3></div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/flights.svg" alt="" aria-hidden="true"><h3 class="product__name">Flights<span class="product__suffix"> Booking App</span></h3></div>
                 <p class="product__scope">Scaled Flights into Saudi Arabia's leading flight platform through discovery-led strategy, experimentation, and conversion optimization. Directed a 100+ experiment roadmap driving ongoing gains in conversion and revenue, contributing to thousands of daily bookings.</p>
               </div>
               <ul class="inits">
@@ -730,7 +734,7 @@
             </div>
             <div class="product reveal">
               <div>
-                <div class="product__head"><img class="product__icon" src="/public/icons/hotels.svg" alt="" aria-hidden="true"><h3 class="product__name">Stays Booking App</h3></div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/hotels.svg" alt="" aria-hidden="true"><h3 class="product__name">Stays<span class="product__suffix"> Booking App</span></h3></div>
                 <p class="product__scope">Led product strategy and research across Stays, embedding a CRO-driven experimentation culture that turned it into a continuous optimization engine and repositioned it from a high-friction flow into a competitive hotel-booking experience.</p>
               </div>
               <ul class="inits">
@@ -745,7 +749,7 @@
             </div>
             <div class="product reveal">
               <div>
-                <div class="product__head"><img class="product__icon" src="/public/icons/activities.svg" alt="" aria-hidden="true"><h3 class="product__name">Travel Activities Booking App</h3></div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/activities.svg" alt="" aria-hidden="true"><h3 class="product__name">Travel Activities<span class="product__suffix"> Booking App</span></h3></div>
                 <p class="product__scope">Led design and research for Travel activities as a 0→1 product line, expanding Almosafer from a booking platform into a holistic travel-experience provider.</p>
               </div>
               <ul class="inits">
@@ -756,7 +760,7 @@
             </div>
             <div class="product reveal">
               <div>
-                <div class="product__head"><img class="product__icon" src="/public/icons/car.svg" alt="" aria-hidden="true"><h3 class="product__name">Car Transfers Booking App</h3></div>
+                <div class="product__head"><img class="product__icon" src="/public/icons/car.svg" alt="" aria-hidden="true"><h3 class="product__name">Car Transfers<span class="product__suffix"> Booking App</span></h3></div>
                 <p class="product__scope">Defined and led design and research for Almosafer's new car-transfers product, completing the company's full-journey travel offering.</p>
               </div>
               <ul class="inits">

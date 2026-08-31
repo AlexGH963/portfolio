@@ -24,7 +24,13 @@ export default function Portfolio() {
       </div>
 
       <div className="mt-16 flex flex-col gap-16 sm:mt-24 sm:gap-24">
-        {portfolio.products.map((product) => (
+        {portfolio.products.map((product) => {
+          // Split "… Booking App" so the suffix can drop to a second line on
+          // laptop (lg) while staying inline on smaller screens.
+          const m = product.name.match(/^(.*?)\s+(Booking App)$/)
+          const base = m ? m[1] : product.name
+          const suffix = m ? m[2] : null
+          return (
           <Reveal key={product.name}>
             <div className="grid gap-8 border-t border-black/10 pt-10 lg:grid-cols-12 lg:gap-16">
               {/* Product name + scope */}
@@ -38,8 +44,9 @@ export default function Portfolio() {
                       className="product__icon h-14 w-14 shrink-0 sm:h-16 sm:w-16"
                     />
                   )}
-                  <h3 className="metal-text text-[clamp(1.25rem,2.2vw,1.9rem)] font-semibold tracking-tightest">
-                    {product.name}
+                  <h3 className="metal-text text-[clamp(1.25rem,2.2vw,1.9rem)] font-semibold leading-[1.06] tracking-tightest lg:text-[clamp(1.6rem,2.6vw,2.4rem)]">
+                    {base}
+                    {suffix && <span className="lg:block"> {suffix}</span>}
                   </h3>
                 </div>
                 <p className="mt-4 max-w-md text-[16px] leading-relaxed text-ink/60">
@@ -72,7 +79,8 @@ export default function Portfolio() {
               </div>
             </div>
           </Reveal>
-        ))}
+          )
+        })}
       </div>
     </Section>
   )
