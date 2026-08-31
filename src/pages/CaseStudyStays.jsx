@@ -178,6 +178,7 @@ export default function CaseStudyStays() {
                 title={c.objective.title}
                 body={c.objective.body}
                 tone="dark"
+                gradientWords={['conversion']}
               />
             </Card>
           </Reveal>
