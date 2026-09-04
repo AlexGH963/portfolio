@@ -73,7 +73,7 @@ export const staysCase = {
       {
         n: '05',
         label: 'Team & delivery',
-        body: 'Led a cross-functional team of 3 designers and 1 researcher, setting the quality bar and sequencing work against business priority.',
+        body: 'Stayed hands-on in the craft while working closely with designers and a researcher, setting the quality bar and sequencing work against business priority.',
       },
       {
         n: '06',
