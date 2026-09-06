@@ -13,7 +13,7 @@ export const meta = {
 export const nav = [
   { label: 'Product design', href: '#leadership' },
   { label: 'Recent work', href: '#portfolio' },
-  { label: 'Recent case study', href: '#recent-case-study' },
+  // { label: 'Recent case study', href: '#recent-case-study' }, // hidden for now — re-enable later
   // { label: 'Case studies', href: '#case-studies' }, // hidden for now
   { label: 'Experience', href: '#experience' },
   { label: 'About', href: '#about' },
