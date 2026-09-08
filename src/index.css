@@ -402,6 +402,39 @@ body {
   width: auto;
 }
 
+/* Labelled screen row — booking flow, old experience. Scrolls on narrow
+   screens; the whole sequence fits on desktop. */
+.cs-screen-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+}
+.cs-screen-row__item {
+  flex: none;
+  width: 150px;
+  scroll-snap-align: start;
+}
+@media (min-width: 640px) {
+  .cs-screen-row__item {
+    width: 178px;
+  }
+}
+.cs-screen-row__item .cs-shot {
+  width: 100%;
+}
+
+/* Review-card designs — wide component crops, not phone frames. */
+.cs-revcard img {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 24px 50px -30px rgba(17, 17, 26, 0.14);
+}
+
 /* --- Case-study teaser ---------------------------------------------------- */
 /* Three phone screens fanned out, the middle one forward. The whole panel is
    one link, so the fan tilts as a group on hover. */

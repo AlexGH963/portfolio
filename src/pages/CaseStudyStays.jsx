@@ -110,6 +110,26 @@ function NumCard({ n, label, body, tag, tone = 'light' }) {
   )
 }
 
+// A horizontal, labelled row of phone screens (booking flow, old experience).
+// Scrolls horizontally on narrow screens; the whole set fits on desktop.
+function ScreenRow({ steps, tone = 'light' }) {
+  const cap = tone === 'dark' ? 'text-paper/55' : 'text-ink/55'
+  return (
+    <div className="cs-screen-row">
+      {steps.map((s, i) => (
+        <figure key={i} className="cs-screen-row__item">
+          <div className="cs-shot">
+            <img src={s.src} alt={s.label} loading="lazy" />
+          </div>
+          <figcaption className={`mt-3 text-center text-[13px] font-medium ${cap}`}>
+            {s.label}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  )
+}
+
 // --- Page -------------------------------------------------------------------
 
 export default function CaseStudyStays() {
@@ -213,6 +233,22 @@ export default function CaseStudyStays() {
           </Reveal>
         </Chapter>
 
+        {/* ---- Booking flow ------------------------------------------- */}
+        <Chapter className="border-t border-black/[0.07]">
+          <Reveal>
+            <Head
+              kicker={c.bookingFlow.kicker}
+              title={c.bookingFlow.title}
+              body={c.bookingFlow.body}
+            />
+          </Reveal>
+          <Reveal>
+            <div className="mt-12">
+              <ScreenRow steps={c.bookingFlow.steps} />
+            </div>
+          </Reveal>
+        </Chapter>
+
         {/* ---- Funnel analysis ---------------------------------------- */}
         <Chapter className="border-t border-black/[0.07]">
           <Reveal>
@@ -254,6 +290,22 @@ export default function CaseStudyStays() {
                 <Stat {...c.funnel.stat} />
               </div>
             </Card>
+          </Reveal>
+        </Chapter>
+
+        {/* ---- Old experience ----------------------------------------- */}
+        <Chapter className="border-t border-black/[0.07]">
+          <Reveal>
+            <Head
+              kicker={c.oldExperience.kicker}
+              title={c.oldExperience.title}
+              body={c.oldExperience.body}
+            />
+          </Reveal>
+          <Reveal>
+            <div className="mt-12">
+              <ScreenRow steps={c.oldExperience.steps} />
+            </div>
           </Reveal>
         </Chapter>
 
@@ -630,6 +682,50 @@ export default function CaseStudyStays() {
               </Reveal>
             ))}
           </div>
+        </Chapter>
+
+        {/* ---- Review card -------------------------------------------- */}
+        <Chapter className="border-t border-black/[0.07]">
+          <Reveal>
+            <Head
+              kicker={c.reviewCard.kicker}
+              title={c.reviewCard.title}
+              body={c.reviewCard.body}
+            />
+          </Reveal>
+          <Reveal>
+            <div className="mt-12 grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+              {/* What changed */}
+              <div className="lg:col-span-5">
+                <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-ink/40">
+                  What changed
+                </p>
+                <ul>
+                  {c.reviewCard.changes.map((ch) => (
+                    <li
+                      key={ch}
+                      className="border-b border-black/[0.07] py-4 text-[15.5px] leading-relaxed text-ink/60 last:border-b-0"
+                    >
+                      {withAiGradient(ch)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* Card designs */}
+              <div className="lg:col-span-7">
+                <div className="flex flex-col gap-4">
+                  {c.reviewCard.cards.map((card) => (
+                    <figure key={card.src} className="cs-revcard">
+                      <img src={card.src} alt={card.label} loading="lazy" />
+                      <figcaption className="mt-2.5 text-[12.5px] font-medium text-ink/45">
+                        {card.label}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </Chapter>
 
         {/* ---- The wave ----------------------------------------------- */}
