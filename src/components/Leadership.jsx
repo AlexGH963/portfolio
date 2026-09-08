@@ -7,14 +7,8 @@ import { leadership, whatIDo } from '../content/site.js'
 export default function Leadership() {
   return (
     <Section id="leadership" tone="dark">
-      <Reveal>
-        <h2 className="max-w-4xl text-balance text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[1.02] tracking-tightest">
-          {leadership.headline}
-        </h2>
-      </Reveal>
-
       {/* Three headline statements as white cards on the dark section */}
-      <div className="mt-14 grid gap-5 sm:mt-16 lg:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-3">
         {whatIDo.map((block, i) => (
           <Reveal key={block.title} delay={i * 90}>
             <div className="flex h-full flex-col rounded-[28px] bg-paper p-8 text-ink">

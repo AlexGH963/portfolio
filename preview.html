@@ -445,7 +445,7 @@
   }
   #case-studies { display: none; }
   /* ---- What-I-do white cards on the leadership dark section ---- */
-  .wcards { margin-top: clamp(3.5rem, 7vw, 4rem); display: grid; gap: 1.5rem; }
+  .wcards { display: grid; gap: 1.5rem; }
   @media (min-width: 900px) { .wcards { grid-template-columns: repeat(3, 1fr); } }
   .wcard { background: var(--paper); color: var(--ink); border-radius: 28px; padding: 2rem 1.75rem; display: flex; flex-direction: column; }
   .wcard__num { font-size: 13px; font-weight: 500; color: rgba(10,10,10,0.3); font-variant-numeric: tabular-nums; }
@@ -674,9 +674,6 @@
       <!-- Leadership -->
       <section class="section section--dark" id="leadership">
         <div class="container">
-          <div class="reveal">
-            <h2 class="h-section">Turning design into measurable growth.</h2>
-          </div>
           <div class="wcards">
             <div class="reveal wcard">
               <span class="wcard__num">01</span>
