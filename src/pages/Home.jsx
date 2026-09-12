@@ -3,7 +3,7 @@ import Hero from '../components/Hero.jsx'
 // WhatIDo statements now live as white cards inside Leadership.
 import Leadership from '../components/Leadership.jsx'
 import Portfolio from '../components/Portfolio.jsx'
-import CaseStudyTeaser from '../components/CaseStudyTeaser.jsx'
+// import CaseStudyTeaser from '../components/CaseStudyTeaser.jsx' // hidden for now — re-enable later
 // import AiNative from '../components/AiNative.jsx' // hidden for now — re-enable later
 // import CaseStudies from '../components/CaseStudies.jsx' // hidden for now — re-enable later
 import Timeline from '../components/Timeline.jsx'
@@ -21,7 +21,7 @@ export default function Home() {
         <Hero />
         <Leadership />
         <Portfolio />
-        <CaseStudyTeaser />
+        {/* <CaseStudyTeaser /> hidden for now — re-enable later */}
         {/* <AiNative /> hidden for now — re-enable later */}
         {/* <CaseStudies /> hidden for now — re-enable later */}
         <Timeline />
